@@ -1,7 +1,7 @@
 using System;
-using Factory.Method.Models.Creators;   
+using Factory.Method.Models;
 
-namespace Factory.Method.Models
+namespace Factory.Method.Application
 {
     class Program
     {

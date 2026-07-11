@@ -1,12 +1,12 @@
-namespace Factory.Method.Models.Products
+namespace Factory.Method.Models
 {
-    public class Kage: Ninja
+    public class Chunin: Ninja
     {
         public string Name { get; set; } = "Anonymous";
-        public NinjaRank Rank { get; set; } = NinjaRank.Kage;
-        public int Health { get; set; } = 5000;
-        public int Chakra { get; set; } = 3000;
-        public int Speed { get; set; } = 95;
+        public NinjaRank Rank { get; set; } = NinjaRank.Chunin;
+        public int Health { get; set; } = 1000;
+        public int Chakra { get; set; } = 800;
+        public int Speed { get; set; } = 75;
 
         public void attack(){
             Console.WriteLine($"{Name} casts a Jutsu!");

@@ -1,6 +1,6 @@
- namespace Factory.Method.Models.Creators
+namespace Factory.Method.Models
 {
-     abstract class NinjaAcademy {
+      public abstract class NinjaAcademy {
 
       public Ninja[] Ninjas { get; set; } = Array.Empty<Ninja>();
 

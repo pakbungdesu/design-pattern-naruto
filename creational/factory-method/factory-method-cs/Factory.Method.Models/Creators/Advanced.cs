@@ -1,8 +1,6 @@
-using Factory.Method.Models.Products;
-
-namespace Factory.Method.Models.Creators
+namespace Factory.Method.Models
 {
-    class Advanced : NinjaAcademy {
+    public class Advanced : NinjaAcademy {
         public override void createNinja(int length, string[] names){
 
             if (length != names.Length)

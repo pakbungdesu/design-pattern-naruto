@@ -1,8 +1,6 @@
-using Factory.Method.Models.Products;
-
-namespace Factory.Method.Models.Creators
+namespace Factory.Method.Models
 {
-    class Elementary : NinjaAcademy {
+    public class Intermediate : NinjaAcademy {
      public override void createNinja(int length, string[] names){
 
         if (length != names.Length)
@@ -14,11 +12,11 @@ namespace Factory.Method.Models.Creators
 
         for (int i = 0; i < length; i++)
         {
-            ninjas[i] = new Genin();
+            ninjas[i] = new Chunin();
             ninjas[i].Name = names[i];
         }
-
-        this.Ninjas =  ninjas;
+        
+        this.Ninjas = ninjas;
         }
     }
 }  
