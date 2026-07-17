@@ -4,6 +4,8 @@ namespace Factory.Method.Models
 
       public Ninja[] Ninjas { get; set; } = Array.Empty<Ninja>();
 
+      public abstract void createNinja(int length);
+
       public abstract void createNinja(int length, string[] names);
       
       public void train(Ninja ninja){
