@@ -5,113 +5,40 @@ namespace Factory.Method.Application
 {
     class Program
     {
-        static NinjaAcademy[] client(NinjaAcademy[] academy, int[] lengths, string[][] names)
+        static Ninja[] client(NinjaAcademy academy, int lengths)
         {
-            if (academy.Length != lengths.Length || lengths.Length != names.Length)
+
+            Ninja[] ninjas = new Ninja[lengths];
+            
+            for (int i = 0; i < lengths; i++)
             {
-                throw new ArgumentException("Academy, lengths, and names arrays must have the same length.");
+                ninjas[i] = academy.createNinja();
             }
 
-            for (int i = 0; i < academy.Length; i++)
-            {
-                academy[i].createNinja(lengths[i], names[i]);
-            }
-
-            return academy;
+            return ninjas;
         }
+
       
         static void Main() 
         {            
-            int[] lengths1 = [2, 2, 2, 3];
-            int[] lengths2 = [1, 1, 1, 1];
-            string[][] names1 = [
-                ["Naruto","Sasuke"],
-                ["Shikamaru", "Choji"],
-                ["Kakashi", "Guy"],
-                ["Hashirama", "Tobirama", "Tsunade"]
-            ];
-
-            try
-            {
-                NinjaAcademy[] academy1 = client(new NinjaAcademy[] { new Elementary(), new Intermediate(), 
-            new Advanced(), new Legend() }, lengths1, names1);
-
-                foreach (NinjaAcademy a in academy1)
-                {
-                    a.train();
-                }
-            }
-            catch (ArgumentException ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-            }
-
             
-            try
-            {
-                Console.WriteLine("\n--- Testing with mismatched lengths ---\n");
+        NinjaAcademy academy = new Elementary();
+        Ninja ninja = academy.createNinja(); 
+        academy.train(ninja);
 
-                NinjaAcademy[] academy2 = client(new NinjaAcademy[] { new Elementary(), new Intermediate(), 
-            new Advanced(), new Legend() }, lengths2, names1);
+        academy = new Intermediate();
+        ninja = academy.createNinja();
+        academy.train(ninja);
 
-                foreach (NinjaAcademy a in academy2)
-                {
-                    a.train();
-                }
-            }
-            catch (ArgumentException ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-            }
+        academy = new Advanced();
+        ninja = academy.createNinja();
+        academy.train(ninja);
 
-            int[] lengths3 = [1, 1, 1];
-            string[][] names2 = [
-                ["Naruto"],
-                ["Shikamaru"],
-                ["Kakashi"]
-            ];
-
-            try
-            {
-                Console.WriteLine("\n--- Testing with fewer lengths and names ---\n");
-
-                NinjaAcademy[] academy3 = client(new NinjaAcademy[] { new Elementary(), new Intermediate(), 
-            new Advanced()}, lengths3, names2);
-
-                foreach (NinjaAcademy a in academy3)
-                {
-                    a.train();
-                }
-            }
-            catch (ArgumentException ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-            }
-
-            Console.WriteLine("\n--- Testing with creating schools manually ---\n");
-
-            List<NinjaAcademy> academies = new List<NinjaAcademy>();
-
-            NinjaAcademy academy4 = new Elementary();
-            academy4.createNinja(3);
-            academies.Add(academy4);
-
-            academy4 = new Intermediate();
-            academy4.createNinja(3);
-            academies.Add(academy4);
-
-            academy4 = new Advanced();
-            academy4.createNinja(3);
-            academies.Add(academy4);
-
-            academy4 = new Legend();
-            academy4.createNinja(3);
-            academies.Add(academy4);
-
-            foreach(NinjaAcademy a in academies)
-            {
-                a.train();
-            }
+        Console.WriteLine("Create many ninjas");
+        Ninja[] ninjas = client(academy, 3);
+        foreach(Ninja n in ninjas){
+            academy.train(n);
+        }
 
         }
     }
