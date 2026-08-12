@@ -7,11 +7,6 @@ namespace Builder.Models.Builder
     {
         private Anbu _anbu {set; get;} = null!;
 
-        public AnbuBuilder()
-        {
-            reset();
-        }
-
         public void reset()
         {
             _anbu = new Anbu();
@@ -20,23 +15,32 @@ namespace Builder.Models.Builder
         public void buildNinjaRegNumber() { }
         public void buildBody() => _anbu.body = "Agile Stealth Frame";
         public void buildSpecialEyes() => _anbu.specialEyes = "Night Vision Tracking";
-        public void buildChainmailArmor() => _anbu.chainmailArmor = "Light Mesh Armor";
         public void buildShirt() => _anbu.shirt = "Dark Grey High-Neck Shirt";
         public void buildTrouser() => _anbu.trouser = "Black Tactical Pants";
         public void buildHeadband() => _anbu.headband = "Hidden Headband";
-        public void buildGloves() => _anbu.gloves = "Arm-Guards with Metal Plating";
-        public void buildBandage() => _anbu.bandage = "Tight Ankle and Wrist Wraps";
-        public void buildJacket() => _anbu.jacket = "Grey Anbu Chest Vest";
+        public void buildJacket(string qualityGrade) => _anbu.jacket = qualityGrade;
         public void buildShoes() => _anbu.shoes = "Silent Black Boots";
-        public void buildPocket() => _anbu.pocket = new List<string> { "Poison Tags", "Smoke Bombs", "Wire Strings" };
-        public void buildCloak() => _anbu.cloak = "Black Hooded Cloak";
-        public void buildKatana() => _anbu.katana = "Ninjato (Short Sword)";
         public void buildMask() => _anbu.mask = "Porcelain Fox Mask";
-        public void buildChakraNature() => _anbu.chakraNature = "Lightning";
+        public void buildCodeName() => _anbu.codeName = "Shadow Phantom";
+        public void buildChakra(bool isElite, int level = 1){
+            if (isElite)
+            {
+                _anbu.chakra = 30000 * level;
+            }
+            else
+            {
+                _anbu.chakra = 3000 * level;
+            }
+        }
+        public void buildAttackFactor(int level = 1) => _anbu.attackFactor = 85 * level;
+        public void buildHealFactor(int level = 1) => _anbu.healFactor = 20 * level;
+        public void buildBaseAttack(int level = 1) => _anbu.baseAttack = 100 * level;
+        public void buildBaseHealPerMinute(int level = 1) => _anbu.baseHealPerMinute = 50 * level;
+        public void buildIsDefeated() => _anbu.isDefeated = false;
 
         public void buildAttackFactors()
         {
-            _anbu.profile.attackFactors = new Dictionary<string, double>
+            _anbu.attackFactors = new Dictionary<string, double>
             {
                 { "Chidori", 2.8 },
                 { "Silent Killing", 3.0 },
@@ -48,9 +52,7 @@ namespace Builder.Models.Builder
 
         public Anbu getResult()
         {
-            Anbu result = _anbu;
-            reset();
-            return result;
+            return _anbu;
         }
     }
 }

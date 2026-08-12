@@ -1,36 +1,49 @@
-using Builder.Models.Builder;
-
 namespace Builder.Models.Director
 {
     public class Director
     {
-        public void MakeBasicNinja(NinjaBuilder builder)
+        public void MakeStandardJonin(NinjaBuilder builder)
         {
             builder.reset();
             builder.buildNinjaRegNumber();
             builder.buildBody();
             builder.buildShirt();
             builder.buildTrouser();
-            builder.buildShoes();
             builder.buildHeadband();
-            builder.buildChakraNature();
+            builder.buildJacket("Standard");
+            builder.buildShoes();
+            builder.buildMask();
+            builder.buildCodeName();
+            builder.buildChakra(isElite: false, level: 1);
+            builder.buildAttackFactor(level: 1);
+            builder.buildAttackFactors();
+            builder.buildHealFactor(level: 1);
+            builder.buildHealFactors();
+            builder.buildBaseAttack(level: 1);
+            builder.buildBaseHealPerMinute(level: 1);
+            builder.buildIsDefeated();
         }
 
-        public void MakeFullyEquippedNinja(NinjaBuilder builder)
+        public void MakePremiumJonin(NinjaBuilder builder)
         {
             builder.reset();
             builder.buildNinjaRegNumber();
             builder.buildBody();
             builder.buildShirt();
             builder.buildTrouser();
-            builder.buildShoes();
             builder.buildHeadband();
-            builder.buildJacket();
-            builder.buildPocket();
-            builder.buildKatana();
-            builder.buildChakraNature();
+            builder.buildJacket("Premium");
+            builder.buildShoes();
+            builder.buildMask();
+            builder.buildCodeName();
+            builder.buildChakra(isElite: false, level: 2);
+            builder.buildAttackFactor(level: 2);
             builder.buildAttackFactors();
+            builder.buildHealFactor(level: 2);
             builder.buildHealFactors();
+            builder.buildBaseAttack(level: 2);
+            builder.buildBaseHealPerMinute(level: 2);
+            builder.buildIsDefeated();
         }
 
         public void MakeEliteSpecialist(NinjaBuilder builder)
@@ -38,19 +51,22 @@ namespace Builder.Models.Director
             builder.reset();
             builder.buildNinjaRegNumber();
             builder.buildBody();
-            builder.buildSpecialEyes();
-            builder.buildChainmailArmor();
             builder.buildShirt();
             builder.buildTrouser();
-            builder.buildJacket();
-            builder.buildGloves();
-            builder.buildCloak();
+            builder.buildHeadband();
+            builder.buildJacket("Elite");
+            builder.buildShoes();
             builder.buildMask();
-            builder.buildKatana();
-            builder.buildPocket();
-            builder.buildChakraNature();
+            builder.buildCodeName();
+            builder.buildSpecialEyes();
+            builder.buildChakra(isElite: true, level: 3);
+            builder.buildAttackFactor(level: 3);
             builder.buildAttackFactors();
+            builder.buildHealFactor(level: 3);
             builder.buildHealFactors();
+            builder.buildBaseAttack(level: 3);
+            builder.buildBaseHealPerMinute(level: 3);
+            builder.buildIsDefeated();
         }
     }
 }

@@ -10,3 +10,15 @@ C:\Users\User\source\repos\design-pattern-naruto\creational\builder\Builder.Mode
 C:\Users\User\source\repos\design-pattern-naruto\creational\builder\Builder.Models\obj\Debug\net10.0\refint\Builder.Models.dll
 C:\Users\User\source\repos\design-pattern-naruto\creational\builder\Builder.Models\obj\Debug\net10.0\Builder.Models.pdb
 C:\Users\User\source\repos\design-pattern-naruto\creational\builder\Builder.Models\obj\Debug\net10.0\ref\Builder.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\builder\Builder.Models\bin\Debug\net10.0\Builder.Models.deps.json
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\builder\Builder.Models\bin\Debug\net10.0\Builder.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\builder\Builder.Models\bin\Debug\net10.0\Builder.Models.pdb
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\builder\Builder.Models\obj\Debug\net10.0\Builder.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\builder\Builder.Models\obj\Debug\net10.0\Builder.Models.AssemblyInfoInputs.cache
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\builder\Builder.Models\obj\Debug\net10.0\Builder.Models.AssemblyInfo.cs
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\builder\Builder.Models\obj\Debug\net10.0\Builder.Models.csproj.CoreCompileInputs.cache
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\builder\Builder.Models\obj\Debug\net10.0\Builder.Models.sourcelink.json
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\builder\Builder.Models\obj\Debug\net10.0\Builder.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\builder\Builder.Models\obj\Debug\net10.0\refint\Builder.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\builder\Builder.Models\obj\Debug\net10.0\Builder.Models.pdb
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\builder\Builder.Models\obj\Debug\net10.0\ref\Builder.Models.dll

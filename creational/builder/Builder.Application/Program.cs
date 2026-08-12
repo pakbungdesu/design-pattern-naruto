@@ -1,4 +1,3 @@
-using System;
 using Builder.Models.Builder;
 using Builder.Models.Director;
 using Builder.Models.Ninja;
@@ -7,111 +6,128 @@ namespace Builder.Application
 {
     public class Program
     {
-        static void StandardBattleSimulation(Director director)
+
+        static void BattleSimulation(Director director)
         {
             var anbuBuilder = new AnbuBuilder();
             var tankBuilder = new TankBuilder();
             var medicBuilder = new MedicBuilder();
 
-            Console.WriteLine("==========================================");
-            Console.WriteLine("        BUILDING COMBAT SHINOBI           ");
+            Console.WriteLine("\n==========================================");
+            Console.WriteLine("       TESTING BATTLE SCENARIO        ");
             Console.WriteLine("==========================================");
 
             Console.WriteLine("\n--- Building Kakashi (Anbu) ---");
             director.MakeEliteSpecialist(anbuBuilder);
             Anbu kakashi = anbuBuilder.getResult();
-            kakashi.profile.name = "Kakashi Hatake";
-            kakashi.profile.chakra = 12000;
-            kakashi.profile.baseAttack = 400;
-            kakashi.profile.attackFactor = 0.25;
+            kakashi.name = "Kakashi Hatake"; 
             kakashi.displayInfo();
 
-            Console.WriteLine("\n--- Building Neji (Tank) ---");
-            director.MakeFullyEquippedNinja(tankBuilder);
-            TankNinja neji = tankBuilder.getResult();
-            neji.profile.name = "Neji Hyuga";
-            neji.profile.chakra = 16000;
-            neji.profile.baseAttack = 420;
-            neji.profile.attackFactor = 0.22;
-            neji.profile.attackFactors["Palms Revolving Heaven"] = 2.5;
-            neji.profile.attackFactors["Eight Trigrams Sixty-Four Palms"] = 3.2;
-            neji.displayInfo();
+            Console.WriteLine("\n--- Building 2 Dummies(Tank) ---");
+            director.MakeStandardJonin(tankBuilder);
+            TankNinja dummy1 = tankBuilder.getResult();
+            dummy1.name = "Dummy 1";
+            dummy1.displayInfo();
+
+            director.MakeStandardJonin(tankBuilder);
+            TankNinja dummy2 = tankBuilder.getResult();
+            dummy2.name = "Dummy 2";
+            dummy2.displayInfo();
 
             Console.WriteLine("\n--- Building Sakura (Medic) ---");
-            director.MakeFullyEquippedNinja(medicBuilder);
+            director.MakePremiumJonin(medicBuilder);
             MedicalNinja sakura = medicBuilder.getResult();
-            sakura.profile.name = "Sakura Haruno";
-            sakura.profile.chakra = 15000;
-            sakura.profile.baseHealPerMinute = 300;
-            sakura.profile.healFactor = 0.15;
+            sakura.name = "Sakura Haruno";
             sakura.displayInfo();
 
-            Console.WriteLine("\n==========================================");
-            Console.WriteLine("          BATTLE SIMULATION               ");
-            Console.WriteLine("==========================================");
+            Console.WriteLine("\n--- Simulating Exhaustion Scenario ---");
+            bool result = true;
+            int i = 0;
+            while (result)
+            {
+                result = kakashi.attack(dummy1, "Chidori");
 
-            Console.WriteLine("\n--- Round 1: Kakashi Opens the Fight ---");
-            kakashi.profile.attack(neji.profile, "Chidori");
+                if (!result)
+                {
+                    Console.WriteLine($"⚠️ {kakashi.name} is cannot continue the simulation!");
+                    break;
+                }
 
-            Console.WriteLine("\n--- Round 2: Neji Strikes back ---");
-            neji.profile.attack(kakashi.profile, "Eight Trigrams Sixty-Four Palms");
+                result = dummy1.attack(kakashi, "Mud Wall");
 
-            Console.WriteLine("\n--- Round 3: Medical Intervention ---");
-            sakura.profile.heal(kakashi.profile, 3, "Mystical Palm Technique");
-            sakura.profile.heal(2);
+                if (!result)
+                {
+                    Console.WriteLine($"⚠️ {dummy1.name} is cannot continue the simulation!");
+                    break;
+                }
 
-            Console.WriteLine("\n--- Round 4: Kakashi Strikes Again ---");
-            kakashi.profile.attack(neji.profile, "Silent Killing");
-        }
+                result = dummy2.attack(kakashi, "Rock Armor");
 
-        static void TestExhaustionScenario(Director director)
-        {
-            var anbuBuilder = new AnbuBuilder();
-            var tankBuilder = new TankBuilder();
+                if (!result)
+                {
+                    Console.WriteLine($"⚠️ {dummy2.name} is cannot continue the simulation!");
+                    break;
+                }
 
-            Console.WriteLine("\n==========================================");
-            Console.WriteLine("    TEST SCENARIO: CHAKRA EXHAUSTION      ");
-            Console.WriteLine("==========================================");
+                result = kakashi.attack(dummy2, "Silent Killing");
 
-            Console.WriteLine("\n--- Low-Chakra Dummy (Tank) ---");
-            director.MakeFullyEquippedNinja(tankBuilder);
-            TankNinja dummy = tankBuilder.getResult();
-            dummy.profile.name = "Dummy";
-            dummy.profile.chakra = 500;
-            dummy.profile.attackFactor = 0.50;
-            dummy.displayInfo();
-        
-            Console.WriteLine("\n--- Building Kakashi (Anbu) ---");
-            director.MakeEliteSpecialist(anbuBuilder);
-            Anbu kakashi = anbuBuilder.getResult();
-            kakashi.profile.name = "Kakashi Hatake";
-            kakashi.profile.chakra = 5000;
-            kakashi.profile.baseAttack = 400;
-            kakashi.profile.attackFactor = 0.50;
-            kakashi.displayInfo();
-            
-            // First attack
-            Console.WriteLine("\n--- Action 1: Heavy Jutsu Execution ---");
-            dummy.profile.attack(kakashi.profile, "Mud Wall");
+                if (!result)
+                {
+                    Console.WriteLine($"⚠️ {kakashi.name} is cannot continue the simulation!");
+                    break;
+                }
 
-            // Attempting to attack while out of chakra
-            Console.WriteLine("\n--- Action 2: Attempting Attack After Exhaustion ---");
-            dummy.profile.attack(kakashi.profile, "Rock Armor");
+                result = sakura.healOther(kakashi, 1, "Mystical Palm Technique");
 
-            // Enemy trying to attack a defeated target
-            Console.WriteLine("\n--- Action 3: Target Attacking an Already Exhausted Shinobi ---");
-            kakashi.profile.attack(dummy.profile, "Chidori");
+                if (!result)
+                {
+                    Console.WriteLine($"⚠️ {sakura.name} is cannot continue the simulation!");
+                    break;
+                }
 
-            // Attempting self-heal while exhausted
-            Console.WriteLine("\n--- Action 4: Attempting Self-Heal While Exhausted ---");
-            dummy.profile.heal(5);
+                result = sakura.healThis(1);
+
+                 if(kakashi.chakra == 0 || dummy1.chakra == 0 || dummy2.chakra == 0 || sakura.chakra == 0)
+                {
+                    if(kakashi.chakra == 0)
+                    {
+                        kakashi.isDefeated = true;
+                        Console.WriteLine($"⚠️ {kakashi.name} is out of chakra and cannot continue the simulation!");
+                    }
+
+                    if(dummy1.chakra == 0)
+                    {
+                        dummy1.isDefeated = true;
+                        Console.WriteLine($"⚠️ {dummy1.name} is out of chakra and cannot continue the simulation!");
+                    }
+                    
+                    if(dummy2.chakra == 0)
+                    {
+                        dummy2.isDefeated = true;
+                        Console.WriteLine($"⚠️ {dummy2.name} is out of chakra and cannot continue the simulation!");
+                    }
+
+                    if(sakura.chakra == 0)
+                    {
+                        sakura.isDefeated = true;
+                        Console.WriteLine($"⚠️ {sakura.name} is out of chakra and cannot continue the simulation!");
+                    }
+                    break;
+                }
+
+                Console.WriteLine($"\n--- After Round {i + 1} ---");
+                kakashi.displayInfo();
+                dummy1.displayInfo();
+                dummy2.displayInfo();
+                sakura.displayInfo();
+                i++;
+            }
         }
 
         public static void Main()
         {
             Director director = new Director();
-            StandardBattleSimulation(director);
-            TestExhaustionScenario(director);
+            BattleSimulation(director);
         }
     }
 }

@@ -1,34 +1,31 @@
-using System;
-
 namespace Builder.Models.Ninja
 {
     public class Anbu : Ninja
     {
-        private static int count = 0;
-        private int id = 0;
 
-        public string mask { get; internal set; } = string.Empty;
+        private static int id = 0;
+
+        public string? mask { get; set; }
+
+        public string? codeName { get; set; }
+
+        public string? specialEyes { get; set; }
 
         public Anbu()
         {
-            id = count++;
+            id++;
             regNumber = "ANBU-" + id.ToString("D4");
         }
 
-        ~Anbu()
+        public static int getLastId()
         {
-            count--;
-        }
-
-        public static int getCount()
-        {
-            return count;
+            return id;
         }
 
         public override void displayInfo()
         {
             base.displayInfo();
-            Console.WriteLine($"Mask: {mask}");
+            Console.WriteLine($"    Mask: {mask}, Code Name: {codeName}, Special Eyes: {specialEyes}");
         }
     }
 }

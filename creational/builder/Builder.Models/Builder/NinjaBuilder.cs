@@ -1,43 +1,24 @@
-namespace Builder.Models.Builder
+public interface NinjaBuilder
 {
-    public interface NinjaBuilder
-    {
-        void reset();
+    void reset();
+    void buildNinjaRegNumber();
+    void buildBody();
+    void buildShirt();
+    void buildTrouser();
+    void buildHeadband();
+    void buildJacket(string qualityGrade);
+    void buildShoes();
+    void buildChakra(bool isElite, int level = 1);
+    void buildAttackFactor(int level = 1);
+    void buildHealFactor(int level = 1);
+    void buildBaseAttack(int level = 1);
+    void buildBaseHealPerMinute(int level = 1);
+    void buildIsDefeated();
+    void buildAttackFactors();
 
-        void buildNinjaRegNumber();
-
-        void buildBody();
-
-        void buildSpecialEyes();
-
-        void buildChainmailArmor();
-
-        void buildShirt();
-
-        void buildTrouser();
-
-        void buildHeadband();
-
-        void buildGloves();
-
-        void buildBandage();
-
-        void buildJacket();
-
-        void buildShoes();
-
-        void buildPocket();
-
-        void buildCloak();
-
-        void buildKatana();
-
-        void buildMask();
-
-        void buildChakraNature();
-
-        void buildHealFactors();
-
-        void buildAttackFactors();
-    }
+    // Specialty methods (No-ops in implementations that don't use them)
+    void buildMask();
+    void buildCodeName();
+    void buildSpecialEyes();
+    void buildHealFactors();
 }

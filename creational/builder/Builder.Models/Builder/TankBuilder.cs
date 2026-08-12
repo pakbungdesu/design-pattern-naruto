@@ -6,11 +6,6 @@ namespace Builder.Models.Builder
     {
         private TankNinja _tankNinja = null!;
 
-        public TankBuilder()
-        {
-            reset();
-        }
-
         public void reset()
         {
             _tankNinja = new TankNinja();
@@ -19,23 +14,33 @@ namespace Builder.Models.Builder
         public void buildNinjaRegNumber() { }
         public void buildBody() => _tankNinja.body = "Robust Heavy-Set Frame";
         public void buildSpecialEyes() => _tankNinja.specialEyes = "Standard Sensory Perception";
-        public void buildChainmailArmor() => _tankNinja.chainmailArmor = "Full Torso Chainmail Mesh";
         public void buildShirt() => _tankNinja.shirt = "Dark Blue High-Collar Shinobi Shirt";
         public void buildTrouser() => _tankNinja.trouser = "Dark Blue Tactical Pants";
         public void buildHeadband() => _tankNinja.headband = "Konoha Forehead Protector";
-        public void buildGloves() => _tankNinja.gloves = "Metal-Plated Shinobi Gauntlets";
-        public void buildBandage() => _tankNinja.bandage = "Reinforced Forearm and Shin Wraps";
-        public void buildJacket() => _tankNinja.jacket = "Standard Green Konoha Flak Jacket";
+        public void buildJacket(string qualityGrade) => _tankNinja.jacket = $"{qualityGrade} Konoha Flak Jacket";
         public void buildShoes() => _tankNinja.shoes = "Standard Shinobi Sandals";
-        public void buildPocket() => _tankNinja.pocket = new List<string> { "Explosive Tags", "Iron Defense Seals", "Ration Pills", "Kunai Set" };
-        public void buildCloak() => _tankNinja.cloak = "Heavy Frontline Vanguard Cloak";
-        public void buildKatana() => _tankNinja.katana = "Standard Issue Shinobi Blade";
+        public void buildChakra(bool isElite, int level = 1)
+        {
+            if (isElite)
+            {
+                _tankNinja.chakra = 30000 * level;
+            }
+            else
+            {
+                _tankNinja.chakra = 3000 * level;
+            }
+        }
+        public void buildAttackFactor(int level = 1) => _tankNinja.attackFactor = 95 * level;
+        public void buildHealFactor(int level = 1) => _tankNinja.healFactor = 20 * level;
+        public void buildBaseAttack(int level = 1) => _tankNinja.baseAttack = 100 * level;
+        public void buildBaseHealPerMinute(int level = 1) => _tankNinja.baseHealPerMinute = 50 * level;
+        public void buildIsDefeated() => _tankNinja.isDefeated = false;
         public void buildMask(){}
-        public void buildChakraNature() => _tankNinja.chakraNature = "Earth";
-
+        public void buildCodeName(){}
+        public void buildHealFactors(){}
         public void buildAttackFactors()
         {
-            _tankNinja.profile.attackFactors = new Dictionary<string, double>
+            _tankNinja.attackFactors = new Dictionary<string, double>
             {
                 { "Mud Wall", 2.2 },
                 { "Rock Armor", 2.8 },
@@ -43,13 +48,9 @@ namespace Builder.Models.Builder
             };
         }
 
-        public void buildHealFactors(){}
-
         public TankNinja getResult()
         {
-            TankNinja result = _tankNinja;
-            reset();
-            return result;
+            return _tankNinja;
         }
     }
 }

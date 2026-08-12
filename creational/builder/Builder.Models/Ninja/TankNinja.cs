@@ -2,24 +2,25 @@ namespace Builder.Models.Ninja
 {
     public class TankNinja : Ninja
     {
-        private static int count = 0;
+        private static int id = 0;
 
-        private int id = 0;
+        public string? specialEyes { get; set; }
 
         public TankNinja()
         {
-            id = count++;
+            id++;
             regNumber = "TANK-" + id.ToString("D4");
         }
 
-        ~TankNinja()
+        public static int getLastId()
         {
-            count--;
+            return id;
         }
 
-        public static int getCount()
+        public override void displayInfo()
         {
-            return count;
+            base.displayInfo();
+            Console.WriteLine($"    Special Eyes: {specialEyes}");
         }
     }
 }
