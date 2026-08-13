@@ -48,6 +48,7 @@ namespace Singleton.Models.Ninjas
     }
 
     // Kage (Singleton - Master) (Rank A, S)
+    // sealed class is a class that cannot be inherited
     public sealed class Kage : Ninja
     {
         private static readonly Lazy<Kage> _instance = 

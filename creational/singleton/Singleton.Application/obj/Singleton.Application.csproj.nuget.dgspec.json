@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\creational\\singleton\\Singleton.Application\\Singleton.Application.csproj": {}
+    "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\creational\\singleton\\Singleton.Application\\Singleton.Application.csproj": {}
   },
   "projects": {
-    "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\creational\\singleton\\Singleton.Application\\Singleton.Application.csproj": {
+    "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\creational\\singleton\\Singleton.Application\\Singleton.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\creational\\singleton\\Singleton.Application\\Singleton.Application.csproj",
+        "projectUniqueName": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\creational\\singleton\\Singleton.Application\\Singleton.Application.csproj",
         "projectName": "Singleton.Application",
-        "projectPath": "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\creational\\singleton\\Singleton.Application\\Singleton.Application.csproj",
+        "projectPath": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\creational\\singleton\\Singleton.Application\\Singleton.Application.csproj",
         "packagesPath": "C:\\Users\\pimnara\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\creational\\singleton\\Singleton.Application\\obj\\",
+        "outputPath": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\creational\\singleton\\Singleton.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pimnara\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -27,8 +27,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\creational\\singleton\\Singleton.Models\\Singleton.Models.csproj": {
-                "projectPath": "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\creational\\singleton\\Singleton.Models\\Singleton.Models.csproj"
+              "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\creational\\singleton\\Singleton.Models\\Singleton.Models.csproj": {
+                "projectPath": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\creational\\singleton\\Singleton.Models\\Singleton.Models.csproj"
               }
             }
           }
@@ -343,14 +343,14 @@
         }
       }
     },
-    "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\creational\\singleton\\Singleton.Models\\Singleton.Models.csproj": {
+    "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\creational\\singleton\\Singleton.Models\\Singleton.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\creational\\singleton\\Singleton.Models\\Singleton.Models.csproj",
+        "projectUniqueName": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\creational\\singleton\\Singleton.Models\\Singleton.Models.csproj",
         "projectName": "Singleton.Models",
-        "projectPath": "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\creational\\singleton\\Singleton.Models\\Singleton.Models.csproj",
+        "projectPath": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\creational\\singleton\\Singleton.Models\\Singleton.Models.csproj",
         "packagesPath": "C:\\Users\\pimnara\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\creational\\singleton\\Singleton.Models\\obj\\",
+        "outputPath": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\creational\\singleton\\Singleton.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pimnara\\AppData\\Roaming\\NuGet\\NuGet.Config"
