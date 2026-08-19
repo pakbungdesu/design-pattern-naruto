@@ -6,6 +6,11 @@ namespace Builder.Models.Builder
     {
         private TankNinja _tankNinja = null!;
 
+        public TankBuilder()
+        {
+            this.reset();
+        }
+
         public void reset()
         {
             _tankNinja = new TankNinja();

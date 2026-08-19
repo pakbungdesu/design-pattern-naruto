@@ -6,6 +6,11 @@ namespace Builder.Models.Builder
     {
         private MedicalNinja _medicalNinja = null!;
 
+        public MedicBuilder()
+        {
+            this.reset();
+        }
+
         public void reset()
         {
             _medicalNinja = new MedicalNinja();

@@ -128,6 +128,23 @@ namespace Builder.Application
         {
             Director director = new Director();
             BattleSimulation(director);
+
+            AnbuBuilder anbuBuilder = new AnbuBuilder();
+            anbuBuilder.buildBaseAttack();
+
+            Anbu ninja = anbuBuilder.getResult();
+
+            TankBuilder tankBuilder = new TankBuilder();
+            tankBuilder.buildBody();
+            tankBuilder.buildBaseHealPerMinute();
+
+            TankNinja tankNinja = tankBuilder.getResult();
+
+            Console.WriteLine("\nAnbu manual");
+            ninja.displayInfo();
+
+            Console.WriteLine("\nTank manual");
+            tankNinja.displayInfo();
         }
     }
 }

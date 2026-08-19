@@ -14,9 +14,15 @@ namespace Singleton.Models.Missions
             _missions = new List<Mission>();
         }
 
-        public static MissionDatabase Instance => _instance.Value;
+        public static MissionDatabase GetInstance()
+        {
+            return _instance.Value;
+        }
 
-        public int Count => _missions.Count;
+        public int GetCount()
+        {
+            return _missions.Count;
+        }
 
         public void AddMission(Mission mission)
         {

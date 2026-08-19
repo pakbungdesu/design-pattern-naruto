@@ -65,6 +65,22 @@ namespace Prototype.Application
         public static void Main(string[] args)
         {
             client();
+
+            Lightning chidori = new Lightning("Chidori", 1.5, 200, 0.9);
+
+            // {}
+
+            List<Lightning> jutsus = new List<Lightning>();
+
+            for (int i = 0; i < 10; i++)
+            {
+                jutsus.Add((Lightning)chidori.clone());
+            }
+
+            for (int i = 0; i < jutsus.Count; i++)
+            {
+                Console.WriteLine(jutsus[i].jutsuName);
+            }
         }
     }
 }

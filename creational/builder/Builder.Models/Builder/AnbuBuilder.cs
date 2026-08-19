@@ -6,6 +6,10 @@ namespace Builder.Models.Builder
     public class AnbuBuilder : NinjaBuilder
     {
         private Anbu _anbu {set; get;} = null!;
+        
+        public AnbuBuilder(){
+            this.reset();
+        }
 
         public void reset()
         {

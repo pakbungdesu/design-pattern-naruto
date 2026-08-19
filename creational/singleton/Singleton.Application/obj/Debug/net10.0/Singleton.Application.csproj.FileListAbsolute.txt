@@ -10,7 +10,6 @@ C:\Users\pimnara\Documents\design-pattern-naruto\creational\singleton\Singleton.
 C:\Users\pimnara\Documents\design-pattern-naruto\creational\singleton\Singleton.Application\obj\Debug\net10.0\Singleton.Application.AssemblyInfoInputs.cache
 C:\Users\pimnara\Documents\design-pattern-naruto\creational\singleton\Singleton.Application\obj\Debug\net10.0\Singleton.Application.AssemblyInfo.cs
 C:\Users\pimnara\Documents\design-pattern-naruto\creational\singleton\Singleton.Application\obj\Debug\net10.0\Singleton.Application.csproj.CoreCompileInputs.cache
-C:\Users\pimnara\Documents\design-pattern-naruto\creational\singleton\Singleton.Application\obj\Debug\net10.0\Singleton.Application.sourcelink.json
 C:\Users\pimnara\Documents\design-pattern-naruto\creational\singleton\Singleton.Application\obj\Debug\net10.0\Singleto.0E85E7CB.Up2Date
 C:\Users\pimnara\Documents\design-pattern-naruto\creational\singleton\Singleton.Application\obj\Debug\net10.0\Singleton.Application.dll
 C:\Users\pimnara\Documents\design-pattern-naruto\creational\singleton\Singleton.Application\obj\Debug\net10.0\refint\Singleton.Application.dll
