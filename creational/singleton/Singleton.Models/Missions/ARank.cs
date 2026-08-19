@@ -1,3 +1,5 @@
+using Singleton.Models.Ninjas;
+
 namespace Singleton.Models.Missions
 {
     // A-rank: Village/state matters, geopolitics
@@ -22,6 +24,12 @@ namespace Singleton.Models.Missions
         public override void DisplayMissionDetails()
         {
             Console.WriteLine($"[A-Rank] {Title} | Target Region: {TargetVillageOrState} | Reward: {RyoReward} Ryō");
+
+            foreach (Ninja ninja in Ninjas)
+            {
+                ninja.DisplayNinja();
+            }
+
         }
     }
 }

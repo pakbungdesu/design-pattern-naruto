@@ -12,6 +12,11 @@ namespace Singleton.Models.Ninjas
         }
 
         public abstract bool CanTakeMission(Mission mission);
+
+        public void DisplayNinja()
+        {
+            Console.WriteLine("Name: " + Name);
+        }
     }
 
     // Genin (Rank D, C)
@@ -56,7 +61,10 @@ namespace Singleton.Models.Ninjas
 
         private Kage(string name) : base(name) { }
 
-        public static Kage Instance => _instance.Value;
+        public static Kage GetInstance()
+        {
+            return _instance.Value;
+        }
 
         public override bool CanTakeMission(Mission mission)
         {

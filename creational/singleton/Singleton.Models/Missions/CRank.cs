@@ -1,3 +1,5 @@
+using Singleton.Models.Ninjas;
+
 namespace Singleton.Models.Missions
 {
     // C-rank: Little threats, but no combating with other ninjas
@@ -23,6 +25,10 @@ namespace Singleton.Models.Missions
         public override void DisplayMissionDetails()
         {
             Console.WriteLine($"[C-Rank] {Title} | Threat: {ThreatType} | Reward: {RyoReward} Ryō");
+            foreach (Ninja ninja in Ninjas)
+            {
+                ninja.DisplayNinja();
+            }
         }
     }
 }

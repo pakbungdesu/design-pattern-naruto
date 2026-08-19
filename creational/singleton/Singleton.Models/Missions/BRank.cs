@@ -1,3 +1,5 @@
+using Singleton.Models.Ninjas;
+
 namespace Singleton.Models.Missions
 {
     // B-rank: Expected ninja combat
@@ -22,6 +24,10 @@ namespace Singleton.Models.Missions
         public override void DisplayMissionDetails()
         {
             Console.WriteLine($"[B-Rank] {Title} | Expected Enemies: {ExpectedEnemyNinjaCount} Ninja | Reward: {RyoReward} Ryō");
+            foreach (Ninja ninja in Ninjas)
+            {
+                ninja.DisplayNinja();
+            }
         }
     }
 }

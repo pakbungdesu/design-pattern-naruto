@@ -1,3 +1,5 @@
+using Singleton.Models.Ninjas;
+
 namespace Singleton.Models.Missions
 {
     // S-rank: Confidential state affairs
@@ -24,6 +26,10 @@ namespace Singleton.Models.Missions
         public override void DisplayMissionDetails()
         {
             Console.WriteLine($"[S-Rank] {Title} | Secrecy Level: {SecrecyClearanceLevel} | Anbu Only: {RequiresAnbuExecution} | Reward: {RyoReward} Ryō");
+            foreach (Ninja ninja in Ninjas)
+            {
+                ninja.DisplayNinja();
+            }
         }
     }
 }

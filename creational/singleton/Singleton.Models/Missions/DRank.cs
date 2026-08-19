@@ -1,3 +1,5 @@
+using Singleton.Models.Ninjas;
+
 namespace Singleton.Models.Missions
 {
     // D-rank: Odd jobs, no threat & no combating with other ninjas
@@ -22,6 +24,10 @@ namespace Singleton.Models.Missions
         public override void DisplayMissionDetails()
         {
             Console.WriteLine($"[D-Rank] {Title} | Location: {LocationType} | Reward: {RyoReward} Ryō");
+            foreach (Ninja ninja in Ninjas)
+            {
+                ninja.DisplayNinja();
+            }
         }
     }
 }

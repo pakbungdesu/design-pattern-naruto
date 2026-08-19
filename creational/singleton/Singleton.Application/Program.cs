@@ -11,7 +11,7 @@ namespace Singleton.Application
             Genin naruto = new Genin("Naruto");
             Chunin shikamaru = new Chunin("Shikamaru");
             Jonin kakashi = new Jonin("Kakashi");
-            Kage hokage = Kage.Instance;
+            Kage hokage = Kage.GetInstance();
 
             // Create Missions
             Mission dRankMission = new DRank("Farming", "Grow plants", 3000, "Residental area");
