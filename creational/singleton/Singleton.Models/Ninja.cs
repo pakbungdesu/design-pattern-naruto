@@ -22,7 +22,15 @@ namespace Singleton.Models.Ninjas
     // Genin (Rank D, C)
     public class Genin : Ninja
     {
+        public int AcademyGraduationScore {get; set;} = 80;
+
+        public Jonin? MentorJonin { get; set; } = null;
         public Genin(string name) : base(name) { }
+
+        public Genin(string name, int AcademyGraduationScore): base(name)
+        {
+            this.AcademyGraduationScore = AcademyGraduationScore;
+        }
 
         public override bool CanTakeMission(Mission mission)
         {
@@ -33,7 +41,15 @@ namespace Singleton.Models.Ninjas
     // Chunin (Rank B)
     public class Chunin : Ninja
     {
+        // 1-5
+        public int LeadershipScore {get; set;} = 3;
+
         public Chunin(string name) : base(name) { }
+
+        public Chunin(string name, int LeadershipScore) : base(name)
+        {
+            this.LeadershipScore = LeadershipScore;
+        }
 
         public override bool CanTakeMission(Mission mission)
         {
@@ -44,7 +60,17 @@ namespace Singleton.Models.Ninjas
     // Jonin (Rank A, S)
     public class Jonin : Ninja
     {
+        public string Specialization {get; set;} = "Tactics";
+
+        public bool HasAnbuExperience {get; set;} = false;
+
         public Jonin(string name) : base(name) { }
+
+        public Jonin(string name, string Specialization, bool HasAnbuExperience) : base(name)
+        {
+            this.Specialization = Specialization;
+            this.HasAnbuExperience = HasAnbuExperience;
+        }
 
         public override bool CanTakeMission(Mission mission)
         {
@@ -57,9 +83,14 @@ namespace Singleton.Models.Ninjas
     public sealed class Kage : Ninja
     {
         private static readonly Lazy<Kage> _instance = 
-            new Lazy<Kage>(() => new Kage("Tsunade"));
+            new Lazy<Kage>(() => new Kage("Tsunade", "Konohagakure"));
 
-        private Kage(string name) : base(name) { }
+        public string VillageName { get; private set; }
+
+        private Kage(string name, string villageName) : base(name)
+        {
+            VillageName = villageName;
+        }
 
         public static Kage GetInstance()
         {
