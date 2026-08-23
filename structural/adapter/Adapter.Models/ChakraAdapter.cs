@@ -19,26 +19,32 @@ namespace ChakraAdapters
 
         public override void Execute(Ninja attacker, Ninja target)
         {
-            double conversionRate = CalculateRate(attacker.AffinityElement, _field.EnvironmentElement, _jutsu.Element);
-
-            int rawChakraHarvested = _field.HarvestNaturalChakra(30);
-            int convertedNaturalChakra = (int)(rawChakraHarvested * conversionRate);
-
             Console.WriteLine($"\n[Attempting {_jutsu.Name}]");
-            Console.WriteLine($"Field: {_field.EnvironmentElement} | Ninja Affinity: {attacker.AffinityElement} | Conversion Rate: {conversionRate:P0}");
-            Console.WriteLine($"Gained {convertedNaturalChakra} chakra from field (Personal: {attacker.PersonalChakra}, Required: {_jutsu.RequiredChakra})");
 
-            attacker.PersonalChakra += convertedNaturalChakra;
+            int convertedChakra = GatherConvertedChakra(attacker);
+            attacker.AddChakra(convertedChakra);
 
-            if (attacker.PersonalChakra  > _jutsu.RequiredChakra)
+            Console.WriteLine($"Gained {convertedChakra} chakra from field (Personal: {attacker.PersonalChakra}, Required: {_jutsu.RequiredChakra})");
+
+            if (attacker.CanAfford(_jutsu.RequiredChakra))
             {
-                attacker.PersonalChakra -= _jutsu.RequiredChakra;
+                attacker.SpendChakra(_jutsu.RequiredChakra);
                 Console.WriteLine($"[HIT] {attacker.Name} struck {target.Name} with {_jutsu.Name}");
             }
             else
             {
-                Console.WriteLine($"[FAIL] {attacker.Name} does not have enough chakra to cast {_jutsu.Name}.");
+                Console.WriteLine($"[FAIL] {attacker.Name} cannot cast {_jutsu.Name} on {target.Name}.");
             }
+        }
+
+        private int GatherConvertedChakra(Ninja attacker)
+        {
+            double rate = CalculateRate(attacker.AffinityElement, _field.EnvironmentElement, _jutsu.Element);
+            int rawChakra = _field.HarvestNaturalChakra(30);
+
+            Console.WriteLine($"Field: {_field.EnvironmentElement} | Ninja Affinity: {attacker.AffinityElement} | Conversion Rate: {rate}");
+
+            return (int)(rawChakra * rate);
         }
 
         private double CalculateRate(ElementType ninjaElement, ElementType fieldElement, ElementType jutsuElement)
