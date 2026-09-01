@@ -97,9 +97,9 @@ namespace DefensiveGears
             return Gear.Defense(attacker) + 15;
         }
 
-        public void Disguise()
+        public void Disguise(int turns = 3)
         {
-            if (Owner != null) Owner.CanBeSeen = false;
+            if (Owner != null) Owner.ApplyInvisibility(turns);
             Console.WriteLine("     [Disguise] Camouflaged into surroundings. Cannot be clearly seen!");
         }
     }

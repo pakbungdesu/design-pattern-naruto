@@ -12,9 +12,10 @@ namespace Ninjas
         public int BaseAttack { get; set; } = 20;
         public int BaseDefense { get; set; } = 10;
         public bool IsDead => Chakra <= 0;
-        public bool IsPoisoned { get; set; } = false;
-        public bool CanBeSeen { get; set; } = true;
-        public int PoisonTurnsRemaining { get; set; } = 0;
+        public int PoisonTurnsRemaining { get; private set; }
+        public int InvisibilityTurnsRemaining { get; private set; }
+        public bool IsPoisoned => PoisonTurnsRemaining > 0;
+        public bool CanBeSeen => InvisibilityTurnsRemaining == 0;
 
         private OffensiveGear? _offensiveGear;
         private DefensiveGear? _defensiveGear;
@@ -62,31 +63,31 @@ namespace Ninjas
             return damageDealt;
         }
 
-        public void ApplyPoison(int turns = 3)
-        {
-            IsPoisoned = true;
-            PoisonTurnsRemaining = turns;
-            Console.WriteLine($"  -> {Name} was poisoned for {turns} turns!");
-        }
+        public void ApplyPoison(int turns = 3) => PoisonTurnsRemaining = Math.Max(PoisonTurnsRemaining, turns);
+        
+        public void ApplyInvisibility(int turns = 3) => InvisibilityTurnsRemaining = Math.Max(InvisibilityTurnsRemaining, turns);
 
-        public void Depoison()
+        public void StartTurn()
         {
-            IsPoisoned = false;
-            PoisonTurnsRemaining = 0;
-            Console.WriteLine($"  -> {Name} is no longer poisoned.");
-        }
+            if (IsDead) return;
 
-        public void ProcessPoisonTurn()
-        {
-            if (!IsPoisoned) return;
-
-            Console.WriteLine($"  -> {Name} suffers 10 poison damage.");
-            TakeDirectDamage(10);
-            
-            PoisonTurnsRemaining--;
-            if (PoisonTurnsRemaining <= 0)
+            if (IsPoisoned)
             {
-                Depoison();
+                Console.WriteLine($"  [Status] {Name} takes 10 poison damage.");
+                TakeDirectDamage(10);
+                PoisonTurnsRemaining--;
+                if (!IsPoisoned) Console.WriteLine($"  [Status] {Name} is no longer poisoned.");
+            }
+        }
+
+        public void EndTurn()
+        {
+            if (IsDead) return;
+
+            if (InvisibilityTurnsRemaining > 0)
+            {
+                InvisibilityTurnsRemaining--;
+                if (CanBeSeen) Console.WriteLine($"  [Status] {Name}'s invisibility wore off.");
             }
         }
 
