@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\decorator\\Decorator.Application\\Decorator.Application.csproj",
+      "projectUniqueName": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\decorator\\Decorator.Application\\Decorator.Application.csproj",
       "projectName": "Decorator.Application",
-      "projectPath": "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\decorator\\Decorator.Application\\Decorator.Application.csproj",
+      "projectPath": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\decorator\\Decorator.Application\\Decorator.Application.csproj",
       "packagesPath": "C:\\Users\\pimnara\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\decorator\\Decorator.Application\\obj\\",
+      "outputPath": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\decorator\\Decorator.Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\pimnara\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -52,8 +52,8 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\decorator\\Decorator.Models\\Decorator.Models.csproj": {
-              "projectPath": "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\decorator\\Decorator.Models\\Decorator.Models.csproj"
+            "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\decorator\\Decorator.Models\\Decorator.Models.csproj": {
+              "projectPath": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\decorator\\Decorator.Models\\Decorator.Models.csproj"
             }
           }
         }
