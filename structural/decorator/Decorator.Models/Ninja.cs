@@ -150,13 +150,14 @@ namespace Ninjas
             }
         }
 
-        public void DisplayGearInfo()
+        public void DisplayInfo()
         {
             Console.WriteLine($"\n================ STATUS: {Name} ================");
             Console.WriteLine($"  Offensive : {_offensiveGear?.GetInfo() ?? "None"}");
             Console.WriteLine($"  Defensive : {_defensiveGear?.GetInfo() ?? "None"}");
             Console.WriteLine($"  Is Dead   : {IsDead}");
-            Console.WriteLine($"  Stats     : Chakra={Chakra} | ChakraCost={ChakraCost} | Shield={Shield} | BaseATK={BaseAttack} | BaseDEF={BaseDefense}");
+            Console.WriteLine($"  Stats     : Chakra={Chakra} | ChakraCost={ChakraCost} | Shield={Shield}");
+            Console.WriteLine($"  Bases     : BaseATK={BaseAttack} | BaseDEF={BaseDefense}");
             Console.WriteLine($"  Conditions: Poisoned={IsPoisoned} | CanBeSeen={CanBeSeen}");
             Console.WriteLine($"  Poison Turns Remaining: {PoisonTurnsRemaining}");
             Console.WriteLine("================================================");

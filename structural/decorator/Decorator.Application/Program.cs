@@ -4,43 +4,104 @@ using DefensiveGears;
 
 public class Program
 {
-    public static void Client(Ninja attacker, Ninja target)
+    public static void Client(Ninja ninjaA, Ninja ninjaB)
     {
-        int totalDmg = attacker.Attack(target);
-        target.Defend(totalDmg);
+        int round = 1;
+        
+        while (!ninjaA.IsDead && !ninjaB.IsDead)
+        {
+            Console.WriteLine($"\n================== ROUND {round++} ==================");
+            Console.WriteLine($"\nActive Ninja: {ninjaA.Name} | Opponent Ninja: {ninjaB.Name}");
+            ninjaA.DisplayInfo();
+            ninjaB.DisplayInfo();
+
+            ExecuteTurn(active: ninjaA, opponent: ninjaB);
+            if (ninjaB.IsDead) break;
+
+            Console.WriteLine($"\nActive Ninja: {ninjaB.Name} | Opponent Ninja: {ninjaA.Name}");
+            ExecuteTurn(active: ninjaB, opponent: ninjaA);
+        }
+
+        Ninja winner = ninjaA.IsDead ? ninjaB : ninjaA;
+        Console.WriteLine($"\n[Victory] {winner.Name} wins the battle!");
+    }
+
+    private static void ExecuteTurn(Ninja active, Ninja opponent)
+    {
+        Console.WriteLine($"\n--- Turn: {active.Name} ---");
+        
+        // Phase 1: Upkeep / Status Ticks
+        active.StartTurn();
+        if (active.IsDead)
+        {
+            Console.WriteLine($"  -> {active.Name} succumbed to effects.");
+            return;
+        }
+
+        // Phase 2: Action Phase
+        if (!opponent.CanBeSeen)
+        {
+            Console.WriteLine($"  -> {active.Name} cannot target {opponent.Name} (Invisible).");
+        }
+        else
+        {
+            active.Attack(opponent);
+        }
+
+        // Phase 3: Cleanup / Cooldowns
+        active.EndTurn();
     }
 
     public static void Main()
     {
-        var sasuke = new Ninja("Sasuke");
-        var naruto = new Ninja("Naruto");
+        Console.WriteLine("======================= MATCH 1 =======================");
+        Ninja sasuke = new Ninja("Sasuke");
+        Ninja naruto = new Ninja("Naruto");
 
-        // Sasuke: Kunai -> Poison -> Explosive Tag
-        OffensiveGear kunai = new Kunai();
-        OffensiveGear poisonedKunai = new Poison(kunai);
-        OffensiveGear explosivePoisonedKunai = new ExplosiveTag(poisonedKunai);
-        sasuke.EquipOffensive(explosivePoisonedKunai);
+        // Sasuke
+        OffensiveGear katana = new Katana { CriticalMultiplier = 2.0, AddDamage = 25 };
+        OffensiveGear poisonedKatana = new Poison(katana);
+        OffensiveGear explosivePoisonedKatana = new ExplosiveTag(poisonedKatana);
 
-        // Naruto: Vest -> Barrier -> Disguising
-        DefensiveGear vest = new Vest();
+        DefensiveGear vest = new Vest{ VitalDurability = 40, AbsorbDamage = 20 };
         DefensiveGear auraBarrierVest = new AuraBarrier(vest);
         DefensiveGear disguiseAuraBarrier = new Disguising(auraBarrierVest);
-        naruto.EquipDefensive(disguiseAuraBarrier);
 
-        sasuke.DisplayGearInfo();
-        naruto.DisplayGearInfo();
+        sasuke.EquipOffensive(explosivePoisonedKatana);
+        sasuke.EquipDefensive(disguiseAuraBarrier);
 
-        Console.WriteLine("\n--- Turn 1 ---");
+        // Naruto
+        OffensiveGear kunai = new Kunai{ AddDamage = 15, PiercingBonus = 10 };
+        OffensiveGear poisonedKunai = new Poison(kunai);
+        OffensiveGear explosivePoisonedKunai = new ExplosiveTag(poisonedKunai);
+        
+        DefensiveGear cloak = new Cloak { CamouflageEvasion = 20, AbsorbDamage = 10 };
+        DefensiveGear auraBarrierCloak = new AuraBarrier(cloak);
+        DefensiveGear disguiseAuraBarrierCloak = new Disguising(auraBarrierCloak);
+        
+        naruto.EquipOffensive(explosivePoisonedKunai);
+        naruto.EquipDefensive(disguiseAuraBarrierCloak);
+
         Client(sasuke, naruto);
 
-        sasuke.DisplayGearInfo();
-        naruto.DisplayGearInfo();
+        Console.WriteLine("\n\n======================= MATCH 2 =======================");
+        Ninja itachi = new Ninja("Itachi");
+        Ninja minato = new Ninja("Minato");
 
-        Console.WriteLine("\n--- Turn 2 ---");
-        Client(naruto, sasuke);
+        OffensiveGear shuriken = new Shuriken { ProjectileCount = 4, AddDamage = 8 };
+        OffensiveGear explosiveShuriken = new ExplosiveTag(shuriken);
+        OffensiveGear poisonedExplosiveShuriken = new Poison(explosiveShuriken);
+      
+        itachi.EquipOffensive(poisonedExplosiveShuriken);
+        itachi.EquipDefensive(disguiseAuraBarrierCloak);
 
-        sasuke.DisplayGearInfo();
-        naruto.DisplayGearInfo();
+        DefensiveGear shield = new Shield { AbsorbDamage = 20 };
+        DefensiveGear auraBarrierShield = new AuraBarrier(shield);
+        DefensiveGear disguiseAuraBarrierShield = new Disguising(auraBarrierShield);
 
+        minato.EquipDefensive(disguiseAuraBarrierShield);
+        minato.EquipOffensive(explosivePoisonedKunai);
+
+        Client(itachi, minato);
     }
 }
