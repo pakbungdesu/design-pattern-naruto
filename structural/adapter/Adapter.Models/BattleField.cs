@@ -1,22 +1,22 @@
-using ElementTypes;
+using Elements;
 
 namespace BattleFields
 {
-
+    // Adaptee
     public class BattleField
     {
-        public ElementType EnvironmentElement { get; }
-        public int NaturalChakraPool { get; private set; }
+        public Element EnvironmentElement { get; set; }
+        public int NaturalChakraPool { get; set; }
 
-        public BattleField(ElementType environmentElement, int naturalChakraPool)
+        public BattleField(Element environmentElement, int naturalChakraPool)
         {
             EnvironmentElement = environmentElement;
             NaturalChakraPool = naturalChakraPool;
         }
 
-        public int HarvestNaturalChakra(int requestedAmount)
+        public int HarvestNaturalChakra(int req)
         {
-            int harvested = Math.Min(requestedAmount, NaturalChakraPool);
+            int harvested = Math.Min(req, NaturalChakraPool);
             NaturalChakraPool -= harvested;
             return harvested;
         }

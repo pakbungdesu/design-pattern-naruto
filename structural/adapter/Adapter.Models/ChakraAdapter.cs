@@ -1,57 +1,29 @@
-using Jutsus;
 using BattleFields;
-using ElementalJutsus;
-using ElementTypes;
-using Ninjas;
+using ChakraSources;
+using Elements;
 
 namespace ChakraAdapters
 {
-    public class ChakraAdapter : Jutsu
+   public class ChakraAdapter : ChakraSource
     {
         private readonly BattleField _field;
-        private readonly ElementalJutsu _jutsu;
 
-        public ChakraAdapter(BattleField field, ElementalJutsu jutsu)
+        public ChakraAdapter(BattleField field)
         {
             _field = field;
-            _jutsu = jutsu;
         }
 
-        public override void Execute(Ninja attacker, Ninja target)
+        public int HarvestUsableChakra(int requested, Element ninjaElem)
         {
-            Console.WriteLine($"\n[Attempting {_jutsu.Name}]");
-
-            int convertedChakra = GatherConvertedChakra(attacker);
-            attacker.AddChakra(convertedChakra);
-
-            Console.WriteLine($"Gained {convertedChakra} chakra from field (Personal: {attacker.PersonalChakra}, Required: {_jutsu.RequiredChakra})");
-
-            if (attacker.CanAfford(_jutsu.RequiredChakra))
-            {
-                attacker.SpendChakra(_jutsu.RequiredChakra);
-                Console.WriteLine($"[HIT] {attacker.Name} struck {target.Name} with {_jutsu.Name}");
-            }
-            else
-            {
-                Console.WriteLine($"[FAIL] {attacker.Name} cannot cast {_jutsu.Name} on {target.Name}.");
-            }
+            int rawEnergy = _field.HarvestNaturalChakra(requested);
+            double rate = CalculateRate(ninjaElem, _field.EnvironmentElement);
+            return (int)(rawEnergy * rate);
         }
 
-        private int GatherConvertedChakra(Ninja attacker)
+        private double CalculateRate(Element ninjaElem, Element fieldElem)
         {
-            double rate = CalculateRate(attacker.AffinityElement, _field.EnvironmentElement, _jutsu.Element);
-            int rawChakra = _field.HarvestNaturalChakra(30);
-
-            Console.WriteLine($"Field: {_field.EnvironmentElement} | Ninja Affinity: {attacker.AffinityElement} | Conversion Rate: {rate}");
-
-            return (int)(rawChakra * rate);
-        }
-
-        private double CalculateRate(ElementType ninjaElement, ElementType fieldElement, ElementType jutsuElement)
-        {
-            if (ninjaElement == fieldElement && fieldElement == jutsuElement) return 1.5; // Boost
-            if (ninjaElement == fieldElement || fieldElement == jutsuElement) return 1.0; // Standard
-            return 0.4; // Penalty
+            if (ninjaElem == fieldElem) return 1.5; // Bonus
+            return 1.0;                             // Standard
         }
     }
 }
