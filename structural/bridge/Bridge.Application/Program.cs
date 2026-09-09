@@ -1,75 +1,74 @@
-﻿using Builders;
+﻿using System;
+using Builders;
 using Chakras;
 using CombatGears;
 using Directors;
-using GearMakings;
 using Ninjas;
 
-public class Program
+class Program
 {
-    // Client helper to create combat gear using the Factory Method pattern
-    public static CombatGear GearMakingClient(GearMaking gearMaking, Chakras.Chakra chakra, string modelName, double multiplier = 1.0)
+    static void BattleTurn(Ninja attacker, int weaponIndex, Ninja defender, int defenceIndex)
     {
-        return gearMaking.ComposeCombatGear(chakra, modelName, multiplier);
+        Console.WriteLine($"\n--- Turn: {attacker.Name} attacks {defender.Name} ---");
+
+        int rawDamage = attacker.UseWeapon(weaponIndex, defender);
+        int damageTaken = defender.UseDefence(defenceIndex, rawDamage);
+        defender.ModifyChakra(damageTaken);
     }
 
-    public static void Main()
+    static void Main(string[] args)
     {
-        // 1. Initialize Director and Builders
-        var director = new Director();
-        var standardBuilder = new StandardNinjaBuilder();
-        var premiumBuilder = new PremiumNinjaBuilder();
+        Chakra fireEffect = new FireChakra();
+        Chakra windEffect = new WindChakra();
 
-        // 2. Build Konoha Ninja via Director
-        Console.WriteLine("========================================");
-        Console.WriteLine("        BUILDING KONOHA NINJA          ");
-        Console.WriteLine("========================================");
-        director.MakeKonohaNinja(standardBuilder, "Uchiha Sasuke");
-        Ninja sasuke = standardBuilder.GetResult();
+        // Sasuke
+        Director director = new Director();
+        NinjaBuilder builder = new StandardNinjaBuilder();
 
-        // 3. Build Suna Ninja via Director
-        Console.WriteLine("\n========================================");
-        Console.WriteLine("         BUILDING SUNA NINJA           ");
-        Console.WriteLine("========================================");
-        director.MakeSunaNinja(premiumBuilder, "Temari");
-        Ninja temari = premiumBuilder.GetResult();
+        Console.WriteLine("================ BUILDING NINJAS ================");
+        Console.WriteLine("\n[Building Konoha Ninja...]");
+        director.MakeKonohaNinja(builder, "sasuke");
+        Ninja sasuke = builder.GetResult();
 
-        // 4. Equip custom gear manually using Factory Method (GearMaking)
-        Console.WriteLine("\n--- CRAFTING & EQUIPPING CUSTOM GEAR ---");
-        GearMaking weaponFactory = new WeaponMaking();
-        GearMaking defenceFactory = new DefenceMaking();
+        Console.WriteLine("\n[Building Suna Ninja...]");
+        director.MakeSunaNinja(builder, "temari");
+        Ninja temari = builder.GetResult();
+    
+        Weapon standardBlade = new Weapon(fireEffect, "Standard Blade");
+        Weapon shuriken = new Weapon(fireEffect, "Standard Shuriken");
+        Defence uchihaShield = new Defence (fireEffect, "Crest Shield");
 
-        // Craft Wind Shuriken and equip directly
-        Chakra windChakra = new WindChakra(armorPenetration: 0.25, chakraCost: 50);
-        Weapon customWindBlade = (Weapon)GearMakingClient(weaponFactory, windChakra, "Giant Wind", 2.5);
-        temari.Weapons.Add(customWindBlade);
+        sasuke.Weapons.Add(standardBlade);
+        sasuke.Weapons.Add(shuriken);
+        sasuke.Defences.Add(uchihaShield);
+        Weapon standardKunai = new Weapon(windEffect, "Flying Kunai");
+        Defence armor = new Defence(windEffect, "Defender Armor");
 
-        // Craft Fire Shield and equip directly
-        Chakra fireChakra = new FireChakra(burnDamage: 40, burnDuration: 3, chakraCost: 30);
-        Defence customFireShield = (Defence)GearMakingClient(defenceFactory, fireChakra, "Flame Formation Wall", 1.5);
-        temari.Defences.Add(customFireShield);
+        temari.Weapons.Add(standardKunai);
+        temari.Defences.Add(armor);
 
-        // 5. Display Initial Statuses
+        // Display Initial Profiles
         sasuke.DisplayInfo();
         temari.DisplayInfo();
 
-        // 6. Simulate Combat
-        Console.WriteLine("\n========================================");
-        Console.WriteLine("             COMBAT START               ");
-        Console.WriteLine("========================================");
+        // Combat Simulation
+        Console.WriteLine("======================= ROUND 1 =======================");
+        BattleTurn(sasuke, 0, temari, 0);
 
-        Console.WriteLine("\n--- Round 1: Naruto attacks Temari ---");
-        sasuke.UseWeapon(0, temari);
+        Console.WriteLine("\n======================= ROUND 2 =======================");
+        BattleTurn(temari, 0, sasuke, 0);
 
-        Console.WriteLine("\n--- Round 2: Temari defends and counters ---");
-        temari.UseDefence(0, incomingDamage: 120);
-        temari.UseWeapon(0, sasuke);
+        Console.WriteLine("\n========== DYNAMIC BINDING (SWAPPING IMPLEMENTOR) ==========");
+        Console.WriteLine($"⚡ Sasuke re-infuses '{sasuke.Weapons[0].ModelName}' with Wind Chakra!");
+        sasuke.Weapons[0].Effect = windEffect;
+        temari.Weapons[1].Effect = fireEffect;
 
-        // 7. Final Statuses
-        Console.WriteLine("\n========================================");
-        Console.WriteLine("             COMBAT END                 ");
-        Console.WriteLine("========================================");
         sasuke.DisplayInfo();
         temari.DisplayInfo();
+
+        // Passive Recovery
+        Console.WriteLine("\n======================= POST-BATTLE RECOVERY =======================");
+        temari.HealChakra(5);
+        sasuke.HealChakra(5);
     }
 }

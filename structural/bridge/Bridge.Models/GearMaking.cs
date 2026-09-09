@@ -9,11 +9,10 @@ namespace GearMakings
         public abstract CombatGear CreateGear(Chakra chakra);
 
         // Template Operation
-        public CombatGear ComposeCombatGear(Chakra chakra, string modelName, double multiplier)
+        public CombatGear ComposeCombatGear(Chakra chakra, string modelName)
         {
             CombatGear gear = CreateGear(chakra);
             gear.ModelName = modelName;
-            gear.Multiplier = multiplier;
             gear.PrepareMaterial();
             gear.Enchant();
             return gear;
@@ -22,16 +21,16 @@ namespace GearMakings
 
     public class WeaponMaking : GearMaking
     {
-        public override CombatGear CreateGear(Chakra chakra) => new Weapon(chakra);
+        public override CombatGear CreateGear(Chakra chakra) => new Weapon(chakra, "Default Weapon");
     }
 
     public class DefenceMaking : GearMaking
     {
-        public override CombatGear CreateGear(Chakra chakra) => new Defence(chakra);
+        public override CombatGear CreateGear(Chakra chakra) => new Defence(chakra, "Default Defence");
     }
 
     public class OutfitMaking : GearMaking
     {
-        public override CombatGear CreateGear(Chakra chakra) => new Outfit(chakra);
+        public override CombatGear CreateGear(Chakra chakra) => new Outfit(chakra, "Default", "Default Outfit");
     }
 }

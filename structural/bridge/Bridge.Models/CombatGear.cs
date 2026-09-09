@@ -1,82 +1,70 @@
+using Ninjas;
 
 namespace CombatGears
 {
     public abstract class CombatGear
     {
-        public Chakras.Chakra? ChakraType { get; set; }
+        public Chakras.Chakra? Effect { get; set; }
         public string ModelName { get; set; } = string.Empty;
-        public double Multiplier { get; set; } = 1.0;
-
         public abstract void PrepareMaterial();
-        public virtual void Enchant() => Console.WriteLine($"Infusing '{ModelName}' with {ChakraType?.ElementName}...");
+        public abstract void Enchant();
     }
 
     public class Weapon : CombatGear
     {
-        public Weapon(Chakras.Chakra chakra) => ChakraType = chakra;
-
-        public override void PrepareMaterial() => Console.WriteLine($"Forging weapon steel for '{ModelName}'...");
-
-        public void Attack(Ninjas.Ninja attacker, Ninjas.Ninja defender)
+        public Weapon(Chakras.Chakra chakra, string modelName)
         {
-            if (ChakraType != null)
-            {
-                ChakraType.ApplyOffensiveEffect(attacker, defender, Multiplier, ModelName);
-            }
-            else
-            {
-                int damage = (int)(attacker.BaseAttack * Multiplier);
-                Console.WriteLine($"⚔️ {attacker.Name} attacks {defender.Name} with {ModelName} for {damage} damage.");
-                defender.Defend(damage);
-            }
+            Effect = chakra;
+            ModelName = modelName;
+        }
+
+        public override void PrepareMaterial() => Console.WriteLine($"Preparing weapon for '{ModelName}'...");
+        public override void Enchant() => Console.WriteLine($"Enchanting {ModelName} with {Effect?.ElementName}...");
+
+        public int Attack(Ninja target)
+        {
+            Console.WriteLine($"-> Striking {target.Name} with {ModelName} ({Effect?.ElementName} Infused)...");
+            int finalDamage = Effect?.ApplyOffense(target.BaseAttack) ?? 0;
+            return finalDamage;
         }
     }
 
     public class Defence : CombatGear
     {
         public double AbsorbRatio { get; set; } = 0.15;
-
-        public Defence(Chakras.Chakra chakra) => ChakraType = chakra;
-
-        public override void PrepareMaterial() => Console.WriteLine($"Inscribing defensive scrolls for '{ModelName}'...");
-
-        public void Protect(int incomingDamage, Ninjas.Ninja defender)
+        public Defence(Chakras.Chakra chakra, string modelName)
         {
-            if (ChakraType != null)
-            {
-                ChakraType.ApplyDefensiveEffect(defender, incomingDamage, AbsorbRatio, ModelName);
-            }
-            else
-            {
-                int absorb = (int)(incomingDamage * AbsorbRatio);
-                int finalDamage = incomingDamage - absorb;
-                Console.WriteLine($"🛡️ Shield '{ModelName}' absorbs {absorb} DMG. Final DMG: {finalDamage}");
-                defender.Defend(finalDamage);
-            }
+            Effect = chakra;
+            ModelName = modelName;
+        }
+
+        public override void PrepareMaterial() => Console.WriteLine($"Preparing defence for '{ModelName}'...");
+        public override void Enchant() => Console.WriteLine($"Enchanting {ModelName} with {Effect?.ElementName}...");
+        public int Protect(int incomingDamage)
+        {
+            Console.WriteLine($"-> Guarding with {ModelName} ({Effect?.ElementName} Infused)...");
+            int damageAfterArmor = (int)(incomingDamage * (1 - AbsorbRatio));
+            int finalDamage = Effect?.ApplyDefense(damageAfterArmor) ?? 0;
+            return finalDamage;
         }
     }
 
     public class Outfit : CombatGear
     {
-        public double AbsorbRatio { get; set; } = 0.15;
+        public string Color { get; set; } = "Default";
 
-        public Outfit(Chakras.Chakra chakra) => ChakraType = chakra;
-
-        public override void PrepareMaterial() => Console.WriteLine($"Making outfit for '{ModelName}'...");
-
-        public void Protect(int incomingDamage, Ninjas.Ninja defender)
+        public Outfit(Chakras.Chakra chakra, string color , string modelName)
         {
-            if (ChakraType != null)
-            {
-                ChakraType.ApplyDefensiveEffect(defender, incomingDamage, AbsorbRatio, ModelName);
-            }
-            else
-            {
-                int absorb = (int)(incomingDamage * AbsorbRatio);
-                int finalDamage = incomingDamage - absorb;
-                Console.WriteLine($"🥷 Outfit '{ModelName}' absorbs {absorb} DMG. Final DMG: {finalDamage}");
-                defender.Defend(finalDamage);
-            }
+            Effect = chakra;
+            Color = color;
+            ModelName = modelName;
+        }
+
+        public override void PrepareMaterial() => Console.WriteLine($"Preparing outfit for '{ModelName}'...");
+        public override void Enchant() => Console.WriteLine($"Enchanting {ModelName} with {Effect?.ElementName}...");   
+        public void Wear()
+        {
+            Console.WriteLine($"-> Wearing {ModelName} ({Color} Color) with {Effect?.ElementName} Infused...");
         }
     }
 }

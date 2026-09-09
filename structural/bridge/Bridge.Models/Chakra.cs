@@ -2,84 +2,55 @@ namespace Chakras
 {
     public abstract class Chakra
     {
-        public string? ElementName { get; set; }
-        public int ChakraCost { get; set;}
-        
-        // Executes the elemental effects and damage calculations
-        public abstract void ApplyOffensiveEffect(Ninjas.Ninja attacker, Ninjas.Ninja defender, double gearMultiplier, string gearName);
-        public abstract void ApplyDefensiveEffect(Ninjas.Ninja defender, int incomingDamage, double baseAbsorb, string gearName);
+        public string ElementName { get; set; } = string.Empty;
+        public abstract int ApplyOffense(int baseDamage);
+        public abstract int ApplyDefense(int incomingDamage);
     }
 
     public class FireChakra : Chakra
     {
-        public int BurnDamage { get; set; } = 25;
-        public int BurnDuration { get; set; } = 3;
+        public int BurnBonus { get; set; }
 
-        public FireChakra(int burnDamage = 25, int burnDuration = 3, int chakraCost = 15)
+        public FireChakra(int burnBonus = 50)
         {
-            ElementName = "Fire (Katon)";
-            BurnDamage = burnDamage;
-            BurnDuration = burnDuration;
-            ChakraCost = chakraCost;
+            BurnBonus = burnBonus;
+            ElementName = "Fire";
         }
 
-        public override void ApplyOffensiveEffect(Ninjas.Ninja attacker, Ninjas.Ninja defender, double gearMultiplier, string gearName)
+        public override int ApplyOffense(int baseDamage)
         {
-            int damage = (int)(attacker.BaseAttack * gearMultiplier);
-
-            Console.WriteLine($"🔥 {attacker.Name} strikes with {gearName} [Fire]!");
-            Console.WriteLine($"   -> Direct Damage = {damage}");
-            Console.WriteLine($"   -> {defender.Name} will take {BurnDamage} burn damage for {BurnDuration} turns.");
-
-            attacker.SpendChakra(ChakraCost);
-            defender.Defend(damage);
-            defender.ApplyBurn(BurnDamage, BurnDuration);
+            Console.WriteLine($"      [Fire Effect] Scorch bonus adds +{BurnBonus} damage!");
+            return baseDamage + BurnBonus;
         }
 
-        public override void ApplyDefensiveEffect(Ninjas.Ninja defender, int incomingDamage, double baseAbsorb, string gearName)
+        public override int ApplyDefense(int incomingDamage)
         {
-            int absorb = (int)(incomingDamage * baseAbsorb);
-            int finalDamage = incomingDamage - absorb;
-
-            Console.WriteLine($"🔥 Fire Barrier '{gearName}' scorches incoming attack, absorbing {absorb} damage!");
-            defender.Defend(finalDamage);
+            Console.WriteLine($"      [Fire Effect] Flame aura softens the blow slightly.");
+            return incomingDamage - BurnBonus;
         }
     }
 
     public class WindChakra : Chakra
     {
-        public double ArmorPenetration { get; set; } = 0.35;
+        public double ArmorPenetration { get; set; }
 
-        public WindChakra(double armorPenetration = 0.35, int chakraCost = 10)
+        public WindChakra(double armorPenetration = 0.35)
         {
-            ElementName = "Wind (Futon)";
             ArmorPenetration = armorPenetration;
-            ChakraCost = chakraCost;
+            ElementName = "Wind";
         }
 
-        public override void ApplyOffensiveEffect(Ninjas.Ninja attacker, Ninjas.Ninja defender, double gearMultiplier, string gearName)
+        public override int ApplyOffense(int baseDamage)
         {
-            int rawDamage = (int)(attacker.BaseAttack * gearMultiplier);
-            int finalDamage = (int)(rawDamage * (1.0 + ArmorPenetration));
-
-            Console.WriteLine($"🌪️ {attacker.Name} strikes with {gearName} [Wind]!");
-            Console.WriteLine($"   -> Raw damage = {rawDamage}");
-            Console.WriteLine($"   -> Armor penetration = {ArmorPenetration * 100}%");
-            Console.WriteLine($"   -> Final damage = {finalDamage}");
-
-            attacker.SpendChakra(ChakraCost);
-            defender.Defend(finalDamage);
+            Console.WriteLine($"      [Wind Effect] Slices through defenses (+{ArmorPenetration * 100}%)!");
+            return (int)(baseDamage * (1 + ArmorPenetration));
         }
 
-        public override void ApplyDefensiveEffect(Ninjas.Ninja defender, int incomingDamage, double baseAbsorb, string gearName)
+        public override int ApplyDefense(int incomingDamage)
         {
-            // Wind deflects an additional 15% damage
-            double totalAbsorb = baseAbsorb + 0.15;
-            int absorb = (int)(incomingDamage * totalAbsorb);
-            int finalDamage = Math.Max(0, incomingDamage - absorb);
-
-            Console.WriteLine($"🌪️ Wind Barrier '{gearName}' deflects impact! Total absorbed: {absorb}");
-            defender.Defend(finalDamage);
+            int mitigated = (int)(incomingDamage * 0.7); // 30% mitigation
+            Console.WriteLine($"      [Wind Effect] Deflects 30% of incoming damage.");
+            return mitigated;
         }
     }
 }
