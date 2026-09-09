@@ -87,7 +87,7 @@ namespace DefensiveGears
         public override void GetInfo()
         {
             Gear.GetInfo();
-            Console.WriteLine(" + Aura Barrier (Absorb: +30)"); 
+            Console.WriteLine($"    + [Aura Barrier] (+{Aura} DMG Absorption)"); 
         }
 
         public override int Defense(Ninja attacker)
@@ -110,13 +110,13 @@ namespace DefensiveGears
         public override void GetInfo()
         {
             Gear.GetInfo();
-            Console.WriteLine(" + [Disguising]");
+            Console.WriteLine($"    + [Disguising] (+{CamouflageEffect * 100}% Evasion)");
         }
 
         public override int Defense(Ninja attacker)
         {
             Disguise();
-            return Gear.Defense(attacker) + (int)(CamouflageEffect * 100);
+            return Gear.Defense(attacker) * (int)(1 + CamouflageEffect);
         }
 
         public void Disguise(int turns = 3)

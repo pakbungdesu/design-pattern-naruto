@@ -9,7 +9,7 @@ namespace OffensiveGears
         public Ninja? Owner { get; set; }
         public int AddDamage { get; set; }
 
-        public abstract string GetInfo();
+        public abstract void GetInfo();
         public abstract int Attack(Ninja target);
     }
 
@@ -20,12 +20,18 @@ namespace OffensiveGears
 
         public Kunai() => AddDamage = 15;
 
-        public override string GetInfo() => $"Kunai (+{AddDamage} DMG, Piercing: +{PiercingBonus})";
+        public override void GetInfo()
+        {
+            Console.WriteLine($"    Kunai (+{AddDamage} DMG, Piercing: +{PiercingBonus})");
+        }
 
         public override int Attack(Ninja target)
         {
             int totalDmg = AddDamage + PiercingBonus;
-            Console.WriteLine($"  -> Attacks {target.Name} with {GetInfo()} dealing {totalDmg} damage.");
+            Console.WriteLine($"  -> Attacks {target.Name}");
+            GetInfo();
+            Console.WriteLine($"     Total Damage: {totalDmg}");
+
             return totalDmg;
         }
     }
@@ -36,12 +42,17 @@ namespace OffensiveGears
 
         public Katana() => AddDamage = 30;
 
-        public override string GetInfo() => $"Katana (+{AddDamage} DMG, Crit: {CriticalMultiplier}x)";
+        public override void GetInfo()
+        {
+            Console.WriteLine($"    Katana (+{AddDamage} DMG, Crit: {CriticalMultiplier}x)");
+        }
 
         public override int Attack(Ninja target)
         {
             int totalDmg = (int)(AddDamage * CriticalMultiplier);
-            Console.WriteLine($"  -> Strikes {target.Name} with {GetInfo()} dealing {totalDmg} critical damage.");
+            Console.WriteLine($"  -> Strikes {target.Name}");
+            GetInfo();
+            Console.WriteLine($"     Total Damage: {totalDmg}");
             return totalDmg;
         }
     }
@@ -52,12 +63,17 @@ namespace OffensiveGears
 
         public Shuriken() => AddDamage = 8;
 
-        public override string GetInfo() => $"Shuriken (x{ProjectileCount} Stars, +{AddDamage} DMG each)";
+        public override void GetInfo()
+        {
+            Console.WriteLine($"    Shuriken (x{ProjectileCount} Stars, +{AddDamage} DMG each)");
+        }
 
         public override int Attack(Ninja target)
         {
             int totalDmg = AddDamage * ProjectileCount;
-            Console.WriteLine($"  -> Throws {ProjectileCount} Shurikens at {target.Name} dealing {totalDmg} total damage.");
+            Console.WriteLine($"  -> Throws {ProjectileCount} Shurikens at {target.Name}");
+            GetInfo();
+            Console.WriteLine($"     Total Damage: {totalDmg}");
             return totalDmg;
         }
     }
@@ -72,7 +88,7 @@ namespace OffensiveGears
             Owner = g.Owner;
         }
 
-        public override string GetInfo() => Gear.GetInfo();
+        public override void GetInfo() => Gear.GetInfo();
         public override int Attack(Ninja target)
         {
             return Gear.Attack(target);
@@ -81,9 +97,14 @@ namespace OffensiveGears
 
     public class Poison : OffensiveDecorator
     {
+        int PoisonDamage { get; set; } = 20;
         public Poison(OffensiveGear g) : base(g) { }
 
-        public override string GetInfo() => $"{Gear.GetInfo()} + [Poison]";
+        public override void GetInfo()
+        {
+            Gear.GetInfo();
+            Console.WriteLine($"    + [Poison]{PoisonDamage} Toxic Damage");
+        }
 
         public override int Attack(Ninja target)
         {
@@ -93,16 +114,20 @@ namespace OffensiveGears
         public int Poisoning(Ninja target, int turns = 3)
         {
             target.ApplyPoison(turns);
-            Console.WriteLine($"     [Poisoning] {target.Name} has been poisoned! Takes 20 toxic damage.");
-            return 20;
+            Console.WriteLine($"     [Poisoning] {target.Name} has been poisoned! Takes {PoisonDamage} toxic damage.");
+            return PoisonDamage;
         }
     }
 
     public class ExplosiveTag : OffensiveDecorator
     {
+        public int BlastDamage { get; set; } = 35;
         public ExplosiveTag(OffensiveGear g) : base(g) { }
 
-        public override string GetInfo() => $"{Gear.GetInfo()} + [Explosive Tag]";
+        public override void GetInfo(){
+            Gear.GetInfo();
+            Console.WriteLine($"    + [Explosive Tag]{BlastDamage} Blast Damage");
+        }
 
         public override int Attack(Ninja target)
         {
@@ -111,8 +136,8 @@ namespace OffensiveGears
 
         public int Bomb(Ninja target)
         {
-            Console.WriteLine($"     [Bomb] Explosive Tag detonates on {target.Name}! Takes 35 blast damage.");
-            return 35;
+            Console.WriteLine($"     [Bomb] Explosive Tag detonates on {target.Name}! Takes {BlastDamage} blast damage.");
+            return BlastDamage;
         }
     }
 }
