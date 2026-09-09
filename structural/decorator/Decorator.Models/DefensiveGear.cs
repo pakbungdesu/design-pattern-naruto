@@ -6,7 +6,7 @@ namespace DefensiveGears
     {
         public Ninja? Owner { get; set; }
         public int AbsorbDamage { get; set; }
-        public abstract string GetInfo();
+        public abstract void GetInfo();
         public abstract int Defense(Ninja attacker);
     }
 
@@ -16,7 +16,10 @@ namespace DefensiveGears
 
         public Shield() => AbsorbDamage = 30;
 
-        public override string GetInfo() => $"Shield (Absorb: {AbsorbDamage}, BlockChance: {BlockChance:P0})";
+        public override void GetInfo()
+        {
+            Console.WriteLine($"Shield (Absorb: {AbsorbDamage}, BlockChance: {BlockChance:P0})");
+        }
 
         public override int Defense(Ninja attacker)
         {
@@ -32,13 +35,16 @@ namespace DefensiveGears
 
     public class Cloak : DefensiveGear
     {
-        public int CamouflageEvasion { get; set; } = 15;
+        public int CamouflageEvasion { get; set; } = 50;
 
-        public Cloak() => AbsorbDamage = 10;
+        public Cloak() => AbsorbDamage = 20;
 
-        public override string GetInfo() => $"Cloak (Absorb: {AbsorbDamage}, Evasion: +{CamouflageEvasion})";
+        public override void GetInfo()
+        {
+            Console.WriteLine($"Cloak (Absorb: {AbsorbDamage}, Evasion: +{CamouflageEvasion})");
+        }
 
-        public override int Defense(Ninja attacker) => AbsorbDamage;
+        public override int Defense(Ninja attacker) => AbsorbDamage + CamouflageEvasion;
     }
 
     public class Vest : DefensiveGear
@@ -47,7 +53,10 @@ namespace DefensiveGears
 
         public Vest() => AbsorbDamage = 25;
 
-        public override string GetInfo() => $"Vest (Absorb: {AbsorbDamage}, Durability: {VitalDurability})";
+        public override void GetInfo()
+        {
+            Console.WriteLine($"Vest (Absorb: {AbsorbDamage}, Durability: {VitalDurability})");
+        }
 
         public override int Defense(Ninja attacker) => AbsorbDamage + VitalDurability;
     }
@@ -62,21 +71,29 @@ namespace DefensiveGears
             Owner = g.Owner;
         }
 
-        public override string GetInfo() => Gear.GetInfo();
+        public override void GetInfo()
+        {
+            Gear.GetInfo();
+        }
         public override int Defense(Ninja attacker) => Gear.Defense(attacker);
     }
 
     // Concrete Defensive Decorators
     public class AuraBarrier : DefensiveDecorator
     {
+        public int Aura { get; set; } = 30;
         public AuraBarrier(DefensiveGear g) : base(g) { }
 
-        public override string GetInfo() => $"{Gear.GetInfo()} + [Barrier]";
+        public override void GetInfo()
+        {
+            Gear.GetInfo();
+            Console.WriteLine(" + Aura Barrier (Absorb: +30)"); 
+        }
 
         public override int Defense(Ninja attacker)
         {
             Protect();
-            return Gear.Defense(attacker) + 30;
+            return Gear.Defense(attacker) + Aura;
         }
 
         public void Protect()
@@ -87,14 +104,19 @@ namespace DefensiveGears
 
     public class Disguising : DefensiveDecorator
     {
+        public double CamouflageEffect { get; set; } = 0.2;
         public Disguising(DefensiveGear g) : base(g) { }
 
-        public override string GetInfo() => $"{Gear.GetInfo()} + [Disguising]";
+        public override void GetInfo()
+        {
+            Gear.GetInfo();
+            Console.WriteLine(" + [Disguising]");
+        }
 
         public override int Defense(Ninja attacker)
         {
             Disguise();
-            return Gear.Defense(attacker) + 15;
+            return Gear.Defense(attacker) + (int)(CamouflageEffect * 100);
         }
 
         public void Disguise(int turns = 3)
