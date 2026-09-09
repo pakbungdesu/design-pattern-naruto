@@ -6,6 +6,7 @@ namespace OffensiveGears
 
     public abstract class OffensiveGear
     {
+        public Ninja? Owner { get; set; }
         public int AddDamage { get; set; }
 
         public abstract void GetInfo();
@@ -84,6 +85,7 @@ namespace OffensiveGears
         public OffensiveDecorator(OffensiveGear g)
         {
             Gear = g;
+            Owner = g.Owner;
         }
 
         public override void GetInfo() => Gear.GetInfo();
