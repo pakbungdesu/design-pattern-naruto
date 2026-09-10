@@ -111,7 +111,7 @@ namespace OffensiveGears
             return base.Attack(target) + Poisoning(target);
         }
 
-        public int Poisoning(Ninja target, int turns = 3)
+        private int Poisoning(Ninja target, int turns = 3)
         {
             target.ApplyPoison(turns);
             Console.WriteLine($"     [Poisoning] {target.Name} has been poisoned! Takes {PoisonDamage} toxic damage.");
@@ -134,7 +134,7 @@ namespace OffensiveGears
             return base.Attack(target) + Bomb(target);
         }
 
-        public int Bomb(Ninja target)
+        private int Bomb(Ninja target)
         {
             Console.WriteLine($"     [Bomb] Explosive Tag detonates on {target.Name}! Takes {BlastDamage} blast damage.");
             return BlastDamage;
