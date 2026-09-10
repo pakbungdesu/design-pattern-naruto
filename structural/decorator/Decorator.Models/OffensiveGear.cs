@@ -103,7 +103,7 @@ namespace OffensiveGears
         public override void GetInfo()
         {
             Gear.GetInfo();
-            Console.WriteLine($"    + [Poison]{PoisonDamage} Toxic Damage");
+            Console.WriteLine($"    + [Poison] {PoisonDamage} Toxic Damage");
         }
 
         public override int Attack(Ninja target)
@@ -126,7 +126,7 @@ namespace OffensiveGears
 
         public override void GetInfo(){
             Gear.GetInfo();
-            Console.WriteLine($"    + [Explosive Tag]{BlastDamage} Blast Damage");
+            Console.WriteLine($"    + [Explosive Tag] {BlastDamage} Blast Damage");
         }
 
         public override int Attack(Ninja target)

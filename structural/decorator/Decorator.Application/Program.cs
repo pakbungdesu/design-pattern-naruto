@@ -8,7 +8,7 @@ public class Program
     {
         int round = 1;
         
-        while (!ninjaA.IsDead && !ninjaB.IsDead)
+        while (round <= 5)
         {
             Console.WriteLine($"\n================== ROUND {round++} ==================");
             Console.WriteLine($"\nActive Ninja: {ninjaA.Name} | Opponent Ninja: {ninjaB.Name}");
@@ -22,7 +22,7 @@ public class Program
             ExecuteTurn(active: ninjaB, opponent: ninjaA);
         }
 
-        Ninja winner = ninjaA.IsDead ? ninjaB : ninjaA;
+        Ninja winner = ninjaA.Chakra > ninjaB.Chakra ? ninjaA : ninjaB;
         Console.WriteLine($"\n[Victory] {winner.Name} wins the battle!");
     }
 
@@ -45,7 +45,8 @@ public class Program
         }
         else
         {
-            active.Attack(opponent);
+            int damageDealt = active.Attack(opponent);
+            opponent.Defend(damageDealt);
         }
 
         // Phase 3: Cleanup / Cooldowns
@@ -64,23 +65,23 @@ public class Program
         OffensiveGear explosivePoisonedKatana = new ExplosiveTag(poisonedKatana);
 
         DefensiveGear vest = new Vest{ VitalDurability = 40, AbsorbDamage = 20 };
-        DefensiveGear auraBarrierVest = new AuraBarrier(vest);
-        DefensiveGear disguiseAuraBarrier = new Disguising(auraBarrierVest);
+        DefensiveGear disguiseVest = new Disguising(vest);
+
 
         sasuke.EquipOffensive(explosivePoisonedKatana);
-        sasuke.EquipDefensive(disguiseAuraBarrier);
+        sasuke.EquipDefensive(disguiseVest);
 
         // Naruto
-        OffensiveGear kunai = new Kunai{ AddDamage = 15, PiercingBonus = 10 };
+        OffensiveGear kunai = new Kunai{ AddDamage = 25, PiercingBonus = 10 };
         OffensiveGear poisonedKunai = new Poison(kunai);
         OffensiveGear explosivePoisonedKunai = new ExplosiveTag(poisonedKunai);
         
-        DefensiveGear cloak = new Cloak { CamouflageEvasion = 20, AbsorbDamage = 10 };
+        DefensiveGear cloak = new Cloak { CamouflageEvasion = 20, AbsorbDamage = 20 };
         DefensiveGear auraBarrierCloak = new AuraBarrier(cloak);
-        DefensiveGear disguiseAuraBarrierCloak = new Disguising(auraBarrierCloak);
-        
+
+
         naruto.EquipOffensive(explosivePoisonedKunai);
-        naruto.EquipDefensive(disguiseAuraBarrierCloak);
+        naruto.EquipDefensive(auraBarrierCloak);
 
         Client(sasuke, naruto);
 
@@ -93,13 +94,12 @@ public class Program
         OffensiveGear poisonedExplosiveShuriken = new Poison(explosiveShuriken);
       
         itachi.EquipOffensive(poisonedExplosiveShuriken);
-        itachi.EquipDefensive(disguiseAuraBarrierCloak);
+        itachi.EquipDefensive(disguiseVest);
 
         DefensiveGear shield = new Shield { AbsorbDamage = 20 };
         DefensiveGear auraBarrierShield = new AuraBarrier(shield);
-        DefensiveGear disguiseAuraBarrierShield = new Disguising(auraBarrierShield);
 
-        minato.EquipDefensive(disguiseAuraBarrierShield);
+        minato.EquipDefensive(auraBarrierShield);
         minato.EquipOffensive(explosivePoisonedKunai);
 
         Client(itachi, minato);

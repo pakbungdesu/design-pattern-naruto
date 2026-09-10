@@ -16,7 +16,6 @@ namespace Ninjas
         public int InvisibilityTurnsRemaining { get; private set; }
         public bool IsPoisoned => PoisonTurnsRemaining > 0;
         public bool CanBeSeen => InvisibilityTurnsRemaining == 0;
-
         private OffensiveGear? _offensiveGear;
         private DefensiveGear? _defensiveGear;
 
@@ -34,38 +33,15 @@ namespace Ninjas
             gear.Owner = this;
         }
 
-        public int Attack(Ninja target)
+        public void ApplyPoison(int turns = 3)
         {
-            // Before attacking
-            if (!CheckVisibility(target))
-            {
-                return 0;
-            }
-
-            CheckPoisoning(target);
-
-            // Execute Attacking (Gear vs Bare-Handed)
-            Console.WriteLine($"\n[Action] {Name} attacks {target.Name}!");
-
-            int damageDealt;
-            if (_offensiveGear != null)
-            {
-                damageDealt = _offensiveGear.Attack(target);
-            }
-            else
-            {
-                Console.WriteLine($"  -> Bare-handed attack dealing {BaseAttack} damage.");
-                target.Defend(BaseAttack);
-                damageDealt = BaseAttack;
-            }
-
-            ChakraConsumption(damageDealt);
-            return damageDealt;
+            if (!IsPoisoned) PoisonTurnsRemaining = turns;
         }
 
-        public void ApplyPoison(int turns = 3) => PoisonTurnsRemaining = Math.Max(PoisonTurnsRemaining, turns);
-        
-        public void ApplyInvisibility(int turns = 3) => InvisibilityTurnsRemaining = Math.Max(InvisibilityTurnsRemaining, turns);
+        public void ApplyInvisibility(int turns = 1)
+        {
+            if (CanBeSeen) InvisibilityTurnsRemaining = turns;
+        }
 
         public void StartTurn()
         {
@@ -91,6 +67,25 @@ namespace Ninjas
             }
         }
 
+        public int Attack(Ninja target)
+        {
+            Console.WriteLine($"\n[Action] {Name} attacks {target.Name}!");
+
+            int damageDealt;
+            if (_offensiveGear != null)
+            {
+                damageDealt = _offensiveGear.Attack(target);
+            }
+            else
+            {
+                Console.WriteLine($"  -> Bare-handed attack dealing {BaseAttack} damage.");
+                damageDealt = BaseAttack;
+            }
+
+            ChakraConsumption(damageDealt);
+            return damageDealt;
+        }
+
         public void ChakraConsumption(int damageDealt)
         {
             int chakraUsed = (int)(damageDealt * ChakraCost);
@@ -98,39 +93,24 @@ namespace Ninjas
             Console.WriteLine($"  -> {Name} used {chakraUsed} Chakra for the attack. (Remaining Chakra: {Chakra})");
         }
 
-        public void CheckPoisoning(Ninja target)
-        {
-            if (IsPoisoned)
-            {
-                Console.WriteLine($"  -> {Name} is poisoned and takes 10 damage before attacking.");
-                TakeDirectDamage(10);
-            }
-
-            if (target.IsPoisoned)
-            {
-                Console.WriteLine($"  -> {target.Name} is poisoned and takes 10 damage before defending.");
-                target.TakeDirectDamage(10);
-            }
-        }
-
-        public bool CheckVisibility(Ninja target)
-        {
-            if (!target.CanBeSeen)
-            {
-                Console.WriteLine($"  -> {target.Name} is invisible and cannot be targeted this turn.");
-                return false;
-            }
-            return true;
-        }
-
         public void Defend(int incomingDamage)
         {
             int gearAbsorb = _defensiveGear?.Defense(this) ?? 0;
             int totalDefense = BaseDefense + gearAbsorb;
-            int netDamage = Math.Max(1, incomingDamage - totalDefense);
+            
+            // Mitigate damage down to 0 if defense is higher than incoming attack
+            int netDamage = Math.Max(0, incomingDamage - totalDefense);
 
-            Console.WriteLine($"  -> {Name} total defense mitigated {totalDefense} damage.");
-            TakeDirectDamage(netDamage);
+            Console.WriteLine($"  -> {Name} total defense mitigated {Math.Min(incomingDamage, totalDefense)} damage.");
+            
+            if (netDamage > 0)
+            {
+                TakeDirectDamage(netDamage);
+            }
+            else
+            {
+                Console.WriteLine($"  -> Attack was completely blocked!");
+            }
         }
 
         public void TakeDirectDamage(int damage)
@@ -153,13 +133,32 @@ namespace Ninjas
         public void DisplayInfo()
         {
             Console.WriteLine($"\n================ STATUS: {Name} ================");
-            Console.WriteLine($"  Offensive : {_offensiveGear?.GetInfo() ?? "None"}");
-            Console.WriteLine($"  Defensive : {_defensiveGear?.GetInfo() ?? "None"}");
-            Console.WriteLine($"  Is Dead   : {IsDead}");
-            Console.WriteLine($"  Stats     : Chakra={Chakra} | ChakraCost={ChakraCost} | Shield={Shield}");
-            Console.WriteLine($"  Bases     : BaseATK={BaseAttack} | BaseDEF={BaseDefense}");
-            Console.WriteLine($"  Conditions: Poisoned={IsPoisoned} | CanBeSeen={CanBeSeen}");
+            if (_offensiveGear != null)
+            {
+                Console.WriteLine("  Offensive Gear:");
+                _offensiveGear.GetInfo();
+            }
+            else
+            {
+                Console.WriteLine("  Offensive Gear: None");
+            }
+
+            if (_defensiveGear != null)
+            {
+                Console.WriteLine("  Defensive Gear:");
+                _defensiveGear.GetInfo();
+            }
+            else
+            {
+                Console.WriteLine("  Defensive Gear: None");
+            }
+
+            Console.WriteLine($"  Is Dead    : {IsDead}");
+            Console.WriteLine($"  Stats      : Chakra={Chakra} | ChakraCost={ChakraCost} | Shield={Shield}");
+            Console.WriteLine($"  Bases      : BaseATK={BaseAttack} | BaseDEF={BaseDefense}");
+            Console.WriteLine($"  Conditions : Poisoned={IsPoisoned} | CanBeSeen={CanBeSeen}");
             Console.WriteLine($"  Poison Turns Remaining: {PoisonTurnsRemaining}");
+            Console.WriteLine($"  Invisibility Turns Remaining: {InvisibilityTurnsRemaining}");
             Console.WriteLine("================================================");
         }
     }

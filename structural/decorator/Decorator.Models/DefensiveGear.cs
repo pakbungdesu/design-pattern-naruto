@@ -18,7 +18,7 @@ namespace DefensiveGears
 
         public override void GetInfo()
         {
-            Console.WriteLine($"Shield (Absorb: {AbsorbDamage}, BlockChance: {BlockChance:P0})");
+            Console.WriteLine($"    Shield (Absorb: {AbsorbDamage}, BlockChance: {BlockChance:P0})");
         }
 
         public override int Defense(Ninja attacker)
@@ -41,7 +41,7 @@ namespace DefensiveGears
 
         public override void GetInfo()
         {
-            Console.WriteLine($"Cloak (Absorb: {AbsorbDamage}, Evasion: +{CamouflageEvasion})");
+            Console.WriteLine($"    Cloak (Absorb: {AbsorbDamage}, Evasion: +{CamouflageEvasion})");
         }
 
         public override int Defense(Ninja attacker) => AbsorbDamage + CamouflageEvasion;
@@ -55,7 +55,7 @@ namespace DefensiveGears
 
         public override void GetInfo()
         {
-            Console.WriteLine($"Vest (Absorb: {AbsorbDamage}, Durability: {VitalDurability})");
+            Console.WriteLine($"    Vest (Absorb: {AbsorbDamage}, Durability: {VitalDurability})");
         }
 
         public override int Defense(Ninja attacker) => AbsorbDamage + VitalDurability;
@@ -81,7 +81,7 @@ namespace DefensiveGears
     // Concrete Defensive Decorators
     public class AuraBarrier : DefensiveDecorator
     {
-        public int Aura { get; set; } = 30;
+        public int Aura { get; set; } = 40;
         public AuraBarrier(DefensiveGear g) : base(g) { }
 
         public override void GetInfo()
@@ -104,7 +104,7 @@ namespace DefensiveGears
 
     public class Disguising : DefensiveDecorator
     {
-        public double CamouflageEffect { get; set; } = 0.2;
+        public double CamouflageEffect { get; set; } = 0.1;
         public Disguising(DefensiveGear g) : base(g) { }
 
         public override void GetInfo()
@@ -119,7 +119,7 @@ namespace DefensiveGears
             return Gear.Defense(attacker) * (int)(1 + CamouflageEffect);
         }
 
-        public void Disguise(int turns = 3)
+        public void Disguise(int turns = 1)
         {
             if (Owner != null) Owner.ApplyInvisibility(turns);
             Console.WriteLine("     [Disguise] Camouflaged into surroundings. Cannot be clearly seen!");
