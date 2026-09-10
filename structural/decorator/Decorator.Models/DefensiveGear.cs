@@ -96,7 +96,7 @@ namespace DefensiveGears
             return Gear.Defense(attacker) + Aura;
         }
 
-        public void Protect()
+        private void Protect()
         {
             Console.WriteLine("     [Protect] Barrier creates a glowing chakra shield!");
         }
@@ -119,7 +119,7 @@ namespace DefensiveGears
             return Gear.Defense(attacker) * (int)(1 + CamouflageEffect);
         }
 
-        public void Disguise(int turns = 1)
+        private void Disguise(int turns = 1)
         {
             if (Owner != null) Owner.ApplyInvisibility(turns);
             Console.WriteLine("     [Disguise] Camouflaged into surroundings. Cannot be clearly seen!");
