@@ -38,7 +38,7 @@ namespace Ninjas
             if (!IsPoisoned) PoisonTurnsRemaining = turns;
         }
 
-        public void ApplyInvisibility(int turns = 1)
+        public void ApplyInvisibility(int turns = 3)
         {
             if (CanBeSeen) InvisibilityTurnsRemaining = turns;
         }
