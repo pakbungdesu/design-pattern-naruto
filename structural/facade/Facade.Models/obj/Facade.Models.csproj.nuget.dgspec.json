@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\facade\\Facade.Models\\Facade.Models.csproj": {}
+    "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\facade\\Facade.Models\\Facade.Models.csproj": {}
   },
   "projects": {
-    "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\facade\\Facade.Models\\Facade.Models.csproj": {
+    "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\facade\\Facade.Models\\Facade.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\facade\\Facade.Models\\Facade.Models.csproj",
+        "projectUniqueName": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\facade\\Facade.Models\\Facade.Models.csproj",
         "projectName": "Facade.Models",
-        "projectPath": "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\facade\\Facade.Models\\Facade.Models.csproj",
+        "projectPath": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\facade\\Facade.Models\\Facade.Models.csproj",
         "packagesPath": "C:\\Users\\pimnara\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\facade\\Facade.Models\\obj\\",
+        "outputPath": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\facade\\Facade.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pimnara\\AppData\\Roaming\\NuGet\\NuGet.Config"

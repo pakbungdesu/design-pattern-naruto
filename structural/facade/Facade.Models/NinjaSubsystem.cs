@@ -74,6 +74,7 @@ namespace NinjaSubsystems
             for (int i = 0; i < n; i++)
             {
                 ninjas.Add(_prototype.Clone());
+                Console.WriteLine($"[CloneManager] Spawned clone {i + 1} of {n}.");
             }
             return ninjas;
         }
