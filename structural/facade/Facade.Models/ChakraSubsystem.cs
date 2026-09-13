@@ -20,6 +20,7 @@ namespace ChakraSubsystems
 
         public int Compress()
         {
+            Console.WriteLine($"[ChakraTransformer] Compressing chakra: {Chakra} with conversion rate: {ConversionRate:P0}.");
             return (int)(Chakra * ConversionRate);
         }
     }
