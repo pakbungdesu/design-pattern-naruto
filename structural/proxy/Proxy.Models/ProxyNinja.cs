@@ -8,27 +8,36 @@ namespace ProxyNinjas
     {
         private RealNinja _RealNinja;
         private string _BasicPassword;
+        public string Name { get; set; }
+        public string BasicToken { get; set; } = "random123";
+        public string AdvancedToken { get; set; } = "random123";
 
-        public ProxyNinja(RealNinja realNinja, string pw)
+        public ProxyNinja(string name, RealNinja realNinja, string pw)
         {
+            Name = name;
             _RealNinja = realNinja;
             _BasicPassword = pw;
         }
 
-        private bool HasPermission(string pw)
+        private bool HasPermission(Ninja caller)
         {
-            return pw == _BasicPassword;
+            if(caller.BasicToken == _BasicPassword)
+            {
+                Console.WriteLine($"[ProxyNinja] Basic password validated for {Name}.");
+                return true;
+            }
+            Console.WriteLine($"[ProxyNinja] Basic password validation failed for {Name}.");
+            return false;
         }
 
-        // Proxy request method with protection control
-        public bool Request(string pw)
+
+        public bool Request(Ninja caller)
         {
-            if (HasPermission(pw))
+            if (HasPermission(caller))
             {
-                Console.WriteLine("[ProxyNinja] Permission granted. Forwarding request to RealNinja.");
-                return _RealNinja.Request(pw);
+                return _RealNinja.Request(caller);
             }
-            Console.WriteLine("[ProxyNinja] Permission denied.");
+            Console.WriteLine($"[ProxyNinja] Permission denied for {caller.Name}.");
             return false;
         }
     }
