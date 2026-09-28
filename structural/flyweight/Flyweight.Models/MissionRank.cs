@@ -1,5 +1,5 @@
 
 namespace MissionRanks
 {
-    public enum MissionRank { S, A, B, C, D, E }
+    public enum MissionRank { S, A, B, C, D }
 }

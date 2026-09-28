@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <ProjectReference Include="..\Facade.Models\Facade.Models.csproj" />
+    <ProjectReference Include="..\Flyweight.Models\Flyweight.Models.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

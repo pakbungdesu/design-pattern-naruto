@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "Flyweight.Models/1.0.0": {
+        "runtime": {
+          "Flyweight.Models.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Flyweight.Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

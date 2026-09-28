@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Flyweight.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d68bd1f9c9ebcebc49165a13a95afd364abf39ce")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+281795ddd3887c1e6f1e5fd5b236a084e4bc6316")]
 [assembly: System.Reflection.AssemblyProductAttribute("Flyweight.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Flyweight.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

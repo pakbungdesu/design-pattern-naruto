@@ -1,0 +1,12 @@
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\flyweight\Flyweight.Models\bin\Debug\net10.0\Flyweight.Models.deps.json
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\flyweight\Flyweight.Models\bin\Debug\net10.0\Flyweight.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\flyweight\Flyweight.Models\bin\Debug\net10.0\Flyweight.Models.pdb
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\flyweight\Flyweight.Models\obj\Debug\net10.0\Flyweight.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\flyweight\Flyweight.Models\obj\Debug\net10.0\Flyweight.Models.AssemblyInfoInputs.cache
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\flyweight\Flyweight.Models\obj\Debug\net10.0\Flyweight.Models.AssemblyInfo.cs
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\flyweight\Flyweight.Models\obj\Debug\net10.0\Flyweight.Models.csproj.CoreCompileInputs.cache
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\flyweight\Flyweight.Models\obj\Debug\net10.0\Flyweight.Models.sourcelink.json
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\flyweight\Flyweight.Models\obj\Debug\net10.0\Flyweight.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\flyweight\Flyweight.Models\obj\Debug\net10.0\refint\Flyweight.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\flyweight\Flyweight.Models\obj\Debug\net10.0\Flyweight.Models.pdb
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\flyweight\Flyweight.Models\obj\Debug\net10.0\ref\Flyweight.Models.dll

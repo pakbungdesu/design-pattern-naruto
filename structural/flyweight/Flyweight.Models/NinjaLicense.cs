@@ -11,11 +11,12 @@ namespace NinjaLicenses
 
         public MissionRank AllowedRank { get; }
 
-        public NinjaLicense(string tierName, string scope, string restriction)
+        public NinjaLicense(string tierName, string scope, string restriction, MissionRank allowed)
         {
             TierName = tierName;
             Scope = scope;
             Restriction = restriction;
+            AllowedRank = allowed;
         }
 
         public void Display()
