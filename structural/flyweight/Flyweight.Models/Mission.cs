@@ -20,7 +20,7 @@ namespace Misssions
 
         public void StartMission()
         {
-            if (AssignedUnit != null && AssignedUnit.CheckLicense())
+            if (AssignedUnit != null && AssignedUnit.CheckLicense(Rank))
             {
                 Console.WriteLine($"Mission {Rank} started successfully!");
             }

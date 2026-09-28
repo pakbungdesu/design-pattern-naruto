@@ -1,11 +1,12 @@
 using NinjaLicenses;
+using MissionRanks;
 
 namespace CompositePart
 {
     public interface Shinobi
     {
         void Display();
-        bool CheckLicense();
+        bool CheckLicense(MissionRank rank);
     }
 
     // Ninja Leaf Class
@@ -38,9 +39,9 @@ namespace CompositePart
             License.Display();
         }
 
-        public bool CheckLicense()
+        public bool CheckLicense(MissionRank rank)
         {
-            return License != null;
+            return License != null && License.IsEligibleFor(rank);
         }
     }
 
@@ -67,11 +68,11 @@ namespace CompositePart
             }
         }
 
-        public bool CheckLicense()
+        public bool CheckLicense(MissionRank rank)
         {
             foreach (var member in _members)
             {
-                if (!member.CheckLicense()) return false;
+                if (!member.CheckLicense(rank)) return false;
             }
             return true;
         }
