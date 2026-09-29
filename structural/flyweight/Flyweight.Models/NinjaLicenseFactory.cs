@@ -9,21 +9,21 @@ namespace NinjaLicenseFactories
     {
         private List<NinjaLicense> _LicenseCache = new List<NinjaLicense>();
 
-        public NinjaLicense GetFlyweight(string tierName, string scope, string restriction, MissionRank allowed)
+        public NinjaLicense GetFlyweight(string tierName, string restriction, MissionRank allowed)
         {
             foreach (var license in _LicenseCache)
             {
-                if (license.TierName == tierName && license.Scope == scope && license.Restriction == restriction)
+                if (license.TierName == tierName && license.Restriction == restriction)
                 {
                     Console.WriteLine("[Factory]: Reusing existing Ninja License.");
                     return license;
                 }
             }
 
-            Console.WriteLine($"[Factory]: Can't find this Ninja License: Tier Name: '{tierName}', Scope: '{scope}', Restriction: '{restriction}'.");
+            Console.WriteLine($"[Factory]: Can't find this Ninja License: Tier Name: '{tierName}', Restriction: '{restriction}'.");
             Console.WriteLine("[Factory]: Creating new Ninja License.");
             
-            NinjaLicense res = new NinjaLicense(tierName, scope, restriction, allowed);
+            NinjaLicense res = new NinjaLicense(tierName, restriction, allowed);
             _LicenseCache.Add(res);
             return res;
         }

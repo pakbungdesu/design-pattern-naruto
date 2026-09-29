@@ -14,10 +14,10 @@ class Program
         NinjaVillage village = new NinjaVillage();
 
         //  Create Flyweight Licenses via Factory
-        NinjaLicense academyLicense = licenseFactory.GetFlyweight("Academy Permit", "D-Rank missions only", "Supervised", MissionRank.D);
-        NinjaLicense chuninLicense = licenseFactory.GetFlyweight("Chunin Standard", "Up to B-Rank missions", "Standard", MissionRank.C);
-        NinjaLicense joninLicense = licenseFactory.GetFlyweight("Jonin Commercial", "Up to A-Rank missions", "Advanced Command", MissionRank.B);
-        NinjaLicense kageLicense = licenseFactory.GetFlyweight("Kage Special", "All Ranks including S-Rank", "None", MissionRank.S);
+        NinjaLicense academyLicense = licenseFactory.GetFlyweight("Academy Permit", "Supervised", MissionRank.D);
+        NinjaLicense chuninLicense = licenseFactory.GetFlyweight("Chunin Standard", "Standard", MissionRank.C);
+        NinjaLicense joninLicense = licenseFactory.GetFlyweight("Jonin Commercial", "Advanced Command", MissionRank.B);
+        NinjaLicense kageLicense = licenseFactory.GetFlyweight("Kage Special", "None", MissionRank.S);
 
         // Leaves
         Ninja naruto = new Ninja("Uzumaki Naruto", 90, 85, 1000, academyLicense);
@@ -75,8 +75,9 @@ class Program
 
         // 5. Test Flyweight Factory Caching
         Console.WriteLine("\n=== TESTING FLYWEIGHT FACTORY CACHING ===");
-        NinjaLicense duplicateCheckLicense = licenseFactory.GetFlyweight("Academy Permit", "D-Rank missions only", "Supervised", MissionRank.D);
-        Console.WriteLine($"\n--- Display all licenses ---");
+        licenseFactory.DisplayLicense();
+        NinjaLicense duplicateCheckLicense = licenseFactory.GetFlyweight("Academy Permit", "Supervised", MissionRank.D);
+        Console.WriteLine($"\n--- Display all licenses after duplication ---");
         licenseFactory.DisplayLicense();
     }
 }
