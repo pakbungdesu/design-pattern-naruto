@@ -29,7 +29,10 @@ namespace CompositePart
             License = license;
         }
 
-        public void Attack(Ninja target) { /* Attack logic */ }
+        public void Attack(Ninja target)
+        {
+            target.HP = Math.Max(0, target.HP - (this.ATK - target.DEF));
+        }
         public void Defend(Ninja attacker) { /* Defend logic */ }
         public void Execute(Ninja target) { /* Execute logic */ }
 
