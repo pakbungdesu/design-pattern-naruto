@@ -25,7 +25,16 @@ namespace NinjaLicenses
 
         public bool IsEligibleFor(MissionRank missionRank)
         {
-            return AllowedRank >= missionRank; 
+            bool rankValid = AllowedRank >= missionRank;
+            bool restrictionValid = true;
+
+            if (Restriction.ToLower().Contains("supervised") && missionRank >= MissionRank.B)
+            {
+                // Supervised licenses cannot handle high-rank missions alone
+                restrictionValid = false;
+            }
+
+            return rankValid && restrictionValid;
         }
     }
 }
