@@ -28,7 +28,7 @@ namespace CompositePart
             License = license;
         }
 
-        public void Attack(Ninja target)
+        private void Attack(Ninja target)
         {
             target.HP = Math.Max(0, target.HP - (this.ATK - target.DEF));
         }
