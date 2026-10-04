@@ -2,7 +2,6 @@
 using MissionRanks;
 using Ninjas;
 using NinjaLicenseFactories;
-using VillageManager;
 using NinjaLicenses;
 using Missions;
 
@@ -12,7 +11,6 @@ class Program
     {
         Console.WriteLine("=== INITIALIZING NINJA VILLAGE & FACTORY ===");
         NinjaLicenseFactory licenseFactory = new NinjaLicenseFactory();
-        NinjaVillage village = new NinjaVillage();
 
         NinjaLicense academyLicense = licenseFactory.GetFlyweight("Academy Permit", "Supervised 7", MissionRank.C);
         NinjaLicense chuninLicense = licenseFactory.GetFlyweight("Chunin Standard", "Standard 2", MissionRank.B);
