@@ -32,7 +32,6 @@ namespace NinjaLicenseFactories
         {
             foreach(var license in _LicenseCache)
             {
-                Console.WriteLine("\n");
                 license.Display();
             }
         }

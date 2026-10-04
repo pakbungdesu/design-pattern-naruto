@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using MissionRanks;
 using NinjaLicenseFactories;
 using VillageManager;
@@ -18,6 +17,8 @@ class Program
         NinjaLicense academyLicense = licenseFactory.GetFlyweight("Academy Permit", "Supervised 7", MissionRank.C);
         NinjaLicense chuninLicense = licenseFactory.GetFlyweight("Chunin Standard", "Standard 2", MissionRank.B);
         NinjaLicense joninLicense = licenseFactory.GetFlyweight("Jonin Advanced", "Advanced 3", MissionRank.A);
+        NinjaLicense joninDoubleLicense = licenseFactory.GetFlyweight("Jonin Double Advanced", "Advanced 5", MissionRank.S);
+        NinjaLicense joninTripleLicense = licenseFactory.GetFlyweight("Jonin Triple Advanced", "Advanced 7", MissionRank.S);
         NinjaLicense kageLicense = licenseFactory.GetFlyweight("Kage Special", "None", MissionRank.S);
 
         // Leaves
@@ -30,13 +31,14 @@ class Program
         
         Ninja kakashi = new Ninja("Hatake Kakashi", 95, 90, 1500, joninLicense); 
         Ninja gai = new Ninja("Might Guy", 95, 90, 1500, joninLicense);             
-        Ninja itachi = new Ninja("Uchiha Itachi", 98, 95, 1600, joninLicense);     
-        Ninja jiraiya = new Ninja("Jiraiya", 99, 95, 1800, joninLicense);           
-        Ninja orochimaru = new Ninja("Orochimaru", 99, 95, 1800, joninLicense);    
-        Ninja minato = new Ninja("Namikaze Minato", 100, 100, 2000, joninLicense); 
-        Ninja hashirama = new Ninja("Senju Hashirama", 100, 100, 2500, joninLicense);
+        Ninja itachi = new Ninja("Uchiha Itachi", 98, 95, 1600, joninLicense);
 
-        Ninja tsunade = new Ninja("Senju Tsunade", 100, 100, 1700, kageLicense);
+        Ninja jiraiya = new Ninja("Jiraiya", 99, 95, 1800, joninDoubleLicense);           
+        Ninja orochimaru = new Ninja("Orochimaru", 99, 95, 1800, joninDoubleLicense);    
+        Ninja minato = new Ninja("Namikaze Minato", 100, 100, 2000, joninDoubleLicense); 
+        Ninja tsunade = new Ninja("Senju Tsunade", 100, 100, 1700, joninDoubleLicense);
+        Ninja tobirama = new Ninja("Senju Tobirama", 100, 100, 2300, joninTripleLicense);
+        Ninja hashirama = new Ninja("Senju Hashirama", 100, 100, 2500, kageLicense);
 
         // Composites
 
@@ -52,24 +54,25 @@ class Program
         bRankSquad.Add(choji);     // Standard
         bRankSquad.Add(ino);       // Standard (Total 3 Standard)
 
-        // Test A-Rank: Requires 5 Advanced members
+        // Test A-Rank: Requires 4 Advanced members
         var aRankSquad = new Squad("Elite Jonin Force");
-        aRankSquad.Add(kakashi);
-        aRankSquad.Add(gai);
-        aRankSquad.Add(itachi);
-        aRankSquad.Add(jiraiya);
-        aRankSquad.Add(orochimaru); // Total 5 Advanced
+        aRankSquad.Add(kakashi);    // A + Advanced
+        aRankSquad.Add(gai);        // A + Advanced
+        aRankSquad.Add(itachi);     // A + Advanced
+        aRankSquad.Add(jiraiya);    // S + Advanced
+        aRankSquad.Add(orochimaru); // S + Advanced
 
-        // Test S-Rank: Requires at least 1 "None" restriction member AND 7 Advanced members
+        // Test S-Rank: Requires at least 1 "None" restriction member AND 5 Advanced members
         var sRankSquad = new Squad("Legendary Strike Force");
-        sRankSquad.Add(tsunade);    // None restriction (1 required)
-        sRankSquad.Add(kakashi);    // Advanced
-        sRankSquad.Add(gai);        // Advanced
-        sRankSquad.Add(itachi);     // Advanced
-        sRankSquad.Add(jiraiya);    // Advanced
-        sRankSquad.Add(orochimaru); // Advanced
-        sRankSquad.Add(minato);     // Advanced
-        sRankSquad.Add(hashirama);  // Advanced (Total 7 Advanced)
+        var threeLegend = new Squad("Three Legendary");
+        threeLegend.Add(jiraiya);        // S + Advanced
+        threeLegend.Add(orochimaru);     // S + Advanced
+        threeLegend.Add(tsunade);        // S + Advanced
+
+        sRankSquad.Add(threeLegend);
+        sRankSquad.Add(minato);     // S + Advanced
+        sRankSquad.Add(tobirama);   // S + Advanced
+        sRankSquad.Add(hashirama);  // S, No restriction
 
         // Add to Village
         village.Add(cRankSquad);
@@ -101,13 +104,13 @@ class Program
         bRankMission.AssignUnit(bRankSquad);
         bRankMission.StartMission();
 
-        // Test 4: A-Rank Mission with A-Rank Squad (Should Pass because it has 5 Advanced members)
+        // Test 4: A-Rank Mission with A-Rank Squad (Should Pass because it has 4 Advanced members)
         Mission aRankMission = new Mission(MissionRank.A);
         Console.WriteLine($"\n--- Assigning Elite Jonin Force to {aRankMission.Rank}-Rank Mission ---");
         aRankMission.AssignUnit(aRankSquad);
         aRankMission.StartMission();
 
-        // Test 5: S-Rank Mission with S-Rank Squad (Should Pass: 1 None restriction + 7 Advanced members)
+        // Test 5: S-Rank Mission with S-Rank Squad (Should Pass: 1 None restriction + 5 Advanced members)
         Mission sRankMission = new Mission(MissionRank.S);
         Console.WriteLine($"\n--- Assigning Legendary Strike Force to {sRankMission.Rank}-Rank Mission ---");
         sRankMission.AssignUnit(sRankSquad);
@@ -116,5 +119,6 @@ class Program
         // Flyweight Factory Caching Verification
         Console.WriteLine("\n=== TESTING FLYWEIGHT FACTORY CACHING ===");        
         NinjaLicense duplicateCheckLicense = licenseFactory.GetFlyweight("Academy Permit", "Supervised 7", MissionRank.D);
+        licenseFactory.DisplayLicense();
     }
 }
