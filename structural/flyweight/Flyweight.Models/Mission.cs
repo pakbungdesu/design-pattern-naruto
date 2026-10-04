@@ -24,7 +24,7 @@ namespace Missions
             }
         }
 
-        public void AssignUnit(List<Ninja> unit)
+        public void AssignUnit(Ninja[] unit)
         {
             foreach (var ninja in unit)
             {
@@ -34,14 +34,16 @@ namespace Missions
 
         public void AddNinja(Ninja ninja)
         {
-            if (ninja.License.IsEligibleFor(Rank))
-            {
-                AssignedUnit.Add(ninja);
-                Console.WriteLine($"[Mission] {ninja.Name} has been assigned to the mission '{Name}'");
-            }
-            else
-            {
-                Console.WriteLine($"[Mission] {ninja.Name} is not eligible for the mission '{Name}' due to license restrictions.");
+            if(!ninja.IsDefeated){
+                    Console.WriteLine($"[Mission] {ninja.Name} is dead and cannot be assigned to the mission '{Name}'.");
+                    return;
+            } else{
+                if (ninja.License.IsEligibleFor(Rank)){
+                    AssignedUnit.Add(ninja);
+                    Console.WriteLine($"[Mission] {ninja.Name} has been assigned to the mission '{Name}'");
+                } else {
+                    Console.WriteLine($"[Mission] {ninja.Name} is not eligible for the mission '{Name}' due to license restrictions.");
+                }
             }
         }
 

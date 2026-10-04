@@ -12,10 +12,10 @@ class Program
         Console.WriteLine("=== INITIALIZING NINJA VILLAGE & FACTORY ===");
         NinjaLicenseFactory licenseFactory = new NinjaLicenseFactory();
 
-        NinjaLicense academyLicense = licenseFactory.GetFlyweight("Academy Permit", "Supervised 7", MissionRank.C);
-        NinjaLicense chuninLicense = licenseFactory.GetFlyweight("Chunin Standard", "Standard 2", MissionRank.B);
-        NinjaLicense joninLicense = licenseFactory.GetFlyweight("Jonin Advanced", "Advanced 3", MissionRank.A);
-        NinjaLicense joninDoubleLicense = licenseFactory.GetFlyweight("Jonin Double Advanced", "Advanced 5", MissionRank.S);
+        NinjaLicense academyLicense = licenseFactory.GetFlyweight("Academy Permit", "Supervised 7", MissionRank.D);
+        NinjaLicense chuninLicense = licenseFactory.GetFlyweight("Chunin Standard", "Standard 2", MissionRank.C);
+        NinjaLicense joninLicense = licenseFactory.GetFlyweight("Jonin Advanced", "Advanced 3", MissionRank.B);
+        NinjaLicense joninDoubleLicense = licenseFactory.GetFlyweight("Jonin Double Advanced", "Advanced 5", MissionRank.A);
         NinjaLicense joninTripleLicense = licenseFactory.GetFlyweight("Jonin Triple Advanced", "Advanced 7", MissionRank.S);
         NinjaLicense kageLicense = licenseFactory.GetFlyweight("Kage Special", "None", MissionRank.S);
 
@@ -23,9 +23,9 @@ class Program
         Ninja sasuke = new Ninja("Uchiha Sasuke", 90, 85, 1000, academyLicense);
         Ninja shikamaru = new Ninja("Nara Shikamaru", 80, 75, 800, chuninLicense);
         Ninja kakashi = new Ninja("Hatake Kakashi", 95, 90, 1500, joninLicense);   
-        Ninja itachi = new Ninja("Uchiha Itachi", 98, 95, 1600, joninLicense);
+        Ninja itachi = new Ninja("Uchiha Itachi", 98, 95, 0, joninLicense);
 
-        Ninja jiraiya = new Ninja("Jiraiya", 99, 95, 1800, joninDoubleLicense);           
+        Ninja jiraiya = new Ninja("Jiraiya", 99, 95, 0, joninDoubleLicense);           
         Ninja minato = new Ninja("Namikaze Minato", 100, 100, 2000, joninDoubleLicense);
         
         Ninja tobirama = new Ninja("Senju Tobirama", 100, 100, 2300, joninTripleLicense);
@@ -38,20 +38,27 @@ class Program
         Mission aRankMission = new Mission("Eliminate the rogue ninja", MissionRank.A);
         Mission sRankMission = new Mission("Assassinate the target", MissionRank.S);
 
-        dRankMission.AssignUnit(new List<Ninja> { naruto, sasuke, shikamaru });
-        cRankMission.AssignUnit(new List<Ninja> { naruto, sasuke, shikamaru, kakashi });
-        bRankMission.AssignUnit(new List<Ninja> { shikamaru, kakashi, itachi });
-        aRankMission.AssignUnit(new List<Ninja> { kakashi, jiraiya, minato });
-        sRankMission.AssignUnit(new List<Ninja> { jiraiya, minato, tobirama, hashirama });
+        dRankMission.AssignUnit([naruto, sasuke]);
+        cRankMission.AssignUnit([naruto, sasuke, shikamaru, kakashi]);
+        bRankMission.AssignUnit([shikamaru, kakashi, itachi]);
+        aRankMission.AssignUnit([kakashi, jiraiya, minato]);
+        sRankMission.AssignUnit([jiraiya, minato, tobirama, hashirama]);
 
-        Mission[] missions = new Mission[] { dRankMission, cRankMission, bRankMission, aRankMission, sRankMission };
+        Console.WriteLine("\n=== TESTING ADD AND REMOVE ===");   
+        sRankMission.AddNinja(naruto);
+        aRankMission.AddNinja(itachi);
+        aRankMission.RemoveNinja(minato);
+        sRankMission.RemoveNinja(naruto);
+
+        Mission[] missions = [dRankMission, cRankMission, bRankMission, aRankMission, sRankMission];
+        Console.WriteLine("\n=== TESTING START MISSION ===");   
         foreach (var mission in missions)
         {
             mission.StartMission();
         }
 
         Console.WriteLine("\n=== TESTING FLYWEIGHT FACTORY CACHING ===");        
-        NinjaLicense duplicateCheckLicense = licenseFactory.GetFlyweight("Academy Permit", "Supervised 7", MissionRank.D);
+        licenseFactory.GetFlyweight("Academy Permit", "Supervised 7", MissionRank.D);
         licenseFactory.DisplayLicense();
     }
 }
