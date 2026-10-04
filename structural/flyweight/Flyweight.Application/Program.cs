@@ -1,9 +1,9 @@
-﻿
-using MissionRanks;
+﻿using MissionRanks;
 using Ninjas;
 using NinjaLicenseFactories;
 using NinjaLicenses;
 using Missions;
+using VillageManager;
 
 class Program
 {
@@ -11,6 +11,7 @@ class Program
     {
         Console.WriteLine("=== INITIALIZING NINJA VILLAGE & FACTORY ===");
         NinjaLicenseFactory licenseFactory = new NinjaLicenseFactory();
+        Village village = new Village();
 
         NinjaLicense academyLicense = licenseFactory.GetFlyweight("Academy Permit", "Supervised 7", MissionRank.D);
         NinjaLicense chuninLicense = licenseFactory.GetFlyweight("Chunin Standard", "Standard 2", MissionRank.C);
@@ -25,11 +26,21 @@ class Program
         Ninja kakashi = new Ninja("Hatake Kakashi", 95, 90, 1500, joninLicense);   
         Ninja itachi = new Ninja("Uchiha Itachi", 98, 95, 0, joninLicense);
 
-        Ninja jiraiya = new Ninja("Jiraiya", 99, 95, 0, joninDoubleLicense);           
+        Ninja jiraiya = new Ninja("Jiraiya", 99, 95, 0, joninDoubleLicense);          
         Ninja minato = new Ninja("Namikaze Minato", 100, 100, 2000, joninDoubleLicense);
         
         Ninja tobirama = new Ninja("Senju Tobirama", 100, 100, 2300, joninTripleLicense);
         Ninja hashirama = new Ninja("Senju Hashirama", 100, 100, 2500, kageLicense);
+
+        village.AddNinja(naruto);
+        village.AddNinja(sasuke);
+        village.AddNinja(shikamaru);
+        village.AddNinja(kakashi);
+        village.AddNinja(itachi);
+        village.AddNinja(jiraiya);
+        village.AddNinja(minato);
+        village.AddNinja(tobirama);
+        village.AddNinja(hashirama);
 
         Console.WriteLine("\n=== TESTING MISSION ASSIGNMENTS ===");
         Mission dRankMission = new Mission("Find missing orange cat", MissionRank.D);
@@ -37,6 +48,12 @@ class Program
         Mission bRankMission = new Mission("Rescue the kidnapped villagers", MissionRank.B);
         Mission aRankMission = new Mission("Eliminate the rogue ninja", MissionRank.A);
         Mission sRankMission = new Mission("Assassinate the target", MissionRank.S);
+
+        village.AddMission(dRankMission);
+        village.AddMission(cRankMission);
+        village.AddMission(bRankMission);
+        village.AddMission(aRankMission);
+        village.AddMission(sRankMission);
 
         dRankMission.AssignUnit([naruto, sasuke]);
         cRankMission.AssignUnit([naruto, sasuke, shikamaru, kakashi]);
@@ -56,6 +73,12 @@ class Program
         {
             mission.StartMission();
         }
+
+        Console.WriteLine("\n=== TESTING VILLAGE LICENSE CHECK ===");
+        village.CheckLicense(MissionRank.S);
+
+        Console.WriteLine("\n=== TESTING VILLAGE DISPLAY ===");
+        village.Display();
 
         Console.WriteLine("\n=== TESTING FLYWEIGHT FACTORY CACHING ===");        
         licenseFactory.GetFlyweight("Academy Permit", "Supervised 7", MissionRank.D);
