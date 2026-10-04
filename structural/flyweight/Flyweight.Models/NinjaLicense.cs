@@ -23,7 +23,7 @@ namespace NinjaLicenses
             Console.WriteLine($"[License] Tier: {TierName} | Restriction: {Restriction}| Maximum Rank Allowed: {AllowedRank}");
         }
 
-        public bool IsEligibleFor(MissionRank missionRank)
+        public bool CheckLicense(MissionRank missionRank)
         {
             return AllowedRank >= missionRank;
         }

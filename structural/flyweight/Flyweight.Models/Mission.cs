@@ -38,7 +38,7 @@ namespace Missions
                     Console.WriteLine($"[Mission] {ninja.Name} is dead and cannot be assigned to the mission '{Name}'.");
                     return;
             } else{
-                if (ninja.License.IsEligibleFor(Rank)){
+                if (ninja.License.CheckLicense(Rank)){
                     AssignedUnit.Add(ninja);
                     Console.WriteLine($"[Mission] {ninja.Name} has been assigned to the mission '{Name}'");
                 } else {

@@ -61,7 +61,7 @@ namespace Ninjas
 
         public bool CheckLicense(MissionRank rank)
         {
-            return License != null && License.IsEligibleFor(rank);
+            return License != null && License.CheckLicense(rank);
         }
     }
 }
