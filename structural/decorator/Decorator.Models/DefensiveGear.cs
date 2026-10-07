@@ -93,7 +93,7 @@ namespace DefensiveGears
         public override int Defense(Ninja attacker)
         {
             Protect();
-            return Gear.Defense(attacker) + Aura;
+            return base.Defense(attacker) + Aura;
         }
 
         private void Protect()
@@ -116,7 +116,7 @@ namespace DefensiveGears
         public override int Defense(Ninja attacker)
         {
             Disguise();
-            return Gear.Defense(attacker) * (int)(1 + CamouflageEffect);
+            return base.Defense(attacker) * (int)(1 + CamouflageEffect);
         }
 
         private void Disguise(int turns = 1)

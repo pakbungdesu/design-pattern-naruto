@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\flyweight\\FLyweight.Application\\Flyweight.Application.csproj": {}
+    "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\flyweight\\Flyweight.Application\\Flyweight.Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\flyweight\\FLyweight.Application\\Flyweight.Application.csproj": {
+    "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\flyweight\\Flyweight.Application\\Flyweight.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\flyweight\\FLyweight.Application\\Flyweight.Application.csproj",
+        "projectUniqueName": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\flyweight\\Flyweight.Application\\Flyweight.Application.csproj",
         "projectName": "Flyweight.Application",
-        "projectPath": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\flyweight\\FLyweight.Application\\Flyweight.Application.csproj",
+        "projectPath": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\flyweight\\Flyweight.Application\\Flyweight.Application.csproj",
         "packagesPath": "C:\\Users\\pimnara\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\flyweight\\FLyweight.Application\\obj\\",
+        "outputPath": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\structural\\flyweight\\Flyweight.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pimnara\\AppData\\Roaming\\NuGet\\NuGet.Config"
