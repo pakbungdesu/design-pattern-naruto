@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Proxy.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6664139b10d11e8e7bead2467b32e18cdcf20fb9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1c7e11e1d10f9d9b348205c3b7451673e31852b7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Proxy.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Proxy.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
