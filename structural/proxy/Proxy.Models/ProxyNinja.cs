@@ -1,4 +1,3 @@
-
 using Ninjas;
 using RealNinjas;
 
@@ -6,39 +5,41 @@ namespace ProxyNinjas
 {
     public class ProxyNinja : Ninja
     {
-        private RealNinja _RealNinja;
-        private string _BasicPassword;
-        public string Name { get; set; }
-        public string BasicToken { get; set; } = "random123";
-        public string AdvancedToken { get; set; } = "random123";
+        private readonly RealNinja _realNinja;
+        private readonly string _validSecurityToken;
+        private readonly Role _minRequiredRole;
+        public string Name => _realNinja.Name;
 
-        public ProxyNinja(string name, RealNinja realNinja, string pw)
+        public ProxyNinja(RealNinja realNinja, string validSecurityToken, Role minRequiredRole = Role.Jonin)
         {
-            Name = name;
-            _RealNinja = realNinja;
-            _BasicPassword = pw;
+            _realNinja = realNinja;
+            _validSecurityToken = validSecurityToken;
+            _minRequiredRole = minRequiredRole;
         }
 
-        private bool HasPermission(Ninja caller)
+        public bool ExecuteMission(string missionName, AuthContext callerContext)
         {
-            if(caller.BasicToken == _BasicPassword)
+            if (callerContext == null)
             {
-                Console.WriteLine($"[ProxyNinja] Basic password validated for {Name}.");
-                return true;
+                Console.WriteLine($"[ProxyNinja] Access Denied: Missing security context.");
+                return false;
             }
-            Console.WriteLine($"[ProxyNinja] Basic password validation failed for {Name}.");
-            return false;
-        }
 
-
-        public bool Request(Ninja caller)
-        {
-            if (HasPermission(caller))
+            if (callerContext.Token != _validSecurityToken)
             {
-                return _RealNinja.Request(caller);
+                Console.WriteLine($"[ProxyNinja] Access Denied: Invalid security token.");
+                return false;
             }
-            Console.WriteLine($"[ProxyNinja] Permission denied for {caller.Name}.");
-            return false;
+
+            if (callerContext.UserRole < _minRequiredRole)
+            {
+                Console.WriteLine($"[ProxyNinja] Access Denied: Role '{callerContext.UserRole}'. Mission required at level {_minRequiredRole}.");
+                return false;
+            }
+
+            Console.WriteLine($"[ProxyNinja] Authorization granted for caller with role '{callerContext.UserRole}'. Forwarding request.");
+            
+            return _realNinja.ExecuteMission(missionName, callerContext);
         }
     }
 }

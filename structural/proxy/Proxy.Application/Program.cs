@@ -4,32 +4,28 @@ using ProxyNinjas;
 
 class Program
 {
-        static void Main(string[] args)
+    static void Client(ProxyNinja proxyNinja, string missionName, AuthContext callerContext)
+    {
+        bool result = proxyNinja.ExecuteMission(missionName, callerContext);
+        if (result)
         {
-
-            RealNinja naruto = new RealNinja("Uzumaki Naruto", "Naruto123");
-            Ninja shadowNaruto = new ProxyNinja("Naruto Shadow Clone", naruto, "ShadowPass");
-
-            Ninja sasuke = new RealNinja("Uchiha Sasuke", "Sasuke123");
-            sasuke.BasicToken = "WrongBasicPass";
-            sasuke.AdvancedToken = "Naruto123";
-
-            // Test 1: Wrong basic password
-            Console.WriteLine("--- Test 1: Wrong Password ---");
-            bool result1 = shadowNaruto.Request(sasuke);
-            Console.WriteLine($"Result: {result1}\n");
-
-            // Test 2: Correct basic password, but fail advanced password
-            Console.WriteLine("--- Test 2: Correct Basic, Wrong Advanced ---");
-            sasuke.BasicToken = "ShadowPass"; // Correct basic password for the proxy
-            sasuke.AdvancedToken = "WrongAdvancedPass"; // Wrong advanced password for the real ninja   
-            bool result2 = shadowNaruto.Request(sasuke);
-            Console.WriteLine($"Result: {result2}\n");
-
-            // Test 3: Pass both basic and advanced passwords correctly
-            Console.WriteLine("--- Test 3: Correct Basic and Advanced ---");
-            sasuke.AdvancedToken = "Naruto123"; // Correct advanced password for the real ninja
-            bool result3 = shadowNaruto.Request(sasuke);
-            Console.WriteLine($"Result: {result3}\n");
+            Console.WriteLine($"[Client] Mission '{missionName}' executed successfully.");
         }
+        else
+        {
+            Console.WriteLine($"[Client] Mission '{missionName}' execution failed.");
+        }
+    }
+    static void Main(string[] args)
+    {
+
+        RealNinja naruto = new RealNinja("Uzumaki Naruto");
+        ProxyNinja proxyNaruto = new ProxyNinja(naruto, "validToken123", Role.Jonin);
+
+        AuthContext validContext = new AuthContext("validToken123", Role.Jonin);
+        AuthContext invalidContext = new AuthContext("invalidToken456", Role.Genin);
+
+        Client(proxyNaruto, "Rescue the Village", validContext);
+        Client(proxyNaruto, "Rescue the Village", invalidContext);
+    }
 }

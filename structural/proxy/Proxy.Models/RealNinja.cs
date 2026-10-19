@@ -4,21 +4,17 @@ namespace RealNinjas
 {
     public class RealNinja : Ninja
     {
-        private string _AdvancedPassword;
-        public string Name { get; set; }
-        public string BasicToken { get; set; } = "random123";
-        public string AdvancedToken { get; set; } = "random123";
+        public string Name { get; }
 
-        public RealNinja(string name, string pw)
+        public RealNinja(string name)
         {
             Name = name;
-            _AdvancedPassword = pw;
         }
 
-        public bool Request(Ninja caller)
+        public bool ExecuteMission(string missionName, AuthContext callerContext)
         {
-            Console.WriteLine($"[RealNinja] Request received from {caller.Name}. Validating tokens.");
-            return caller.AdvancedToken == _AdvancedPassword;
+            Console.WriteLine($"[RealNinja] {Name} successfully executed mission: '{missionName}'.");
+            return true;
         }
     }
 }
