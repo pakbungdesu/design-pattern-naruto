@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\behavioral\\command\\Command.Models\\Command.Models.csproj": {}
+    "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\behavioral\\command\\Command.Models\\Command.Models.csproj": {}
   },
   "projects": {
-    "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\behavioral\\command\\Command.Models\\Command.Models.csproj": {
+    "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\behavioral\\command\\Command.Models\\Command.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\behavioral\\command\\Command.Models\\Command.Models.csproj",
+        "projectUniqueName": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\behavioral\\command\\Command.Models\\Command.Models.csproj",
         "projectName": "Command.Models",
-        "projectPath": "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\behavioral\\command\\Command.Models\\Command.Models.csproj",
+        "projectPath": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\behavioral\\command\\Command.Models\\Command.Models.csproj",
         "packagesPath": "C:\\Users\\pimnara\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\behavioral\\command\\Command.Models\\obj\\",
+        "outputPath": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\behavioral\\command\\Command.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pimnara\\AppData\\Roaming\\NuGet\\NuGet.Config"
