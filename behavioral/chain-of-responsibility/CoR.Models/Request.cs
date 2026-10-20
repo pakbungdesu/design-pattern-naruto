@@ -9,13 +9,13 @@ namespace Requests
     {
         public Ninja Patient { get; }
         public string Symptom { get; }
-        public Level SeverityLevel { get; }
+        public Level SeverityLevel { get; set;}
 
-        public InjuryRequest(Ninja patient, string symptom, Level severityLevel)
+        public InjuryRequest(Ninja patient, string symptom)
         {
             Patient = patient;
             Symptom = symptom;
-            SeverityLevel = severityLevel;
+            SeverityLevel = Level.None;
         }
     }
 }

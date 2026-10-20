@@ -3,16 +3,29 @@ namespace Handlers
 {
     using Requests;
 
-    public abstract class MedicalHandler
+    public interface Handler
     {
-       protected MedicalHandler? NextHandler;
+        public Handler SetNext(Handler nextHandler);
 
-        public MedicalHandler SetNext(MedicalHandler nextHandler)
+        public void HandleRequest(InjuryRequest request);
+    }
+
+    public class MedicalHandler : Handler
+    {
+        protected Handler? NextHandler;
+
+        public virtual Handler SetNext(Handler nextHandler)
         {
             NextHandler = nextHandler;
             return nextHandler;
         }
 
-        public abstract void HandleRequest(InjuryRequest request);
+        public virtual void HandleRequest(InjuryRequest request)
+        {
+            if (NextHandler != null)
+            {
+                NextHandler.HandleRequest(request);
+            }
+        }
     }
 }

@@ -5,20 +5,27 @@ namespace ConcreteHandlers
     using Requests;
 
     // Handler 1: Checks if the ninja is dead or alive
-    public class DeathCheckHandler : MedicalHandler
+    public class LabelHandler : MedicalHandler
     {
         public override void HandleRequest(InjuryRequest request)
         {
 
             if (request.Patient.IsDead)
             {
-                Console.WriteLine($"[Death Checked] {request.Patient.Name} has already passed away (0 HP). Medical treatment cannot be administered.");
+                Console.WriteLine($"[Death Checked] {request.Patient.Name} has already passed away. Medical treatment cannot be administered.");
+                return; // Stop the chain
+            } 
+            else if (request.Patient.HP <= 50) { request.SeverityLevel = Level.Critical; } 
+            else if (request.Patient.HP <= 200) { request.SeverityLevel = Level.Emergency; } 
+            else if (request.Patient.HP <= 500) { request.SeverityLevel = Level.Urgent; } 
+            else if (request.Patient.HP <= 1000) { request.SeverityLevel = Level.LessUrgent; } 
+            else { 
+                request.SeverityLevel = Level.None;
+                Console.WriteLine($"[Triage Center] {request.Patient.Name} is in good health ({request.Patient.HP} HP). No medical treatment needed.");
+                return; // Stop the chain
             }
-            else if (NextHandler != null)
-            {
-                Console.WriteLine($"[Triage Center] Vital signs detected. {request.Patient.Name} is alive ({request.Patient.HP} HP). Passing to medical staff...");
-                NextHandler.HandleRequest(request);
-            }
+
+            base.HandleRequest(request);
         }
     }
 
@@ -30,14 +37,10 @@ namespace ConcreteHandlers
             if (request.SeverityLevel == Level.LessUrgent)
             {
                 Console.WriteLine($"[Field Medic] Providing First Aid for {request.Patient.Name} (Symptom: {request.Symptom}).");
-                
                 request.Patient.Heal(2.0);
+                return; // Stop the chain
             }
-            else if (NextHandler != null)
-            {
-                Console.WriteLine($"[Field Medic] The condition of {request.Patient.Name} is too severe for the field! Referring to the hospital...");
-                NextHandler.HandleRequest(request);
-            }
+            base.HandleRequest(request);
         }
     }
 
@@ -48,15 +51,10 @@ namespace ConcreteHandlers
         {
             if (request.SeverityLevel == Level.Urgent)
             {
-                Console.WriteLine($"[Hospital Medic] Performing surgery and intensive treatment for {request.Patient.Name} (Symptom: {request.Symptom}).");
-                
+                Console.WriteLine($"[Hospital Medic] Performing surgery and intensive treatment for {request.Patient.Name} (Symptom: {request.Symptom}).");            
                 request.Patient.Heal(3.5);
             }
-            else if (NextHandler != null)
-            {
-                Console.WriteLine($"[Hospital Medic] The condition of {request.Patient.Name} is beyond general practice! Urgent referral to Lady Tsunade...");
-                NextHandler.HandleRequest(request);
-            }
+            base.HandleRequest(request);
         }
     }
 
@@ -67,15 +65,10 @@ namespace ConcreteHandlers
         {
             if (request.SeverityLevel == Level.Emergency)
             {
-                Console.WriteLine($"[Special Team] {request.Patient.Name} is in critical condition! Immediate intervention required.");
-                
+                Console.WriteLine($"[Special Team] {request.Patient.Name} is in critical condition! Immediate intervention required.");              
                 request.Patient.Heal(5.5);
             }
-            else if (NextHandler != null)
-            {
-                Console.WriteLine($"[Special Team] The condition of {request.Patient.Name} is beyond special care! Referring to Lady Tsunade...");
-                NextHandler.HandleRequest(request);
-            }
+            base.HandleRequest(request);
         }
     }
 
@@ -84,16 +77,13 @@ namespace ConcreteHandlers
     {
         public override void HandleRequest(InjuryRequest request)
         {
-            Console.WriteLine($"[Lady Tsunade] Administering Legendary Healing to save {request.Patient.Name}!");
-            
-            request.Patient.Heal(10);
-
-            Console.WriteLine($"[Lady Tsunade] {request.Patient.Name} undergoes miraculous recovery! ({request.Patient.HP} HP total)");
-
-            if (NextHandler != null)
+            if (request.SeverityLevel == Level.Critical)
             {
-                NextHandler.HandleRequest(request);
+                Console.WriteLine($"[Lady Tsunade] Administering Legendary Healing to save {request.Patient.Name}!");  
+                request.Patient.Heal(10);
             }
+
+            base.HandleRequest(request);
         }
     }
 
@@ -102,10 +92,8 @@ namespace ConcreteHandlers
     {
         public override void HandleRequest(InjuryRequest request)
         {
-            if (!request.Patient.IsDead)
-            {
-                Console.WriteLine($"[Rehabilitation Center] {request.Patient.Name} is undergoing physical therapy.");
-            }
+            Console.WriteLine($"[Rehabilitation Center] {request.Patient.Name} is undergoing physical therapy.");
+            base.HandleRequest(request);
         }
     }
 }
