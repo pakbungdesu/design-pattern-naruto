@@ -12,7 +12,7 @@ class Program
         var fieldMedic = new FieldMedicHandler();
         var hospitalMedic = new HospitalMedicHandler();
         var specialist = new SpecialistHandler();
-        var tsunade = new TsunadeHandler();
+        var tsunade = TsunadeHandler.GetInstance();
         var rehab = new RehabilitationHandler();
 
         label1.SetNext(fieldMedic)
