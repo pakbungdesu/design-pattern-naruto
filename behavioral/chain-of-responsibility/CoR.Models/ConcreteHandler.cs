@@ -75,6 +75,9 @@ namespace ConcreteHandlers
     // Handler 5: Lady Tsunade for miraculous recovery
     public class TsunadeHandler : MedicalHandler
     {
+        private static readonly TsunadeHandler _instance = new TsunadeHandler();
+        private TsunadeHandler() { }
+
         public override void HandleRequest(InjuryRequest request)
         {
             if (request.SeverityLevel == Level.Critical)
@@ -84,6 +87,11 @@ namespace ConcreteHandlers
             }
 
             base.HandleRequest(request);
+        }
+
+        public static TsunadeHandler GetInstance()
+        {
+            return _instance;
         }
     }
 
