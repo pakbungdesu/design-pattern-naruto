@@ -7,6 +7,7 @@ namespace ConcreteHandlers
     // Handler 1: Checks if the ninja is dead or alive
     public class LabelHandler : MedicalHandler
     {
+        public LabelHandler() : base() { }
         public override void HandleRequest(InjuryRequest request)
         {
 
@@ -32,6 +33,8 @@ namespace ConcreteHandlers
     //Handler 2: Field Medic for minor physical injuries
     public class FieldMedicHandler : MedicalHandler
     {
+        public FieldMedicHandler() : base() { }
+
         public override void HandleRequest(InjuryRequest request)
         {
             if (request.SeverityLevel == Level.LessUrgent)
@@ -47,6 +50,8 @@ namespace ConcreteHandlers
     // Handler 3: Hospital Medic for moderate to urgent physical injuries
     public class HospitalMedicHandler : MedicalHandler
     {
+        public HospitalMedicHandler() : base() { }
+
         public override void HandleRequest(InjuryRequest request)
         {
             if (request.SeverityLevel == Level.Urgent)
@@ -61,6 +66,7 @@ namespace ConcreteHandlers
     // Handler 4: Special Team for critical physical / mental / curse injuries
     public class SpecialistHandler : MedicalHandler
     {
+        public SpecialistHandler() : base() { }
         public override void HandleRequest(InjuryRequest request)
         {
             if (request.SeverityLevel == Level.Emergency)
@@ -76,7 +82,7 @@ namespace ConcreteHandlers
     public class TsunadeHandler : MedicalHandler
     {
         private static readonly TsunadeHandler _instance = new TsunadeHandler();
-        private TsunadeHandler() { }
+        private TsunadeHandler(): base() { }
 
         public override void HandleRequest(InjuryRequest request)
         {
@@ -98,6 +104,7 @@ namespace ConcreteHandlers
     // Post-treatment step - Rehabilitation
     public class RehabilitationHandler : MedicalHandler
     {
+        public RehabilitationHandler() : base() { }
         public override void HandleRequest(InjuryRequest request)
         {
             Console.WriteLine($"[Rehabilitation Center] {request.Patient.Name} is undergoing physical therapy.");

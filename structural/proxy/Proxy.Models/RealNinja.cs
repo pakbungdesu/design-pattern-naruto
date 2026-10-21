@@ -11,9 +11,10 @@ namespace RealNinjas
             Name = name;
         }
 
-        public bool ExecuteMission(string missionName, AuthContext callerContext)
+        public bool ExecuteMission(AuthContext callerContext)
         {
-            Console.WriteLine($"[RealNinja] {Name} successfully executed mission: '{missionName}'.");
+            Console.WriteLine($"[RealNinja] {Name} successfully executed mission: '{callerContext.Mission.Title}'.");
+            callerContext.Mission.Display();
             return true;
         }
     }

@@ -5,7 +5,7 @@ namespace Handlers
 
     public interface Handler
     {
-        public Handler SetNext(Handler nextHandler);
+        public Handler SetNext(Handler? nextHandler);
 
         public void HandleRequest(InjuryRequest request);
     }
@@ -14,10 +14,17 @@ namespace Handlers
     {
         protected Handler? NextHandler;
 
-        public virtual Handler SetNext(Handler nextHandler)
+        public MedicalHandler()
+        {
+            NextHandler = null;
+            Console.WriteLine($"[Medical Handler] {this.GetType().Name} NextHandle = {NextHandler?.GetType().Name ?? "null"}");
+        }
+
+        public virtual Handler SetNext(Handler? nextHandler)
         {
             NextHandler = nextHandler;
-            return nextHandler;
+            Console.WriteLine($"[Medical Handler] {this.GetType().Name} NextHandle = {NextHandler?.GetType().Name ?? "null"}");
+            return NextHandler ?? this;
         }
 
         public virtual void HandleRequest(InjuryRequest request)

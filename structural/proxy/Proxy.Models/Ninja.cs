@@ -1,7 +1,9 @@
+using Missions;
+
 namespace Ninjas {
     public interface Ninja
     {
-        bool ExecuteMission(string missionName, AuthContext callerContext);
+        bool ExecuteMission(AuthContext callerContext);
     }
 
     public enum Role
@@ -15,12 +17,12 @@ namespace Ninjas {
     public class AuthContext
     {
         public string Token { get; }
-        public Role UserRole { get; }
+        public Mission Mission { get; }
 
-        public AuthContext(string token, Role role)
+        public AuthContext(string token, Mission mission)
         {
             Token = token;
-            UserRole = role;
+            Mission = mission;
         }
     }
 }
