@@ -1,3 +1,6 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 import os
 from abc import ABC, abstractmethod
 from students import NinjaStudent

@@ -35,7 +35,7 @@ class GeninStudent(NinjaStudent):
         return f"\nD-rank Completed Missions: {self.missions_completed}"
 
     def info(self) -> str:
-        return super().display() + self.display()
+        return super()._display() + self._display()
 
 
 class ChuninStudent(NinjaStudent):
@@ -50,7 +50,7 @@ class ChuninStudent(NinjaStudent):
         return f"\nTactical Rating: {self.tactical_rating}"
 
     def info(self) -> str:
-        return super().display() + self.display()
+        return super()._display() + self._display()
 
 
 class JoninStudent(NinjaStudent):
@@ -65,4 +65,4 @@ class JoninStudent(NinjaStudent):
         return f"\nSignature Jutsu: {self.signature_jutsu}"
 
     def info(self) -> str:
-        return super().display() + self.display()
+        return super()._display() + self._display()
