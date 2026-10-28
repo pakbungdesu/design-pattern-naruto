@@ -1,0 +1,117 @@
+from students import (
+    NinjaStudent,
+    GeninStudent,
+    ChuninStudent,
+    JoninStudent
+)
+
+from iterators import (
+    SortTotalScoreIterator,
+    FilterTotalScoreIterator,
+    FilterClanIterator,
+    KeywordMatchIterator,
+    SemanticSearchIterator
+)
+
+class StudentCollection:
+    def __init__(self, students: list[NinjaStudent] = None):
+        self._students = list(students) if students else []
+    
+    def add_student(self, student: NinjaStudent) -> None:
+        self._students.append(student)
+
+    def add_students(self, students: list[NinjaStudent]) -> None:
+        self._students.extend(list(students))
+
+    def create_sorted_score_iterator(self, descending: bool = True) -> SortTotalScoreIterator:
+        return SortTotalScoreIterator(self._students, descending)
+
+    def create_score_filter_iterator(self, lower_bound: float) -> FilterTotalScoreIterator:
+        return FilterTotalScoreIterator(self._students, lower_bound)
+
+    def create_clan_iterator(self, clan: str) -> FilterClanIterator:
+        return FilterClanIterator(self._students, clan)
+
+    def create_keyword_match_iterator(self, query: str) -> KeywordMatchIterator:
+        return KeywordMatchIterator(self._students, query)
+
+    def create_semantic_search_iterator(self, query: str, threshold: float = 0.3) -> SemanticSearchIterator:
+        return SemanticSearchIterator(self._students, query, threshold)
+
+
+class GeninCollection(StudentCollection):
+    def __init__(self, students: list[GeninStudent] = None):
+        self._students = list(students) if students else []
+
+    def add_student(self, student: GeninStudent) -> None:
+        self._students.append(student)
+
+    def add_students(self, students: list[GeninStudent]) -> None:
+        self._students.extend(list(students))
+
+    def create_sorted_score_iterator(self, descending: bool = True) -> SortTotalScoreIterator:
+        return SortTotalScoreIterator(self._students, descending)
+
+    def create_score_filter_iterator(self, lower_bound: float) -> FilterTotalScoreIterator:
+        return FilterTotalScoreIterator(self._students, lower_bound)
+
+    def create_clan_iterator(self, clan: str) -> FilterClanIterator:
+        return FilterClanIterator(self._students, clan)
+
+    def create_keyword_match_iterator(self, query: str) -> KeywordMatchIterator:
+        return KeywordMatchIterator(self._students, query)
+
+    def create_semantic_search_iterator(self, query: str, threshold: float = 0.3) -> SemanticSearchIterator:
+        return SemanticSearchIterator(self._students, query, threshold)
+
+
+class ChuninCollection(StudentCollection):
+    def __init__(self, students: list[ChuninStudent] = None):
+        self._students = list(students) if students else []
+
+    def add_student(self, student: ChuninStudent) -> None:
+        self._students.append(student)
+
+    def add_students(self, students: list[ChuninStudent]) -> None:
+        self._students.extend(list(students))
+
+    def create_sorted_score_iterator(self, descending: bool = True) -> SortTotalScoreIterator:
+        return SortTotalScoreIterator(self._students, descending)
+
+    def create_score_filter_iterator(self, lower_bound: float) -> FilterTotalScoreIterator:
+        return FilterTotalScoreIterator(self._students, lower_bound)
+
+    def create_clan_iterator(self, clan: str) -> FilterClanIterator:
+        return FilterClanIterator(self._students, clan)
+
+    def create_keyword_match_iterator(self, query: str) -> KeywordMatchIterator:
+        return KeywordMatchIterator(self._students, query)
+
+    def create_semantic_search_iterator(self, query: str, threshold: float = 0.3) -> SemanticSearchIterator:
+        return SemanticSearchIterator(self._students, query, threshold)
+
+
+class JoninCollection(StudentCollection):
+    def __init__(self, students: list[JoninStudent] = None):
+        self._students = list(students) if students else []
+
+    def add_student(self, student: JoninStudent) -> None:
+        self._students.append(student)
+
+    def add_students(self, students: list[JoninStudent]) -> None:
+        self._students.extend(list(students))
+
+    def create_sorted_score_iterator(self, descending: bool = True) -> SortTotalScoreIterator:
+        return SortTotalScoreIterator(self._students, descending)
+
+    def create_score_filter_iterator(self, lower_bound: float) -> FilterTotalScoreIterator:
+        return FilterTotalScoreIterator(self._students, lower_bound)
+
+    def create_clan_iterator(self, clan: str) -> FilterClanIterator:
+        return FilterClanIterator(self._students, clan)
+
+    def create_keyword_match_iterator(self, query: str) -> KeywordMatchIterator:
+        return KeywordMatchIterator(self._students, query)
+
+    def create_semantic_search_iterator(self, query: str, threshold: float = 0.3) -> SemanticSearchIterator:
+        return SemanticSearchIterator(self._students, query, threshold)
