@@ -9,7 +9,7 @@ class NinjaStudent(ABC):
         self.pt_score = pt_score
         self.description = description
 
-    def display(self) -> str:
+    def _display(self) -> str:
         return f"""[{type(self).__name__}] {self.name} ({self.clan})
 Written: {self.wt_score}, Practical: {self.pt_score}
 Description: {self.description}"""
@@ -31,7 +31,7 @@ class GeninStudent(NinjaStudent):
     def request_mission(self) -> str:
         return f"{self.name} is requesting a D-rank mission (Completed: {self.missions_completed})."
 
-    def display(self) -> str:
+    def _display(self) -> str:
         return f"\nD-rank Completed Missions: {self.missions_completed}"
 
     def info(self) -> str:
@@ -46,7 +46,7 @@ class ChuninStudent(NinjaStudent):
     def lead_squad(self) -> str:
         return f"{self.name} is commanding a 3-man squad with a {self.tactical_rating} tactical rating."
 
-    def display(self) -> str:
+    def _display(self) -> str:
         return f"\nTactical Rating: {self.tactical_rating}"
 
     def info(self) -> str:
@@ -61,7 +61,7 @@ class JoninStudent(NinjaStudent):
     def supervise_exam(self) -> str:
         return f"{self.name} is supervising the proctor exam using {self.signature_jutsu}."
 
-    def display(self) -> str:
+    def _display(self) -> str:
         return f"\nSignature Jutsu: {self.signature_jutsu}"
 
     def info(self) -> str:
