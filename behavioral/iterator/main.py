@@ -53,8 +53,8 @@ if __name__ == "__main__":
         print("-" * 40)
 
     print("\n--- 5. Semantic Search ---")
-    it4 = academy.create_semantic_search_iterator("someone who is the fastest")
-    while it4.has_next():
-        print(it4.next().info())
+    it5 = academy.create_semantic_search_iterator("someone who is the fastest")
+    while it5.has_next():
+        print(it5.next().info())
         print("-" * 40)
 
