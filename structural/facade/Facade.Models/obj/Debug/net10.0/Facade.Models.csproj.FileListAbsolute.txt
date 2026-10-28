@@ -1,0 +1,12 @@
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\facade\Facade.Models\bin\Debug\net10.0\Facade.Models.deps.json
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\facade\Facade.Models\bin\Debug\net10.0\Facade.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\facade\Facade.Models\bin\Debug\net10.0\Facade.Models.pdb
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\facade\Facade.Models\obj\Debug\net10.0\Facade.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\facade\Facade.Models\obj\Debug\net10.0\Facade.Models.AssemblyInfoInputs.cache
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\facade\Facade.Models\obj\Debug\net10.0\Facade.Models.AssemblyInfo.cs
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\facade\Facade.Models\obj\Debug\net10.0\Facade.Models.csproj.CoreCompileInputs.cache
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\facade\Facade.Models\obj\Debug\net10.0\Facade.Models.sourcelink.json
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\facade\Facade.Models\obj\Debug\net10.0\Facade.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\facade\Facade.Models\obj\Debug\net10.0\refint\Facade.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\facade\Facade.Models\obj\Debug\net10.0\Facade.Models.pdb
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\facade\Facade.Models\obj\Debug\net10.0\ref\Facade.Models.dll

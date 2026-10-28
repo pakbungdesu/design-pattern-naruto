@@ -1,0 +1,12 @@
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\bridge\Bridge.Models\bin\Debug\net10.0\Bridge.Models.deps.json
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\bridge\Bridge.Models\bin\Debug\net10.0\Bridge.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\bridge\Bridge.Models\bin\Debug\net10.0\Bridge.Models.pdb
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\bridge\Bridge.Models\obj\Debug\net10.0\Bridge.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\bridge\Bridge.Models\obj\Debug\net10.0\Bridge.Models.AssemblyInfoInputs.cache
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\bridge\Bridge.Models\obj\Debug\net10.0\Bridge.Models.AssemblyInfo.cs
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\bridge\Bridge.Models\obj\Debug\net10.0\Bridge.Models.csproj.CoreCompileInputs.cache
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\bridge\Bridge.Models\obj\Debug\net10.0\Bridge.Models.sourcelink.json
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\bridge\Bridge.Models\obj\Debug\net10.0\Bridge.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\bridge\Bridge.Models\obj\Debug\net10.0\refint\Bridge.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\bridge\Bridge.Models\obj\Debug\net10.0\Bridge.Models.pdb
+C:\Users\pimnara\Documents\design-pattern-naruto\structural\bridge\Bridge.Models\obj\Debug\net10.0\ref\Bridge.Models.dll

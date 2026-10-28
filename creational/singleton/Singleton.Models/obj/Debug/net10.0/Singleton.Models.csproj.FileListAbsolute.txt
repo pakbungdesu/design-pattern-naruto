@@ -1,0 +1,12 @@
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\singleton\Singleton.Models\bin\Debug\net10.0\Singleton.Models.deps.json
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\singleton\Singleton.Models\bin\Debug\net10.0\Singleton.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\singleton\Singleton.Models\bin\Debug\net10.0\Singleton.Models.pdb
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\singleton\Singleton.Models\obj\Debug\net10.0\Singleton.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\singleton\Singleton.Models\obj\Debug\net10.0\Singleton.Models.AssemblyInfoInputs.cache
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\singleton\Singleton.Models\obj\Debug\net10.0\Singleton.Models.AssemblyInfo.cs
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\singleton\Singleton.Models\obj\Debug\net10.0\Singleton.Models.csproj.CoreCompileInputs.cache
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\singleton\Singleton.Models\obj\Debug\net10.0\Singleton.Models.sourcelink.json
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\singleton\Singleton.Models\obj\Debug\net10.0\Singleton.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\singleton\Singleton.Models\obj\Debug\net10.0\refint\Singleton.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\singleton\Singleton.Models\obj\Debug\net10.0\Singleton.Models.pdb
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\singleton\Singleton.Models\obj\Debug\net10.0\ref\Singleton.Models.dll

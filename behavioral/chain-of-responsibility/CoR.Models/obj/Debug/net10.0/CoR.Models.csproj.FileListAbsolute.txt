@@ -1,0 +1,12 @@
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\chain-of-responsibility\CoR.Models\bin\Debug\net10.0\CoR.Models.deps.json
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\chain-of-responsibility\CoR.Models\bin\Debug\net10.0\CoR.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\chain-of-responsibility\CoR.Models\bin\Debug\net10.0\CoR.Models.pdb
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\chain-of-responsibility\CoR.Models\obj\Debug\net10.0\CoR.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\chain-of-responsibility\CoR.Models\obj\Debug\net10.0\CoR.Models.AssemblyInfoInputs.cache
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\chain-of-responsibility\CoR.Models\obj\Debug\net10.0\CoR.Models.AssemblyInfo.cs
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\chain-of-responsibility\CoR.Models\obj\Debug\net10.0\CoR.Models.csproj.CoreCompileInputs.cache
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\chain-of-responsibility\CoR.Models\obj\Debug\net10.0\CoR.Models.sourcelink.json
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\chain-of-responsibility\CoR.Models\obj\Debug\net10.0\CoR.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\chain-of-responsibility\CoR.Models\obj\Debug\net10.0\refint\CoR.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\chain-of-responsibility\CoR.Models\obj\Debug\net10.0\CoR.Models.pdb
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\chain-of-responsibility\CoR.Models\obj\Debug\net10.0\ref\CoR.Models.dll

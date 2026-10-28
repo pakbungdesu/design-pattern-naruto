@@ -1,0 +1,12 @@
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\prototype\Prototype.Models\bin\Debug\net10.0\Prototype.Models.deps.json
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\prototype\Prototype.Models\bin\Debug\net10.0\Prototype.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\prototype\Prototype.Models\bin\Debug\net10.0\Prototype.Models.pdb
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\prototype\Prototype.Models\obj\Debug\net10.0\Prototype.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\prototype\Prototype.Models\obj\Debug\net10.0\Prototype.Models.AssemblyInfoInputs.cache
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\prototype\Prototype.Models\obj\Debug\net10.0\Prototype.Models.AssemblyInfo.cs
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\prototype\Prototype.Models\obj\Debug\net10.0\Prototype.Models.csproj.CoreCompileInputs.cache
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\prototype\Prototype.Models\obj\Debug\net10.0\Prototype.Models.sourcelink.json
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\prototype\Prototype.Models\obj\Debug\net10.0\Prototype.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\prototype\Prototype.Models\obj\Debug\net10.0\refint\Prototype.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\prototype\Prototype.Models\obj\Debug\net10.0\Prototype.Models.pdb
+C:\Users\pimnara\Documents\design-pattern-naruto\creational\prototype\Prototype.Models\obj\Debug\net10.0\ref\Prototype.Models.dll
