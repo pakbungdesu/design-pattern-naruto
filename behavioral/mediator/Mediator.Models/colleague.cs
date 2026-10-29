@@ -8,6 +8,7 @@ namespace colleagues
     {
         string Name { get; set; }
         int Attack { get; set; }
+        public int HP { get; set; }
         string Location { get; set; }
     }
 
@@ -17,7 +18,6 @@ namespace colleagues
         public int HP { get; set; }
         public int Attack { get; set; }
         public string Location { get; set; }
-
         public bool Ready {get; set;} = false;
 
         protected ISummitProtection _mediator;
