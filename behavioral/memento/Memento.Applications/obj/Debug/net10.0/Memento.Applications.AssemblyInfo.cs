@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Memento.Applications")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4471b4745cdc85ae4e4901eda8cca48cc863a4c1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+babed34ef373e3927947c62d8d3c2f324435766c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Memento.Applications")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Memento.Applications")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
