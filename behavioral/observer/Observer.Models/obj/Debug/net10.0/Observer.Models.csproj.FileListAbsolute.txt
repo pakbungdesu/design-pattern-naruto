@@ -1,0 +1,12 @@
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\observer\Observer.Models\bin\Debug\net10.0\Observer.Models.deps.json
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\observer\Observer.Models\bin\Debug\net10.0\Observer.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\observer\Observer.Models\bin\Debug\net10.0\Observer.Models.pdb
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\observer\Observer.Models\obj\Debug\net10.0\Observer.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\observer\Observer.Models\obj\Debug\net10.0\Observer.Models.AssemblyInfoInputs.cache
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\observer\Observer.Models\obj\Debug\net10.0\Observer.Models.AssemblyInfo.cs
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\observer\Observer.Models\obj\Debug\net10.0\Observer.Models.csproj.CoreCompileInputs.cache
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\observer\Observer.Models\obj\Debug\net10.0\Observer.Models.sourcelink.json
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\observer\Observer.Models\obj\Debug\net10.0\Observer.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\observer\Observer.Models\obj\Debug\net10.0\refint\Observer.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\observer\Observer.Models\obj\Debug\net10.0\Observer.Models.pdb
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\observer\Observer.Models\obj\Debug\net10.0\ref\Observer.Models.dll
