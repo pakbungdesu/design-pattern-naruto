@@ -3,7 +3,7 @@ namespace Caretakers
 {
     using Mementos;
     using Originators;
-    
+
     // --- Caretaker ---
     public class Caretaker 
     {
@@ -23,11 +23,12 @@ namespace Caretakers
 
         public void Undo() 
         {
-            if (_history.Count > 0) 
+            if (_history.Count == 0) 
             {
-                IMemento m = _history.Pop();
-                _originator.Restore(m);
+                throw new InvalidOperationException("No history left to undo.");
             }
+            IMemento m = _history.Pop();
+            _originator.Restore(m);
         }
     }
 }

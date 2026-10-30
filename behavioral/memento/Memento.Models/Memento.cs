@@ -15,17 +15,21 @@ namespace Mementos
         private readonly Direction _direction;
         private readonly Act _act;
 
-        public MovementMemento(Direction direction, Act act) 
+        private readonly int _step;
+
+        public MovementMemento(Direction direction, Act act, int step) 
         {
             _direction = direction;
             _act = act;
+            _step = step;
         }
 
         public Direction GetDirection() => _direction;
         public Act GetAct() => _act;
+        public int GetStep() => _step;
         public void Display() 
         {
-            Console.WriteLine($"[Memento] Direction: {_direction}, Act: {_act}");
+            Console.WriteLine($"[Memento] Direction: {_direction}, Act: {_act}, Step: {_step}");
         }
     }
 }

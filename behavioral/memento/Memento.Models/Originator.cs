@@ -15,16 +15,18 @@ namespace Originators
     {
         public Direction Direction { get; set; }
         public Act Act { get; set; }
+        public int Step {get; set; }
 
-        public Movement(Direction direction, Act act) 
+        public Movement(Direction direction, Act act, int step) 
         {
             Direction = direction;
             Act = act;
+            Step = step;
         }
 
         public IMemento Save() 
         {
-            return new MovementMemento(Direction, Act);
+            return new MovementMemento(Direction, Act, Step);
         }
 
         public void Restore(IMemento m) 
@@ -33,7 +35,13 @@ namespace Originators
             {
                 Direction = mm.GetDirection();
                 Act = mm.GetAct();
+                Step = mm.GetStep();
             }
+        }
+
+        public void Display() 
+        {
+            Console.WriteLine($"[Originator] Direction: {Direction}, Act: {Act}, Step: {Step}");
         }
     }
 }

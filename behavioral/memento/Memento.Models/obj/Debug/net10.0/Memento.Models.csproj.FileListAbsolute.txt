@@ -1,0 +1,12 @@
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\memento\Memento.Models\bin\Debug\net10.0\Memento.Models.deps.json
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\memento\Memento.Models\bin\Debug\net10.0\Memento.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\memento\Memento.Models\bin\Debug\net10.0\Memento.Models.pdb
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\memento\Memento.Models\obj\Debug\net10.0\Memento.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\memento\Memento.Models\obj\Debug\net10.0\Memento.Models.AssemblyInfoInputs.cache
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\memento\Memento.Models\obj\Debug\net10.0\Memento.Models.AssemblyInfo.cs
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\memento\Memento.Models\obj\Debug\net10.0\Memento.Models.csproj.CoreCompileInputs.cache
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\memento\Memento.Models\obj\Debug\net10.0\Memento.Models.sourcelink.json
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\memento\Memento.Models\obj\Debug\net10.0\Memento.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\memento\Memento.Models\obj\Debug\net10.0\refint\Memento.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\memento\Memento.Models\obj\Debug\net10.0\Memento.Models.pdb
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\memento\Memento.Models\obj\Debug\net10.0\ref\Memento.Models.dll
