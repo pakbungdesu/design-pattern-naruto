@@ -1,4 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\Memento.Models\Memento.Models.csproj" />
+  </ItemGroup>
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
