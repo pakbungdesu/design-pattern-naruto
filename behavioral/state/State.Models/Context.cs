@@ -28,5 +28,10 @@ namespace Contexts
         {
             _state.EnvironmentChanged(location, overallChakraPercentage, allMembers, membersEnv);
         }
+
+        public void DisplayCurrentState()
+        {
+            Console.WriteLine($"Cuurent State of this Ninja: {_state.GetType()}");
+        }
     }
 }
