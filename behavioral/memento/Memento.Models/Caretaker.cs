@@ -8,21 +8,40 @@ namespace Caretakers
     public class Caretaker 
     {
         private readonly Stack<IMemento> _history = new Stack<IMemento>();
-        private readonly IOriginator _originator;
+        private IOriginator _originator;
+
+        public Caretaker()
+        {
+            _originator = null!;
+        }
 
         public Caretaker(IOriginator originator) 
         {
             _originator = originator;
         }
 
+        public void SetOriginator(IOriginator originator) 
+        {
+            _originator = originator;
+        }
+
         public void AddHistory() 
         {
+            if (_originator == null) 
+            {
+                throw new InvalidOperationException("Originator is not set.");
+            }
             IMemento m = _originator.Save();
             _history.Push(m);
         }
 
         public void Undo() 
         {
+            if (_originator == null) 
+            {
+                throw new InvalidOperationException("Originator is not set.");
+            }
+            
             if (_history.Count == 0) 
             {
                 throw new InvalidOperationException("No history left to undo.");

@@ -1,51 +1,55 @@
 ﻿using Originators;
 using Caretakers;
 using Enums;
+using Ninjas;
 
 public class Program 
 {
-    static void Client(Movement m, Caretaker ct)
+    static void Client(Movement m, Ninja ninja)
     {
+        Console.WriteLine($"Name: {ninja.Name}, Village: {ninja.Village} is moving...");
         m.Display();
-        ct.AddHistory();
+        ninja.AddHistory();
     }
 
     public static void Main(string[] args) 
     {
-        Movement ninjaMovement = new Movement(Direction.Forward, Act.Walk, 4);
-        Caretaker caretaker = new Caretaker(ninjaMovement);
-
         Console.WriteLine("\n--- Start Moving ---");
-        Client(ninjaMovement, caretaker);
 
+        Ninja ninja = new Ninja("Naruto Uzumaki", "Leaf Village");
         
-        ninjaMovement.Direction = Direction.Right;
-        ninjaMovement.Act = Act.Run;
-        ninjaMovement.Step = 10;
-        Client(ninjaMovement, caretaker);
+        Movement movement = new Movement(Direction.Forward, Act.Walk, 4);
+        Caretaker caretaker = new Caretaker(movement);
+        ninja.SetCaretaker(caretaker);
+        Client(movement, ninja);
 
-        ninjaMovement.Direction = Direction.Left;
-        ninjaMovement.Act = Act.Crawl;
-        ninjaMovement.Step = 6;
-        Client(ninjaMovement, caretaker);
+        movement.Direction = Direction.Right;
+        movement.Act = Act.Run;
+        movement.Step = 10;
+        Client(movement, ninja);
 
-        ninjaMovement.Direction = Direction.Backward;
-        ninjaMovement.Act = Act.Walk;
-        ninjaMovement.Step = 3;
-        Client(ninjaMovement, caretaker);
+        movement.Direction = Direction.Left;
+        movement.Act = Act.Crawl;
+        movement.Step = 6;
+        Client(movement, ninja);
 
-        ninjaMovement.Direction = Direction.Forward;
-        ninjaMovement.Act = Act.Run;
-        ninjaMovement.Step = 5;
-        Client(ninjaMovement, caretaker);
+        movement.Direction = Direction.Backward;
+        movement.Act = Act.Walk;
+        movement.Step = 3;
+        Client(movement, ninja);
+
+        movement.Direction = Direction.Forward;
+        movement.Act = Act.Run;
+        movement.Step = 5;
+        Client(movement, ninja);
 
         Console.WriteLine("\n--- Reversing History (Undo All) ---");
         while (true) 
         {
             try 
             {
-                caretaker.Undo();
-                ninjaMovement.Display();
+                ninja.Undo();
+                movement.Display();
             }
             catch 
             {
