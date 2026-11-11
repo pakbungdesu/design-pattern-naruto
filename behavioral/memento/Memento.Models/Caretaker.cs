@@ -10,11 +10,6 @@ namespace Caretakers
         private readonly Stack<IMemento> _history = new Stack<IMemento>();
         private IOriginator _originator;
 
-        public Caretaker()
-        {
-            _originator = null!;
-        }
-
         public Caretaker(IOriginator originator) 
         {
             _originator = originator;
@@ -35,7 +30,7 @@ namespace Caretakers
             _history.Push(m);
         }
 
-        public void Undo() 
+        public IMemento Undo() 
         {
             if (_originator == null) 
             {
@@ -48,6 +43,7 @@ namespace Caretakers
             }
             IMemento m = _history.Pop();
             _originator.Restore(m);
+            return m;
         }
     }
 }

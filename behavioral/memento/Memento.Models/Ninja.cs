@@ -4,6 +4,7 @@ namespace Ninjas
     using Enums;
     using Caretakers;
     using Originators;
+    using Mementos;
 
     public class Ninja
     {
@@ -17,62 +18,78 @@ namespace Ninjas
         {
             Name = name;
             Village = village;
-            _caretaker = new Caretaker();
+            _caretaker = null!;
             _currentMovement = null!;
+        }
+
+        public void Display()
+        {
+            Console.WriteLine($"Ninja Name: {Name}, Village: {Village}");
         }
 
         public void Undo()
         {
-            _caretaker.Undo();
-            Interpret(_currentMovement);
+            MovementMemento memento = (MovementMemento)_caretaker.Undo();
+            _currentMovement.Direction = memento.GetDirection();
+            _currentMovement.Act = memento.GetAct();
+            _currentMovement.Step = memento.GetStep();
+            
+            Display();
+            _currentMovement.Display();
         }
 
         public void GoForward(Act how, int step)
         {
             _currentMovement = new Movement(Direction.Forward, how, step);
+            if(_caretaker == null)
+            {
+                _caretaker = new Caretaker(_currentMovement);
+            }
+
+            _caretaker.SetOriginator(_currentMovement);
             _caretaker.AddHistory();
-            Console.WriteLine($"{Name} goes Forward, {how}, {step} steps.");
+            Display();
+            _currentMovement.Display();
         }
 
         public void GoBackward(Act how, int step)
         {
             _currentMovement = new Movement(Direction.Backward, how, step);
+            if(_caretaker == null)
+            {
+                _caretaker = new Caretaker(_currentMovement);
+            }
+
+            _caretaker.SetOriginator(_currentMovement);
             _caretaker.AddHistory();
-            Console.WriteLine($"{Name} goes Backward, {how}, {step} steps.");
+            Display();
+            _currentMovement.Display();
         }
 
         public void GoLeft(Act how, int step)
         {
             _currentMovement = new Movement(Direction.Left, how, step);
+            if(_caretaker == null)
+            {
+                _caretaker = new Caretaker(_currentMovement);
+            }
+            _caretaker.SetOriginator(_currentMovement);
             _caretaker.AddHistory();
-            Console.WriteLine($"{Name} goes Left, {how}, {step} steps.");
+            Display();
+            _currentMovement.Display();
         }
 
         public void GoRight(Act how, int step)
         {
             _currentMovement = new Movement(Direction.Right, how, step);
+            if(_caretaker == null)
+            {
+                _caretaker = new Caretaker(_currentMovement);
+            }
+            _caretaker.SetOriginator(_currentMovement);
             _caretaker.AddHistory();
-            Console.WriteLine($"{Name} goes Right, {how}, {step} steps.");
-        }
-
-        private void Interpret(Movement mm)
-        {
-            if (mm != null)
-            {
-                Direction oppositeDir = Direction.Forward; 
-
-                if (mm.Direction == Direction.Forward) { oppositeDir = Direction.Backward; }
-                else if (mm.Direction == Direction.Backward) { oppositeDir = Direction.Forward; }
-                else if (mm.Direction == Direction.Left) { oppositeDir = Direction.Right; }
-                else { mm.Direction = Direction.Left; }
-
-                Console.WriteLine($"Previous movement: {mm.Direction}, How: {mm.Act}, Steps: {mm.Step}");
-                Console.WriteLine($"Undoing by going {oppositeDir}, How: {mm.Act}, Steps: {mm.Step}");
-            }
-            else
-            {
-                Console.WriteLine("No history left to undo.");
-            }
+            Display();
+            _currentMovement.Display();
         }
     }
 }
