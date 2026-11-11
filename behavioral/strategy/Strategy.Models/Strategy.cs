@@ -8,25 +8,29 @@ namespace Strategies
     public abstract class CombatStrategy
     {
         public abstract void ExecuteJutsu(Ninja target);
-        public int ChakraCost { get; set; }
+        public abstract void Display();
         public int StaminaCost { get; set; }
+
     }
 
     public class TaijutsuStrategy : CombatStrategy
     {
         public string StyleName = "Anonymous Taijutsu";
-
+        public int ChakraCost = 0;
         public TaijutsuStrategy(string styleName, int staminaCost)
         {
             StyleName = styleName;
-            ChakraCost = 0;
             StaminaCost = staminaCost;
+        }
+
+        public override void Display()
+        {
+            Console.WriteLine($"Style Name: {StyleName}, Chakra Cost: {ChakraCost}, Stamina Cost: {StaminaCost}");
         }
 
         public override void ExecuteJutsu(Ninja target)
         {
             Console.WriteLine($"Executing {StyleName}! Unleashing high-speed physical combos.");
-            target.Chakra -= ChakraCost;
             target.Stamina -= StaminaCost;
         }
     }
@@ -34,11 +38,12 @@ namespace Strategies
     public class NinjutsuStrategy : CombatStrategy
     {
         public string JutsuName = "Anonymous Ninjutsu";
+        public int ChakraCost = 0;
 
-        public NinjutsuStrategy(string jutsuName)
+        public NinjutsuStrategy(int chakraCost, string jutsuName)
         {
             JutsuName = jutsuName;
-            ChakraCost = 40;
+            ChakraCost = chakraCost;
             StaminaCost = 10;
         }
 
@@ -47,6 +52,11 @@ namespace Strategies
             JutsuName = jutsuName;
             ChakraCost = chakraCost;
             StaminaCost = staminaCost;
+        }
+
+        public override void Display()
+        {
+            Console.WriteLine($"Style Name: {JutsuName}, Chakra Cost: {ChakraCost}, Stamina Cost: {StaminaCost}");
         }
 
         public override void ExecuteJutsu(Ninja target)
@@ -60,7 +70,7 @@ namespace Strategies
     public class GenjutsuStrategy : CombatStrategy
     {
         public string IllusionType = "Anonymous Genjutsu";
-
+        public int ChakraCost = 0;
         public GenjutsuStrategy(string it)
         {
             IllusionType = it;
@@ -75,11 +85,17 @@ namespace Strategies
             StaminaCost = staminaCost;
         }
 
+        public override void Display()
+        {
+            Console.WriteLine($"Style Name: {IllusionType}, Chakra Cost: {ChakraCost}, Stamina Cost: {StaminaCost}");
+        }
+
         public override void ExecuteJutsu(Ninja target)
         {
             Console.WriteLine($"Executing {IllusionType}! Disrupting opponent's chakra network.");
             target.Chakra -= ChakraCost;
             target.Stamina -= StaminaCost;
+            target.IsHullucinated = true;
         }
     }
 }

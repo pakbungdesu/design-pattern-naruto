@@ -3,10 +3,22 @@ namespace Contexts
 {
     using States;
     using Envs;
+    using Ranks;
 
     public class Ninja
     {
         private State _state = null!;
+        public string Name { get; set; } = "Anonymous Ninja";
+        public string Village { get; set; } = "Unknown Village";
+        public Rank Rank { get; set; } = Rank.Genin;
+
+        public Ninja(State initialState, string name, string village, Rank rank)
+        {
+            Name = name;
+            Village = village;
+            Rank = rank;
+            ChangeState(initialState);
+        }
 
         public Ninja(State initialState)
         {

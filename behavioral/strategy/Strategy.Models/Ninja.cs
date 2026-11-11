@@ -1,16 +1,16 @@
 
 namespace Ninjas
 {
-    using System.ComponentModel.DataAnnotations;
     using Strategies;
 
     public class Ninja
     {
         public string Name;
-        public CombatStrategy CurrentStrategy = null!;
+        public CombatStrategy? CurrentStrategy;
         public int Chakra;
         public int Stamina;
-        public bool IsDead => Chakra > 0 && Stamina > 0;
+        public bool IsHullucinated = false;
+        public bool IsAlive => Chakra > 0 && Stamina > 0;
 
         public Ninja(string name)
         {
@@ -24,13 +24,16 @@ namespace Ninjas
 
         public void Display()
         {
-            Console.WriteLine($"Name: {Name} | Chakra: {Chakra} | Stamina: {Stamina} | Current Strategy: {CurrentStrategy.GetType()}");
+            string thisStrategy = CurrentStrategy != null ? $"{CurrentStrategy.GetType()}" : "None";
+
+            Console.WriteLine($"Name: {Name} | Chakra: {Chakra} | Stamina: {Stamina} | Current Strategy: {thisStrategy} | Is Alive? {IsAlive}");
         }
 
         public void PerformAttack(Ninja target)
         {
             if (CurrentStrategy == null) return;
 
+            CurrentStrategy.Display();
             CurrentStrategy.ExecuteJutsu(target);
         }
     }

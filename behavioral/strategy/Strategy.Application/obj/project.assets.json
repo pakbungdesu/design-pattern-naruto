@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\behavioral\\strategy\\Strategy.Application\\Strategy.Application.csproj",
+      "projectUniqueName": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\behavioral\\strategy\\Strategy.Application\\Strategy.Application.csproj",
       "projectName": "Strategy.Application",
-      "projectPath": "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\behavioral\\strategy\\Strategy.Application\\Strategy.Application.csproj",
+      "projectPath": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\behavioral\\strategy\\Strategy.Application\\Strategy.Application.csproj",
       "packagesPath": "C:\\Users\\pimnara\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\behavioral\\strategy\\Strategy.Application\\obj\\",
+      "outputPath": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\behavioral\\strategy\\Strategy.Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\pimnara\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -52,8 +52,8 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\behavioral\\strategy\\Strategy.Models\\Strategy.Models.csproj": {
-              "projectPath": "c:\\Users\\pimnara\\Documents\\design-pattern-naruto\\behavioral\\strategy\\Strategy.Models\\Strategy.Models.csproj"
+            "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\behavioral\\strategy\\Strategy.Models\\Strategy.Models.csproj": {
+              "projectPath": "C:\\Users\\pimnara\\Documents\\design-pattern-naruto\\behavioral\\strategy\\Strategy.Models\\Strategy.Models.csproj"
             }
           }
         }

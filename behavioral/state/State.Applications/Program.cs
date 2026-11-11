@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Ranks;
 using Envs;
 using States;
 using Contexts;
@@ -9,7 +9,7 @@ public class Program
     {
         Console.WriteLine("=== STARTING NINJA STATE PATTERN SIMULATION ===");
         
-        Ninja shinobi = new Ninja(new Stealth());
+        Ninja shinobi = new Ninja(new Stealth(), "Kakashi Hatake", "Konohagakure", Rank.Jonin);
         Console.WriteLine("\n--- Test 1 ---");
         shinobi.PerformAction(enemies: 2, members: 5, overallChakraPercentage: 75f); 
 

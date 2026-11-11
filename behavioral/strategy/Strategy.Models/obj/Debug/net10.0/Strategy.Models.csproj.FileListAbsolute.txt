@@ -1,0 +1,12 @@
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\strategy\Strategy.Models\bin\Debug\net10.0\Strategy.Models.deps.json
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\strategy\Strategy.Models\bin\Debug\net10.0\Strategy.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\strategy\Strategy.Models\bin\Debug\net10.0\Strategy.Models.pdb
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\strategy\Strategy.Models\obj\Debug\net10.0\Strategy.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\strategy\Strategy.Models\obj\Debug\net10.0\Strategy.Models.AssemblyInfoInputs.cache
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\strategy\Strategy.Models\obj\Debug\net10.0\Strategy.Models.AssemblyInfo.cs
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\strategy\Strategy.Models\obj\Debug\net10.0\Strategy.Models.csproj.CoreCompileInputs.cache
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\strategy\Strategy.Models\obj\Debug\net10.0\Strategy.Models.sourcelink.json
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\strategy\Strategy.Models\obj\Debug\net10.0\Strategy.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\strategy\Strategy.Models\obj\Debug\net10.0\refint\Strategy.Models.dll
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\strategy\Strategy.Models\obj\Debug\net10.0\Strategy.Models.pdb
+C:\Users\pimnara\Documents\design-pattern-naruto\behavioral\strategy\Strategy.Models\obj\Debug\net10.0\ref\Strategy.Models.dll
