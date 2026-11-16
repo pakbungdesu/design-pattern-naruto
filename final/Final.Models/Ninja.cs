@@ -223,11 +223,9 @@ namespace Ninjas
 
     public class Medic : Decorator 
     { 
-        public string MedicalRank { get; set; } 
         public string HospitalCode { get; set; } 
 
-        public Medic(Ninja n, string medicalRank, string hospitalCode) : base(n) { 
-            MedicalRank = medicalRank;
+        public Medic(Ninja n, string hospitalCode) : base(n) { 
             HospitalCode = hospitalCode;
         }
 
@@ -250,7 +248,7 @@ namespace Ninjas
         public override void Display()
         {
             base.Display();
-            Console.WriteLine($"Medic Medical Rank: {MedicalRank}, Hospital Code: {HospitalCode}");
+            Console.WriteLine($"Hospital Code: {HospitalCode}");
         }
     }
 }

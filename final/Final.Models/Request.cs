@@ -1,9 +1,7 @@
-
 namespace Requests
 {
-    using Ninjas;
     using Enums;
-    using Weapons;
+    using System.Collections.Generic;
 
     public abstract class RoleRequirement
     {
@@ -12,8 +10,8 @@ namespace Requests
 
     public class TankRequirement : RoleRequirement
     {
-        public int Endurance { get; set; }
-        public TankRequirement(int endurance) 
+        public double Endurance { get; set; }
+        public TankRequirement(double endurance) 
         { 
             Role = RoleDecorator.Tank; 
             Endurance = endurance; 
@@ -32,12 +30,10 @@ namespace Requests
 
     public class MedicRequirement : RoleRequirement
     {
-        public string MedicalRank { get; set; }
         public string HospitalCode { get; set; }
-        public MedicRequirement(string medicalRank, string hospitalCode) 
+        public MedicRequirement(string hospitalCode) 
         { 
             Role = RoleDecorator.Medic; 
-            MedicalRank = medicalRank;
             HospitalCode = hospitalCode;
         }
     }
@@ -82,7 +78,7 @@ namespace Requests
         public double BurnChance { get; set; } = 25.0;
         public int CuttingPower { get; set; } = 15;
         public double FlowRate { get; set; } = 0.2;
-        public int Hardness { get; set; } = 2;
+        public int Hardness { get; set; } = 20;
         public double StunChance { get; set; } = 20.0;
     }
 
@@ -103,17 +99,24 @@ namespace Requests
         public string MissionName { get; set; }
         public Rank MissionRank { get; set; }
         public Location Location { get; set; }
-        public SquadRequirement KonohaBlueprint { get; set; }
-        public SquadRequirement AllianceBlueprint { get; set; }
+        public SquadRequirement? KonohaBlueprint { get; set; }
+        public SquadRequirement? AllianceBlueprint { get; set; }
         public WeaponRequirement WeaponBlueprint { get; set; } 
-        public MissionRequest(string missionName, Rank missionRank, Location loc, SquadRequirement konohaBlueprint, SquadRequirement allianceBlueprint, WeaponRequirement wr)
+
+        public MissionRequest(
+            string missionName, 
+            Rank missionRank, 
+            Location loc, 
+            WeaponRequirement wr, 
+            SquadRequirement konohaBlueprint, 
+            SquadRequirement allianceBlueprint)
         {
             MissionName = missionName;
             MissionRank = missionRank;
             Location = loc;
+            WeaponBlueprint = wr;
             KonohaBlueprint = konohaBlueprint;
             AllianceBlueprint = allianceBlueprint;
-            WeaponBlueprint = wr;
         }
     }
 }
