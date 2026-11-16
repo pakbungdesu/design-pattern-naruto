@@ -23,7 +23,14 @@ namespace Ninjas
         {
             foreach (var member in Members)
             {
+                Console.WriteLine("\n--- Before Attacking ---");
+                member.Display();
+                target.Display();
                 member.AttackTarget(target);
+
+                Console.WriteLine("\n--- After Attacking ---");
+                member.Display();
+                target.Display();
             }
         }
 
@@ -48,7 +55,14 @@ namespace Ninjas
         public List<Weapon> Weapons { get; set; } = new List<Weapon>();
         public bool IsReady { get; set; } = false;
         public abstract void AttackTarget(Ninja target);
-        public abstract void Display();
+        public virtual void Display()
+        {
+            foreach(var weapon in Weapons)
+            {
+                weapon.Display();
+            }
+        }
+
         public Ninja(string name, ChakraType chakraNature, int attack, double heal, int hp, Location village)
         {
             Name = name;
@@ -59,7 +73,7 @@ namespace Ninjas
             Village = village;
         }
 
-        protected void UseEquippedWeapons(Ninja target)
+        public void UseEquippedWeapons(Ninja target)
         {
             foreach (var weapon in Weapons)
             {
@@ -67,9 +81,17 @@ namespace Ninjas
             }
         }
 
-        protected void UseEquippedWeapons(int idx, Ninja target)
+        public void UseEquippedWeapons(int idx, Ninja target)
         {
             Weapons[idx].Attack(target);
+        }
+
+        public void DisplayWeapon()
+        {
+            foreach(var weapon in Weapons)
+            {
+                weapon.Display();
+            }
         }
     }
 
@@ -85,8 +107,16 @@ namespace Ninjas
         public override void AttackTarget(Ninja target)
         {
             int damage = Attack + (int)(StaminaPoints * 0.5);
+            Console.WriteLine("\n--- Before Attacking ---");
+            this.Display();
+            target.Display();
+
             Console.WriteLine($"{Name} (Chunin) attacks {target.Name} for {damage} damage.");
             target.HP -= damage;
+
+            Console.WriteLine("\n--- After Attacking ---");
+            this.Display();
+            target.Display();
         }
 
         public override void Display()
@@ -108,8 +138,17 @@ namespace Ninjas
 
         public override void AttackTarget(Ninja target){
             int damage = Attack + (int)(Attack * ElementBoost);
+
+            Console.WriteLine("\n--- Before Attacking ---");
+            this.Display();
+            target.Display();
+
             Console.WriteLine($"{Name} (Jonin) attacks {target.Name} for {damage} damage.");
             target.HP -= damage;
+
+            Console.WriteLine("\n--- After Attacking ---");
+            this.Display();
+            target.Display();
         }
 
         public override void Display()
@@ -130,8 +169,17 @@ namespace Ninjas
         public override void AttackTarget(Ninja target)
         {
             int damage = Attack + (int)(BijuuChakraPool * 1.5);
+
+            Console.WriteLine("\n--- Before Attacking ---");
+            this.Display();
+            target.Display();
+
             Console.WriteLine($"{Name} (Kage) attacks {target.Name} for {damage} damage.");
             target.HP -= damage;
+
+            Console.WriteLine("\n--- After Attacking ---");
+            this.Display();
+            target.Display();
         }
 
         public override void Display()

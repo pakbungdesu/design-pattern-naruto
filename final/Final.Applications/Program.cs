@@ -19,12 +19,11 @@ class Program
             KunaiCount = 3,
             ChakraStats = new ChakraRequirement
             {
-                CuttingPower = 25,
-                BurnChance = 35.0
+                CuttingPower = 25
             }
         };
 
-        // 2. Build Konoha Squad Blueprint (with a nested Sub-Squad)
+        // 2. Build Konoha Squad Blueprint (3-Level Nested Composite)
         var konohaBlueprint = new SquadRequirement
         {
             SquadName = "Konoha Vanguard",
@@ -66,6 +65,7 @@ class Program
             },
             SubSquads = new List<SquadRequirement>
             {
+                // Level 2: Sub-Squad inside Konoha Vanguard
                 new SquadRequirement
                 {
                     SquadName = "Shadow Recon Sub-Squad",
@@ -87,7 +87,7 @@ class Program
                         new NinjaRequirement(
                             NinjaBaseRank.Chunin,
                             Location.Konohagakure,
-                            "Akemichi Joji",
+                            "Akimichi Choji",
                             ChakraType.Earth,
                             attack: 100,
                             heal: 10,
@@ -96,6 +96,51 @@ class Program
                                 new TankRequirement(100)
                             }
                         )
+                        {
+                            Stamina = 300
+                        }
+                    },
+                    SubSquads = new List<SquadRequirement>
+                    {
+                        new SquadRequirement
+                        {
+                            SquadName = "Infiltration Micro-Cell",
+                            RequiredNinjas = new List<NinjaRequirement>
+                            {
+                                new NinjaRequirement(
+                                    NinjaBaseRank.Chunin,
+                                    Location.Konohagakure,
+                                    "Yamanaka Ino",
+                                    ChakraType.Water,
+                                    attack: 65,
+                                    heal: 25,
+                                    hp: 850,
+                                    roles: new List<RoleRequirement>
+                                    {
+                                        new MedicRequirement("KNH-MED-02")
+                                    }
+                                )
+                                {
+                                    Stamina = 250
+                                },
+                                new NinjaRequirement(
+                                    NinjaBaseRank.Chunin,
+                                    Location.Konohagakure,
+                                    "Hyuga Hinata",
+                                    ChakraType.Lightning,
+                                    attack: 80,
+                                    heal: 15,
+                                    hp: 900,
+                                    roles: new List<RoleRequirement>
+                                    {
+                                        new AnbuRequirement(260f)
+                                    }
+                                )
+                                {
+                                    Stamina = 320
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -104,7 +149,7 @@ class Program
         // 3. Build Alliance Squad Blueprint
         var allianceBlueprint = new SquadRequirement
         {
-            SquadName = "Suna Reinforcement Unit",
+            SquadName = "Shinobi Alliance Joint Force",
             RequiredNinjas = new List<NinjaRequirement>
             {
                 new NinjaRequirement(
@@ -119,6 +164,88 @@ class Program
                 )
                 {
                     BijuuPool = 1200
+                }
+            },
+            SubSquads = new List<SquadRequirement>
+            {
+                // Level 2: Sand Siblings Sub-Squad (Sunagakure)
+                new SquadRequirement
+                {
+                    SquadName = "Sand Siblings Vanguard",
+                    RequiredNinjas = new List<NinjaRequirement>
+                    {
+                        new NinjaRequirement(
+                            NinjaBaseRank.Jonin,
+                            Location.Sunagakure,
+                            "Temari",
+                            ChakraType.Wind,
+                            attack: 115,
+                            heal: 10,
+                            hp: 1300,
+                            roles: new List<RoleRequirement>()
+                        )
+                        {
+                            JutsuSpecialty = "Great Sickle Weasel",
+                            ElementBoost = 0.85
+                        },
+                        new NinjaRequirement(
+                            NinjaBaseRank.Jonin,
+                            Location.Sunagakure,
+                            "Kankuro",
+                            ChakraType.Lightning,
+                            attack: 105,
+                            heal: 10,
+                            hp: 1250,
+                            roles: new List<RoleRequirement> { new AnbuRequirement(240f) }
+                        )
+                        {
+                            JutsuSpecialty = "Black Secret Technique",
+                            ElementBoost = 0.6
+                        }
+                    },
+                    SubSquads = new List<SquadRequirement>
+                    {
+                        // Level 3: Cross-Village Support Micro-Cell (Kumogakure & Kirigakure)
+                        new SquadRequirement
+                        {
+                            SquadName = "Kumo-Kiri Assault Unit",
+                            RequiredNinjas = new List<NinjaRequirement>
+                            {
+                                new NinjaRequirement(
+                                    NinjaBaseRank.Jonin,
+                                    Location.Kumogakure,
+                                    "Darui",
+                                    ChakraType.Lightning,
+                                    attack: 130,
+                                    heal: 15,
+                                    hp: 1450,
+                                    roles: new List<RoleRequirement>
+                                    {
+                                        new AnbuRequirement(270f),
+                                        new TankRequirement(150)
+                                    }
+                                )
+                                {
+                                    JutsuSpecialty = "Black Lightning",
+                                    ElementBoost = 0.9
+                                },
+                                new NinjaRequirement(
+                                    NinjaBaseRank.Jonin,
+                                    Location.Kirigakure,
+                                    "Chojuro",
+                                    ChakraType.Water,
+                                    attack: 120,
+                                    heal: 10,
+                                    hp: 1350,
+                                    roles: new List<RoleRequirement>()
+                                )
+                                {
+                                    JutsuSpecialty = "Hiramekarei Release",
+                                    ElementBoost = 0.75
+                                }
+                            }
+                        }
+                    }
                 }
             }
         };
@@ -142,49 +269,64 @@ class Program
         allianceTeam?.Display();
 
         // 5. Mockup Rogue Enemies using Abstract Village Factories
-        // VillageFactory kiriFactory = new KiriFactory();
-        // VillageFactory iwaFactory = new IwaFactory();
+        VillageFactory kiriFactory = new KiriFactory();
+        VillageFactory iwaFactory = new IwaFactory();
 
-        // Ninja rogueSwordsman = kiriFactory.CreateJonin(
-        //     name: "Zabuza (Rogue)",
-        //     chakraNature: ChakraType.Water,
-        //     attack: 160,
-        //     heal: 0,
-        //     hp: 4500,
-        //     jutsuSpecialty: "Hidden Mist Jutsu",
-        //     elementBoost: 0.9
-        // );
+        Ninja rogueSwordsman = kiriFactory.CreateJonin(
+            name: "Zabuza (Rogue)",
+            chakraNature: ChakraType.Water,
+            attack: 160,
+            heal: 0,
+            hp: 4500,
+            jutsuSpecialty: "Hidden Mist Jutsu",
+            elementBoost: 0.9
+        );
 
-        // Ninja rogueCommander = iwaFactory.CreateKage(
-        //     name: "Rogue Tsuchikage",
-        //     chakraNature: ChakraType.Earth,
-        //     attack: 200,
-        //     heal: 0,
-        //     hp: 8000,
-        //     bijuuPool: 1500
-        // );
+        Ninja rogueCommander = iwaFactory.CreateKage(
+            name: "Rogue Tsuchikage",
+            chakraNature: ChakraType.Earth,
+            attack: 200,
+            heal: 0,
+            hp: 8000,
+            bijuuPool: 1500
+        );
 
-        // // 6. Combat Simulation
-        // Console.WriteLine("\n================ BATTLE START ================");
+        // 6. Combat Simulation
+        Console.WriteLine("\n================ BATTLE START ================");
 
-        // // Composite Squad Attack: Entire Konoha tree (including Sub-Squad) attacks Zabuza
-        // Console.WriteLine($"\n--- {konohaTeam?.SquadName} engages {rogueSwordsman.Name} (HP: {rogueSwordsman.HP}) ---");
-        // konohaTeam?.AttackTarget(rogueSwordsman);
-        // Console.WriteLine($"Result -> {rogueSwordsman.Name} Remaining HP: {Math.Max(0, rogueSwordsman.HP)}");
+        if (konohaTeam?.Members[0] is Ninja kakashi)
+        {
+            while (kakashi is Decorator dec) kakashi = dec.GetBaseNinja();
+            
+            Console.WriteLine($"\n--- Weapon Inspection: {kakashi.Name} (Equipped: {kakashi.Weapons.Count} weapons) ---");
+            foreach (var weapon in kakashi.Weapons)
+            {
+                weapon.Display();
+            }
 
-        // // Alliance Squad Attack: Gaara engages Rogue Tsuchikage
-        // Console.WriteLine($"\n--- {allianceTeam?.SquadName} engages {rogueCommander.Name} (HP: {rogueCommander.HP}) ---");
-        // allianceTeam?.AttackTarget(rogueCommander);
-        // Console.WriteLine($"Result -> {rogueCommander.Name} Remaining HP: {Math.Max(0, rogueCommander.HP)}");
+            Console.WriteLine($"\n--- Test Using Weapons by index ---");
+            kakashi.UseEquippedWeapons(0, rogueCommander);
 
-        // // Enemy Counter-Attack against a target inside the squad
-        // if (konohaTeam != null && konohaTeam.Members.Count > 0 && konohaTeam.Members[0] is Ninja vanguardLead)
-        // {
-        //     Console.WriteLine($"\n--- Enemy Counter-Attack ---");
-        //     rogueCommander.AttackTarget(vanguardLead);
-        //     Console.WriteLine($"Result -> {vanguardLead.Name} Remaining HP: {Math.Max(0, vanguardLead.HP)}");
-        // }
+            Console.WriteLine($"\n--- Test Using All Weapons ---");
+            kakashi.UseEquippedWeapons(rogueCommander);
+        }
 
-        // Console.WriteLine("\n================ BATTLE END ================");
+        Console.WriteLine($"\n--- {konohaTeam?.SquadName} engages {rogueSwordsman.Name} (HP: {rogueSwordsman.HP}) ---");
+        konohaTeam?.AttackTarget(rogueSwordsman);
+        Console.WriteLine($"Result -> {rogueSwordsman.Name} Remaining HP: {Math.Max(0, rogueSwordsman.HP)}");
+
+        Console.WriteLine($"\n--- {allianceTeam?.SquadName} engages {rogueCommander.Name} (HP: {rogueCommander.HP}) ---");
+        allianceTeam?.AttackTarget(rogueCommander);
+        Console.WriteLine($"Result -> {rogueCommander.Name} Remaining HP: {Math.Max(0, rogueCommander.HP)}");
+
+        // Enemy Counter-Attack against a target inside the squad
+        if (konohaTeam != null && konohaTeam.Members.Count > 0 && konohaTeam.Members[0] is Ninja vanguardLead)
+        {
+            Console.WriteLine($"\n--- Enemy Counter-Attack ---");
+            rogueCommander.AttackTarget(vanguardLead);
+            Console.WriteLine($"Result -> {vanguardLead.Name} Remaining HP: {Math.Max(0, vanguardLead.HP)}");
+        }
+
+        Console.WriteLine("\n================ BATTLE END ================");
     }
 }

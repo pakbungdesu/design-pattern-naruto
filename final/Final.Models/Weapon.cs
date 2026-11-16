@@ -1,6 +1,7 @@
 
 namespace Weapons
 {
+    using System.ComponentModel.DataAnnotations;
     using Enums;
     using Ninjas;
 
@@ -12,7 +13,9 @@ namespace Weapons
             BaseDamage = baseDamage;
         }
         public abstract void Attack(Ninja target);
-        public abstract void Display();
+        public virtual void Display(){
+            Chakra.Display();
+        }
     }
 
     public class Katana : Weapon { 
@@ -24,7 +27,8 @@ namespace Weapons
 
         public override void Display()
         {
-            Console.WriteLine($"Katana with base damage {BaseDamage}, penetration {Penetration}, and chakra type {Chakra.Name}");
+            Console.WriteLine($"Katana with base damage {BaseDamage}, penetration {Penetration}");
+            base.Display();
         }
 
         public override void Attack(Ninja target)
@@ -46,7 +50,8 @@ namespace Weapons
 
         public override void Display()
         {
-            Console.WriteLine($"Shuriken with base damage {BaseDamage}, count {Count}, and chakra type {Chakra.Name}");
+            Console.WriteLine($"Shuriken with base damage {BaseDamage}, count {Count}");
+            base.Display();
         }
 
         public override void Attack(Ninja target)
@@ -68,7 +73,8 @@ namespace Weapons
 
         public override void Display()
         {
-            Console.WriteLine($"Kunai with base damage {BaseDamage}, piercing bonus {PiercingBonus}, and chakra type {Chakra.Name}");
+            Console.WriteLine($"Kunai with base damage {BaseDamage}, piercing bonus {PiercingBonus}");
+            base.Display();
         }
 
         public override void Attack(Ninja target)
@@ -91,6 +97,11 @@ namespace Weapons
         }
 
         public abstract int ApplyEffect(int TotalDamage);
+
+        public virtual void Display()
+        {
+            Console.WriteLine($"Chakra Type: {Name}, Origin: {VillageOrigin}");
+        }
     }
 
     public class Fire : Chakra { 
@@ -109,7 +120,13 @@ namespace Weapons
                 TotalDamage += 20;
             }
             return TotalDamage;
-        } 
+        }
+
+        public override void Display()
+        {
+            base.Display();
+            Console.WriteLine($"[Fire] Burn Chance: {BurnChance}");
+        }
     }
 
     public class Water : Chakra { 
@@ -124,7 +141,13 @@ namespace Weapons
             return (int)(TotalDamage * (1 + FlowRate));
         }
 
+        public override void Display()
+        {
+            base.Display();
+            Console.WriteLine($"[Water] Flow Rate: {FlowRate}");
+        }
     }
+
     public class Wind : Chakra { 
         public int CuttingPower { get; set; } 
         public Wind(ChakraType name, Location villageOrigin, int cuttingPower) : base(name, villageOrigin){
@@ -134,6 +157,12 @@ namespace Weapons
         {
             Console.WriteLine($"Applying wind effect with cutting power of {CuttingPower}");
             return TotalDamage + CuttingPower;
+        }
+
+        public override void Display()
+        {
+            base.Display();
+            Console.WriteLine($"[Wind] Cutting Power: {CuttingPower}");
         }
     }
 
@@ -146,7 +175,13 @@ namespace Weapons
         {
             Console.WriteLine($"Applying earth effect with hardness of {Hardness}");
             return TotalDamage * Hardness;
-        } 
+        }
+
+        public override void Display()
+        {
+            base.Display();
+            Console.WriteLine($"[Earth] Hardness: {Hardness}");
+        }
     }
 
     public class Lightning : Chakra { 
@@ -165,6 +200,12 @@ namespace Weapons
             }
             return TotalDamage;
         } 
+
+        public override void Display()
+        {
+            base.Display();
+            Console.WriteLine($"[Lightning] Stune Change: {StunChance}");
+        }
     }
 
 }
