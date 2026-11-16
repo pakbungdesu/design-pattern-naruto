@@ -1,137 +1,190 @@
-
-using Handlers;
+using System;
+using System.Collections.Generic;
+using Facades;
 using Requests;
-using Enums;
+using VillageFactories;
 using Ninjas;
-using Weapons;
+using Enums;
 
 class Program
 {
     static void Main()
     {
-        // 1. Setup the Chain of Responsibility
-        KonohaRecruitHandler konohaHandler = new KonohaRecruitHandler();
-        AllianceRecruitHandler allianceHandler = new AllianceRecruitHandler();
-        WeaponHandler weaponHandler = new WeaponHandler();
-        DispatchHandler dispatchHandler = new DispatchHandler();
-
-        // Link the chain: Konoha -> Alliance -> Weapon -> Dispatch
-        konohaHandler.SetNext(allianceHandler);
-        allianceHandler.SetNext(weaponHandler);
-        weaponHandler.SetNext(dispatchHandler);
-
-        // 2. Create the standard weapon blueprint
-        WeaponRequirement standardWeapons = new WeaponRequirement
+        // 1. Configure Weapon & Chakra Blueprints
+        var weaponBlueprint = new WeaponRequirement
         {
-            KatanaBaseDamage = 60,
-            ShurikenCount = 10,
-            KunaiCount = 3
+            KatanaBaseDamage = 65,
+            KatanaPenetration = 15,
+            ShurikenCount = 5,
+            KunaiCount = 3,
+            ChakraStats = new ChakraRequirement
+            {
+                CuttingPower = 25,
+                BurnChance = 35.0
+            }
         };
 
-        Console.WriteLine("==================================================");
-        Console.WriteLine(" SCENARIO 1: JOINT COMBAT MISSION (Konoha + Suna) ");
-        Console.WriteLine("==================================================\n");
-
-        // Blueprint for Konoha Squad
-        SquadRequirement team7 = new SquadRequirement
+        // 2. Build Konoha Squad Blueprint (with a nested Sub-Squad)
+        var konohaBlueprint = new SquadRequirement
         {
-            SquadName = "Team 7 Extraction Unit",
+            SquadName = "Konoha Vanguard",
             RequiredNinjas = new List<NinjaRequirement>
             {
-                new NinjaRequirement(NinjaBaseRank.Jonin, Location.Konohagakure, "Kakashi", ChakraType.Lightning, 120, 10, 1500, new List<RoleRequirement>())
+                new NinjaRequirement(
+                    NinjaBaseRank.Jonin,
+                    Location.Konohagakure,
+                    "Kakashi Hatake",
+                    ChakraType.Lightning,
+                    attack: 120,
+                    heal: 15,
+                    hp: 1500,
+                    roles: new List<RoleRequirement> { 
+                        new AnbuRequirement(280f),
+                        new TankRequirement(200) }
+                )
                 {
                     JutsuSpecialty = "Raikiri",
-                    ElementBoost = 1.5
+                    ElementBoost = 0.8
                 },
-                new NinjaRequirement(NinjaBaseRank.Chunin, Location.Konohagakure, "Sakura", ChakraType.Earth, 90, 300, 1000, new List<RoleRequirement> 
-                { 
-                    new MedicRequirement("Head Medic", "KNH-MED-01") 
-                })
+                new NinjaRequirement(
+                    NinjaBaseRank.Chunin,
+                    Location.Konohagakure,
+                    "Sakura Haruno",
+                    ChakraType.Earth,
+                    attack: 85,
+                    heal: 40,
+                    hp: 1100,
+                    roles: new List<RoleRequirement>
+                    {
+                        new MedicRequirement("KNH-MED-01"),
+                        new TankRequirement(100)
+                    }
+                )
                 {
-                    Stamina = 500
+                    Stamina = 400
+                }
+            },
+            SubSquads = new List<SquadRequirement>
+            {
+                new SquadRequirement
+                {
+                    SquadName = "Shadow Recon Sub-Squad",
+                    RequiredNinjas = new List<NinjaRequirement>
+                    {
+                        new NinjaRequirement(
+                            NinjaBaseRank.Chunin,
+                            Location.Konohagakure,
+                            "Shikamaru Nara",
+                            ChakraType.Fire,
+                            attack: 70,
+                            heal: 10,
+                            hp: 950,
+                            roles: new List<RoleRequirement>()
+                        )
+                        {
+                            Stamina = 350
+                        },
+                        new NinjaRequirement(
+                            NinjaBaseRank.Chunin,
+                            Location.Konohagakure,
+                            "Akemichi Joji",
+                            ChakraType.Earth,
+                            attack: 100,
+                            heal: 10,
+                            hp: 950,
+                            roles: new List<RoleRequirement>{
+                                new TankRequirement(100)
+                            }
+                        )
+                    }
                 }
             }
         };
 
-        // Blueprint for Alliance (Suna) Squad
-        SquadRequirement sandSiblings = new SquadRequirement
+        // 3. Build Alliance Squad Blueprint
+        var allianceBlueprint = new SquadRequirement
         {
-            SquadName = "Sand Siblings Backup",
+            SquadName = "Suna Reinforcement Unit",
             RequiredNinjas = new List<NinjaRequirement>
             {
-                new NinjaRequirement(NinjaBaseRank.Kage, Location.Sunagakure, "Gaara", ChakraType.Wind, 150, 50, 3000, new List<RoleRequirement>
+                new NinjaRequirement(
+                    NinjaBaseRank.Kage,
+                    Location.Sunagakure,
+                    "Gaara",
+                    ChakraType.Wind,
+                    attack: 140,
+                    heal: 20,
+                    hp: 2500,
+                    roles: new List<RoleRequirement> { new TankRequirement(250) }
+                )
                 {
-                    new TankRequirement(200f)
-                })
-                {
-                    BijuuPool = 5000
+                    BijuuPool = 1200
                 }
             }
         };
 
-        // Create the joint mission request
-        MissionRequest jointMission = new MissionRequest(
-            missionName: "Rescue Kazekage",
+        // 4. Create Request & Dispatch via Facade
+        var missionRequest = new MissionRequest(
+            missionName: "Sand Border Defense",
             missionRank: Rank.S,
             loc: Location.Sunagakure,
-            wr: standardWeapons,
-            requestedWeaponKits: 0, // No extra standalone weapons needed
-            konohaBlueprint: team7,
-            allianceBlueprint: sandSiblings
+            wr: weaponBlueprint,
+            konohaBlueprint: konohaBlueprint,
+            allianceBlueprint: allianceBlueprint
         );
 
-        // Execute Scenario 1
-        konohaHandler.HandleRequest(jointMission);
+        var facade = new KonohaFacade(missionRequest);
+        var (konohaTeam, allianceTeam) = facade.Dispatch();
 
+        // Display deployed rosters
+        konohaTeam?.Display();
+        Console.WriteLine();
+        allianceTeam?.Display();
 
-        Console.WriteLine("\n\n==================================================");
-        Console.WriteLine(" SCENARIO 2: WEAPONS SUPPLY RUN (No Squads)       ");
-        Console.WriteLine("==================================================\n");
+        // 5. Mockup Rogue Enemies using Abstract Village Factories
+        // VillageFactory kiriFactory = new KiriFactory();
+        // VillageFactory iwaFactory = new IwaFactory();
 
-        // Create a logistics mission requesting exactly 50 kits, with NO squad blueprints
-        MissionRequest supplyRun = new MissionRequest(
-            missionName: "Restock Northern Border",
-            missionRank: Rank.B,
-            loc: Location.Kumogakure,
-            wr: standardWeapons,
-            requestedWeaponKits: 50, // Pure logistics order
-            konohaBlueprint: null,   // Skips KonohaRecruitHandler
-            allianceBlueprint: null  // Skips AllianceRecruitHandler
-        );
+        // Ninja rogueSwordsman = kiriFactory.CreateJonin(
+        //     name: "Zabuza (Rogue)",
+        //     chakraNature: ChakraType.Water,
+        //     attack: 160,
+        //     heal: 0,
+        //     hp: 4500,
+        //     jutsuSpecialty: "Hidden Mist Jutsu",
+        //     elementBoost: 0.9
+        // );
 
-        konohaHandler.HandleRequest(supplyRun);
+        // Ninja rogueCommander = iwaFactory.CreateKage(
+        //     name: "Rogue Tsuchikage",
+        //     chakraNature: ChakraType.Earth,
+        //     attack: 200,
+        //     heal: 0,
+        //     hp: 8000,
+        //     bijuuPool: 1500
+        // );
 
+        // // 6. Combat Simulation
+        // Console.WriteLine("\n================ BATTLE START ================");
 
-        Console.WriteLine("\n\n==================================================");
-        Console.WriteLine(" SCENARIO 3: KONOHA ONLY MISSION                  ");
-        Console.WriteLine("==================================================\n");
+        // // Composite Squad Attack: Entire Konoha tree (including Sub-Squad) attacks Zabuza
+        // Console.WriteLine($"\n--- {konohaTeam?.SquadName} engages {rogueSwordsman.Name} (HP: {rogueSwordsman.HP}) ---");
+        // konohaTeam?.AttackTarget(rogueSwordsman);
+        // Console.WriteLine($"Result -> {rogueSwordsman.Name} Remaining HP: {Math.Max(0, rogueSwordsman.HP)}");
 
-        SquadRequirement anbuSquad = new SquadRequirement
-        {
-            SquadName = "Anbu Black Ops Team Alpha",
-            RequiredNinjas = new List<NinjaRequirement>
-            {
-                new NinjaRequirement(NinjaBaseRank.Jonin, Location.Konohagakure, "Yamato", ChakraType.Water, 110, 20, 1200, new List<RoleRequirement>
-                {
-                    new AnbuRequirement(300f)
-                })
-                {
-                    JutsuSpecialty = "Wood Release"
-                }
-            }
-        };
+        // // Alliance Squad Attack: Gaara engages Rogue Tsuchikage
+        // Console.WriteLine($"\n--- {allianceTeam?.SquadName} engages {rogueCommander.Name} (HP: {rogueCommander.HP}) ---");
+        // allianceTeam?.AttackTarget(rogueCommander);
+        // Console.WriteLine($"Result -> {rogueCommander.Name} Remaining HP: {Math.Max(0, rogueCommander.HP)}");
 
-        MissionRequest stealthMission = new MissionRequest(
-            missionName: "Infiltrate Orochimaru's Hideout",
-            missionRank: Rank.A,
-            loc: Location.Iwagakure,
-            wr: standardWeapons,
-            requestedWeaponKits: 0,
-            konohaBlueprint: anbuSquad,
-            allianceBlueprint: null
-        );
+        // // Enemy Counter-Attack against a target inside the squad
+        // if (konohaTeam != null && konohaTeam.Members.Count > 0 && konohaTeam.Members[0] is Ninja vanguardLead)
+        // {
+        //     Console.WriteLine($"\n--- Enemy Counter-Attack ---");
+        //     rogueCommander.AttackTarget(vanguardLead);
+        //     Console.WriteLine($"Result -> {vanguardLead.Name} Remaining HP: {Math.Max(0, vanguardLead.HP)}");
+        // }
 
-        // Execute Scenario 3
-        konohaHandler.HandleRequest(stealthMission);
+        // Console.WriteLine("\n================ BATTLE END ================");
     }
 }
