@@ -58,6 +58,19 @@ namespace Ninjas
             HP = hp;
             Village = village;
         }
+
+        protected void UseEquippedWeapons(Ninja target)
+        {
+            foreach (var weapon in Weapons)
+            {
+                weapon.Attack(target);
+            }
+        }
+
+        protected void UseEquippedWeapons(int idx, Ninja target)
+        {
+            Weapons[idx].Attack(target);
+        }
     }
 
     public class Chunin : Ninja { 
@@ -151,18 +164,24 @@ namespace Ninjas
         public override void Display()
         {
             _ninja.Display();
-        }   
+        }
+
+        public Ninja GetBaseNinja() => _ninja;   
     }
 
     public class Tank : Decorator { 
-        public float Endurance { get; set; } 
-        public Tank(Ninja n, float endurance) : base(n) { 
+        public int Endurance { get; set; } 
+        public Tank(Ninja n, int endurance) : base(n) { 
             Endurance = endurance;
         }
 
         public override void AttackTarget(Ninja target)
         {
             base.AttackTarget(target);
+
+            int bonusDamage = (int)(Endurance * 0.4f);
+            target.HP -= bonusDamage;
+            Console.WriteLine($"[Tank Ability] +{bonusDamage} endurance damage!");
         }
 
         public override void Display()
@@ -181,6 +200,18 @@ namespace Ninjas
         public override void AttackTarget(Ninja target)
         {
             base.AttackTarget(target);
+
+            int speedDamage = (int)(Speed * 0.6f);
+            target.HP -= speedDamage;
+            Console.WriteLine($"[Anbu Ability] +{speedDamage} assassination damage!");
+
+            // If Speed is over 250, trigger a second bonus strike
+            if (Speed >= 250f)
+            {
+                int comboDamage = (int)(Attack * 0.5f);
+                target.HP -= comboDamage;
+                Console.WriteLine($"[Anbu Combo] High-speed follow-up deals +{comboDamage} damage!");
+            }
         }
 
         public override void Display()
@@ -210,6 +241,10 @@ namespace Ninjas
         public override void AttackTarget(Ninja target)
         {
             base.AttackTarget(target);
+
+            int selfHeal = (int)(Heal * 10);
+            HP += selfHeal;
+            Console.WriteLine($"[Medic Ability] recovering +{selfHeal} HP!");
         }
 
         public override void Display()

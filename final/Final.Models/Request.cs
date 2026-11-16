@@ -3,7 +3,7 @@ namespace Requests
 {
     using Ninjas;
     using Enums;
-    using System.Collections.Generic;
+    using Weapons;
 
     public abstract class RoleRequirement
     {
@@ -12,8 +12,8 @@ namespace Requests
 
     public class TankRequirement : RoleRequirement
     {
-        public float Endurance { get; set; }
-        public TankRequirement(float endurance) 
+        public int Endurance { get; set; }
+        public TankRequirement(int endurance) 
         { 
             Role = RoleDecorator.Tank; 
             Endurance = endurance; 
@@ -77,20 +77,43 @@ namespace Requests
         public List<SquadRequirement> SubSquads { get; set; } = new List<SquadRequirement>();
     }
 
+    public class ChakraRequirement
+    {
+        public double BurnChance { get; set; } = 25.0;
+        public int CuttingPower { get; set; } = 15;
+        public double FlowRate { get; set; } = 0.2;
+        public int Hardness { get; set; } = 2;
+        public double StunChance { get; set; } = 20.0;
+    }
+
+    public class WeaponRequirement
+    {
+        public int KatanaBaseDamage { get; set; } = 50;
+        public int KatanaPenetration { get; set; } = 10;
+        public int ShurikenBaseDamage { get; set; } = 5;
+        public int ShurikenCount { get; set; } = 5;
+        public int KunaiBaseDamage { get; set; } = 15;
+        public double KunaiPiercingBonus { get; set; } = 0.25;
+        public int KunaiCount { get; set; } = 5;
+        public ChakraRequirement ChakraStats { get; set; } = new ChakraRequirement();
+    }
+    
     public class MissionRequest
     {
         public string MissionName { get; set; }
         public Rank MissionRank { get; set; }
         public Location Location { get; set; }
-        public SquadRequirement SquadBlueprint { get; set; }
-        public Squad? DeployedSquad { get; set; }
-        
-        public MissionRequest(string missionName, Rank missionRank, Location loc, SquadRequirement sr) 
+        public SquadRequirement KonohaBlueprint { get; set; }
+        public SquadRequirement AllianceBlueprint { get; set; }
+        public WeaponRequirement WeaponBlueprint { get; set; } 
+        public MissionRequest(string missionName, Rank missionRank, Location loc, SquadRequirement konohaBlueprint, SquadRequirement allianceBlueprint, WeaponRequirement wr)
         {
             MissionName = missionName;
             MissionRank = missionRank;
             Location = loc;
-            SquadBlueprint = sr;
+            KonohaBlueprint = konohaBlueprint;
+            AllianceBlueprint = allianceBlueprint;
+            WeaponBlueprint = wr;
         }
     }
 }
