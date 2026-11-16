@@ -10,8 +10,8 @@ namespace Requests
 
     public class TankRequirement : RoleRequirement
     {
-        public double Endurance { get; set; }
-        public TankRequirement(double endurance) 
+        public int Endurance { get; set; }
+        public TankRequirement(int endurance) 
         { 
             Role = RoleDecorator.Tank; 
             Endurance = endurance; 
