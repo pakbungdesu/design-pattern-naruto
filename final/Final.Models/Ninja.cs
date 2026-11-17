@@ -50,18 +50,12 @@ namespace Ninjas
         public ChakraType ChakraNature { get; set; }
         public int Attack { get; set; }
         public double Heal { get; set; }
-        public int HP { get; set; }
+        public virtual int HP { get; set; }
         public Location Village { get; set; }
-        public List<Weapon> Weapons { get; set; } = new List<Weapon>();
         public bool IsReady { get; set; } = false;
+        public List<Weapon> Weapons { get; set; } = new List<Weapon>();
         public abstract void AttackTarget(Ninja target);
-        public virtual void Display()
-        {
-            foreach(var weapon in Weapons)
-            {
-                weapon.Display();
-            }
-        }
+        public abstract void Display();
 
         public Ninja(string name, ChakraType chakraNature, int attack, double heal, int hp, Location village)
         {
@@ -71,27 +65,6 @@ namespace Ninjas
             Heal = heal;
             HP = hp;
             Village = village;
-        }
-
-        public void UseEquippedWeapons(Ninja target)
-        {
-            foreach (var weapon in Weapons)
-            {
-                weapon.Attack(target);
-            }
-        }
-
-        public void UseEquippedWeapons(int idx, Ninja target)
-        {
-            Weapons[idx].Attack(target);
-        }
-
-        public void DisplayWeapon()
-        {
-            foreach(var weapon in Weapons)
-            {
-                weapon.Display();
-            }
         }
     }
 
@@ -204,6 +177,18 @@ namespace Ninjas
             _ninja = ninja;
         }
 
+        public override int HP
+        {
+            get => _ninja != null ? _ninja.HP : base.HP;
+            set
+            {
+                if (_ninja != null)
+                    _ninja.HP = value;
+                else
+                    base.HP = value;
+            }
+        }
+
         public override void AttackTarget(Ninja target)
         {
             _ninja.AttackTarget(target);
@@ -214,7 +199,26 @@ namespace Ninjas
             _ninja.Display();
         }
 
-        public Ninja GetBaseNinja() => _ninja;   
+        public void UseEquippedWeapons(Ninja target)
+        {
+            foreach (var weapon in Weapons)
+            {
+                weapon.Attack(target);
+            }
+        }
+
+        public void UseEquippedWeapons(int idx, Ninja target)
+        {
+            Weapons[idx].Attack(target);
+        }
+
+        public void DisplayWeapon()
+        {
+            foreach(var weapon in Weapons)
+            {
+                weapon.Display();
+            }
+        }  
     }
 
     public class Tank : Decorator { 

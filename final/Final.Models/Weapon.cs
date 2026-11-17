@@ -1,7 +1,6 @@
 
 namespace Weapons
 {
-    using System.ComponentModel.DataAnnotations;
     using Enums;
     using Ninjas;
 

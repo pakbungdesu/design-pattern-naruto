@@ -131,13 +131,8 @@ namespace Facades
         {
             foreach (var member in squad.Members)
             {
-                if (member is Ninja ninja)
+                if (member is Decorator ninja)
                 {
-                    while (ninja is Decorator decorator)
-                    {
-                        ninja = decorator.GetBaseNinja();
-                    }
-
                     ninja.Weapons.AddRange(_weaponGenerator.GenerateWeaponLoadout());
                     ninja.IsReady = true;
                 }

@@ -8,6 +8,24 @@ using Enums;
 
 class Program
 {
+    static void Client(int idx, Decorator attacker, Decorator target)
+    {
+        Console.WriteLine("=== Before Attacking ===");
+        target.Display();
+        attacker.UseEquippedWeapons(idx, target);
+        Console.WriteLine("=== After Attacking ===");
+        target.Display();
+    }
+
+    static void Client(Decorator attacker, Decorator target)
+    {
+        Console.WriteLine("=== Before Attacking ===");
+        target.Display();
+        attacker.UseEquippedWeapons(target);
+        Console.WriteLine("=== After Attacking ===");
+        target.Display();
+    }
+
     static void Main()
     {
         // 1. Configure Weapon & Chakra Blueprints
@@ -282,6 +300,8 @@ class Program
             elementBoost: 0.9
         );
 
+        Decorator tankRogueSwordman = new Tank(rogueSwordsman, 100);
+        
         Ninja rogueCommander = iwaFactory.CreateKage(
             name: "Rogue Tsuchikage",
             chakraNature: ChakraType.Earth,
@@ -291,12 +311,13 @@ class Program
             bijuuPool: 1500
         );
 
+        Decorator tankRogueCommander = new Tank(rogueCommander, 200);
+
         // 6. Combat Simulation
         Console.WriteLine("\n================ BATTLE START ================");
 
-        if (konohaTeam?.Members[0] is Ninja kakashi)
+        if (konohaTeam?.Members[0] is Decorator kakashi)
         {
-            while (kakashi is Decorator dec) kakashi = dec.GetBaseNinja();
             
             Console.WriteLine($"\n--- Weapon Inspection: {kakashi.Name} (Equipped: {kakashi.Weapons.Count} weapons) ---");
             foreach (var weapon in kakashi.Weapons)
@@ -304,11 +325,8 @@ class Program
                 weapon.Display();
             }
 
-            Console.WriteLine($"\n--- Test Using Weapons by index ---");
-            kakashi.UseEquippedWeapons(0, rogueCommander);
-
-            Console.WriteLine($"\n--- Test Using All Weapons ---");
-            kakashi.UseEquippedWeapons(rogueCommander);
+            Client(kakashi, tankRogueCommander);
+            Client(0, kakashi, tankRogueSwordman);
         }
 
         Console.WriteLine($"\n--- {konohaTeam?.SquadName} engages {rogueSwordsman.Name} (HP: {rogueSwordsman.HP}) ---");
@@ -320,7 +338,7 @@ class Program
         Console.WriteLine($"Result -> {rogueCommander.Name} Remaining HP: {Math.Max(0, rogueCommander.HP)}");
 
         // Enemy Counter-Attack against a target inside the squad
-        if (konohaTeam != null && konohaTeam.Members.Count > 0 && konohaTeam.Members[0] is Ninja vanguardLead)
+        if (konohaTeam != null && konohaTeam.Members.Count > 0 && konohaTeam.Members[0] is Decorator vanguardLead)
         {
             Console.WriteLine($"\n--- Enemy Counter-Attack ---");
             rogueCommander.AttackTarget(vanguardLead);
