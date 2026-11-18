@@ -47,9 +47,18 @@ written in Python.
 
 ### Combined final example
 
-`final/` combines several patterns into a larger shinobi mission and battle
+`final/` combines 6 patterns into a larger shinobi mission and battle
 scenario. It uses requirements, villages, ninja, weapons, and chakra in a
-combined setup with a facade and combat simulation.
+combined setup with a facade and combat simulation
+
+Patterns used
+1. Facade
+2. Factory Method
+3. Abstract Factory
+4. Composite
+5. Decorator
+6. Bridge
+
 
 ## Repository layout
 
