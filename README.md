@@ -22,32 +22,32 @@ written in Python.
 
 | Pattern | Example location | Naruto-themed demonstration |
 | --- | --- | --- |
-| Adapter | `structural/adapter/` | Adapts chakra sources for use by battlefield and jutsu code. |
-| Bridge | `structural/bridge/` | Separates combat gear abstractions from their construction process. |
-| Composite | `structural/composite/` | Represents nested squads and individual ninja as a single tree structure. |
-| Decorator | `structural/decorator/` | Adds roles and abilities such as ANBU or tank status to ninja dynamically. |
-| Facade | `structural/facade/` | Provides a simplified interface for mission and squad dispatch operations. |
-| Flyweight | `structural/flyweight/` | Shares intrinsic ninja or combat data to avoid duplicating repeated state. |
-| Proxy | `structural/proxy/` | Controls access to an underlying ninja or village-related resource. |
+| Adapter | [structural/adapter/](https://github.com/pakbungdesu/design-pattern-naruto/blob/main/structural/adapter/pattern6-adapter.drawio.png) | Adapts chakra sources for use by battlefield and jutsu code. |
+| Bridge | [structural/bridge/](https://github.com/pakbungdesu/design-pattern-naruto/blob/main/structural/bridge/pattern7-bridge.drawio.png) | Separates combat gear abstractions from their construction process. |
+| Composite | [structural/composite/](https://github.com/pakbungdesu/design-pattern-naruto/blob/main/structural/composite/pattern8-composite.drawio.png) | Represents nested squads and individual ninja as a single tree structure. |
+| Decorator | [structural/decorator/](https://github.com/pakbungdesu/design-pattern-naruto/blob/main/structural/decorator/pattern9-decorator.drawio.png) | Adds roles and abilities such as ANBU or tank status to ninja dynamically. |
+| Facade | [structural/facade/](https://github.com/pakbungdesu/design-pattern-naruto/blob/main/structural/facade/pattern10-facade.drawio.png) | Provides a simplified interface for mission and squad dispatch operations. |
+| Flyweight | [structural/flyweight/](https://github.com/pakbungdesu/design-pattern-naruto/blob/main/structural/flyweight/pattern11-flyweight.drawio.png) | Shares intrinsic ninja or combat data to avoid duplicating repeated state. |
+| Proxy | [structural/proxy/](https://github.com/pakbungdesu/design-pattern-naruto/blob/main/structural/proxy/pattern12-proxy.drawio.png) | Controls access to an underlying ninja or village-related resource. |
 
 ### Behavioral patterns
 
 | Pattern | Example location | Naruto-themed demonstration |
 | --- | --- | --- |
-| Chain of Responsibility | `behavioral/chain-of-responsibility/` | Passes requests through handlers with increasing ninja rank or authority. |
-| Command | `behavioral/command/` | Encapsulates ninja actions, including undo/invocation behavior, as commands. |
-| Iterator | `behavioral/iterator/` | Iterates, filters, sorts, and semantically searches ninja students; implemented in Python. |
-| Mediator | `behavioral/mediator/` | Centralizes communication between ninja colleagues. |
-| Memento | `behavioral/memento/` | Saves and restores ninja state through a caretaker and originator. |
-| Observer | `behavioral/observer/` | Sends mission or status messages to subscribed observers. |
-| State | `behavioral/state/` | Changes ninja behavior or rank context as state transitions occur. |
-| Strategy | `behavioral/strategy/` | Selects interchangeable ninja or battle strategies at runtime. |
-| Template Method | `behavioral/template/` | Defines the common training workflow while allowing subclasses to vary steps. |
-| Visitor | `behavioral/visitor/` | Applies operations to ninja and related elements without changing their classes. |
+| Chain of Responsibility | [behavioral/chain-of-responsibility/](https://github.com/pakbungdesu/design-pattern-naruto/blob/main/behavioral/chain-of-responsibility/pattern13-CoR.drawio.png) | Passes requests through handlers with increasing ninja rank or authority. |
+| Command | [behavioral/command/](https://github.com/pakbungdesu/design-pattern-naruto/blob/main/behavioral/command/pattern14-command.drawio.png) | Encapsulates ninja actions, including undo/invocation behavior, as commands. |
+| Iterator | [behavioral/iterator/](https://github.com/pakbungdesu/design-pattern-naruto/blob/main/behavioral/iterator/pattern15-iterator.drawio.png) | Iterates, filters, sorts, and semantically searches ninja students; implemented in Python. |
+| Mediator | [behavioral/mediator/](https://github.com/pakbungdesu/design-pattern-naruto/blob/main/behavioral/mediator/pattern16-mediator.drawio.png) | Centralizes communication between ninja colleagues. |
+| Memento | [behavioral/memento/](https://github.com/pakbungdesu/design-pattern-naruto/blob/main/behavioral/memento/pattern17-memento.drawio.png) | Saves and restores ninja state through a caretaker and originator. |
+| Observer | [behavioral/observer/](https://github.com/pakbungdesu/design-pattern-naruto/blob/main/behavioral/observer/pattern18-observer.drawio.png) | Sends mission or status messages to subscribed observers. |
+| State | [behavioral/state/](https://github.com/pakbungdesu/design-pattern-naruto/blob/main/behavioral/state/pattern19-state.drawio.png) | Changes ninja behavior or rank context as state transitions occur. |
+| Strategy | [behavioral/strategy/](https://github.com/pakbungdesu/design-pattern-naruto/blob/main/behavioral/strategy/pattern20-strategy.drawio.png) | Selects interchangeable ninja or battle strategies at runtime. |
+| Template Method | [behavioral/template/](https://github.com/pakbungdesu/design-pattern-naruto/blob/main/behavioral/template/pattern21-template.drawio.png) | Defines the common training workflow while allowing subclasses to vary steps. |
+| Visitor | [behavioral/visitor/](https://github.com/pakbungdesu/design-pattern-naruto/blob/main/behavioral/visitor/pattern22-visitor.drawio.png) | Applies operations to ninja and related elements without changing their classes. |
 
 ### Combined final example
 
-`final/` combines 6 patterns into a larger shinobi mission and battle
+[final/](https://github.com/pakbungdesu/design-pattern-naruto/blob/main/final/patterns-final.drawio.png) combines 6 patterns into a larger shinobi mission and battle
 scenario. It uses requirements, villages, ninja, weapons, and chakra in a
 combined setup with a facade and combat simulation
 
