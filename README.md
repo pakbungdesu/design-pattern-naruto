@@ -12,11 +12,11 @@ written in Python.
 
 | Pattern | Example location | Naruto-themed demonstration |
 | --- | --- | --- |
-| Abstract Factory | `creational/abstract-factory/` | Creates village-specific weapons, defenses, uniforms, and jutsu. |
-| Builder | `creational/builder/` | Builds specialized ninja types through a director and concrete builders. |
-| Factory Method | `creational/factory-method/` | An academy and rank hierarchy create Genin, Chunin, Jonin, or Kage products. |
-| Prototype | `creational/prototype/` | Clones ninja and jutsu objects, including elemental jutsu variants. |
-| Singleton | `creational/singleton/` | Shares a single mission database across the application. |
+| Abstract Factory | [creational/abstract-factory/](https://github.com/pakbungdesu/design-pattern-naruto/blob/main/creational/abstract-factory/pattern2-abtract-factory.drawio.png) | Creates village-specific weapons, defenses, uniforms, and jutsu. |
+| Builder | [creational/builder/](https://github.com/pakbungdesu/design-pattern-naruto/blob/main/creational/builder/pattern3-builder.drawio.png) | Builds specialized ninja types through a director and concrete builders. |
+| Factory Method | [creational/factory-method/](https://github.com/pakbungdesu/design-pattern-naruto/blob/main/creational/factory-method/pattern1-factory-method.drawio.png) | An academy and rank hierarchy create Genin, Chunin, Jonin, or Kage products. |
+| Prototype | [creational/prototype/](https://github.com/pakbungdesu/design-pattern-naruto/blob/main/creational/prototype/pattern4-prototype.drawio.png) | Clones ninja and jutsu objects, including elemental jutsu variants. |
+| Singleton | [creational/singleton/](https://github.com/pakbungdesu/design-pattern-naruto/blob/main/creational/singleton/pattern5-singleton.drawio.png) | Shares a single mission database across the application. |
 
 ### Structural patterns
 
