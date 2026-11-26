@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Visitor.Models")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bc08fd1c67389ad39458e6ce7be45fb0c0be323c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b0fdf7e538dbc6f30993d87baca0e4424de43a18")]
 [assembly: System.Reflection.AssemblyProductAttribute("Visitor.Models")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Visitor.Models")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
